@@ -1,0 +1,177 @@
+<div id="page-container">
+<div class="main">
+   
+    <app-navbar></app-navbar>
+    
+    <div class="home_top_slider">
+    <div class="new_search_form">
+        <div class="new_search_list">
+          <h2> Réservez des logements <span  class="change-content" id="home-text" uniques="Uniques" magics="Magiques" for_you="Pour Vous"
+             style="display: inline;"></span> en Tunisie. </h2>
+          <h4> Trouvez un logement à moindre coût et parfaitement adapté à tout type de séjour sur
+               TunRooms et payez en toute sécurité. </h4>
+
+               <form #form1="ngForm" [formGroup]="rechercheform" class="form-inline" >
+                 <div>
+                  <mat-label id="label" >Lieu (Ville/Gouvernorat)</mat-label>
+                  <mat-form-field id="ville_invite" appearance="outline">
+                    
+                    <mat-select  formControlName="id_ville"   placeholder="Tapez votre recherche ici" >
+                      <mat-option  *ngFor="let item of villes "  >
+                        <!-- {{ item.designation}} -->
+                      </mat-option>
+                    </mat-select>
+                    <mat-error  *ngIf="!rechercheform.controls['id_ville'].valid && rechercheform.controls['id_ville'].touched">*Champ obligatoire</mat-error>
+                  </mat-form-field>
+                 </div>
+                
+              
+               <div class="input-group">
+                 <div  >
+                  <mat-label id="label">Arrivée</mat-label><br>
+                  <mat-form-field id="datearr" appearance="outline">
+                    
+                    <input autocomplete="off"  matInput [(ngModel)]="iddate"  formControlName="date_arr"
+                     [matDatepicker]="picker1" placeholder="Arrivée">
+                    <mat-datepicker-toggle class="float-right" matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error  *ngIf="!rechercheform.controls['date_arr'].valid && rechercheform.controls['date_arr'].touched">*Champ obligatoire</mat-error>
+                  </mat-form-field>
+                 </div>
+              
+               
+               <div  >
+                <mat-label id="labeldep">Départ</mat-label><br>
+                <mat-form-field id="datede" appearance="outline">
+                  
+                    <input autocomplete="off"  matInput [(ngModel)]="datefin" 
+                     formControlName="date_dep" [matDatepicker]="picker2"  placeholder="Départ">
+                    <mat-datepicker-toggle class="float-right" matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <mat-error  *ngIf="!rechercheform.controls['date_dep'].valid && rechercheform.controls['date_dep'].touched">*Champ obligatoire</mat-error>
+                  </mat-form-field>
+               </div>
+                  
+                 </div>
+              <div>
+                <mat-label id="label">Nombre d’invités</mat-label>
+                <mat-form-field id="ville_invite" appearance="outline">
+                 
+                  <mat-select  formControlName="id_invite"  [(value)]="selected" >
+                    <mat-option  value="1" >1 invité</mat-option>
+                    <mat-option   value="2" >2 invités</mat-option>
+                    <mat-option   value="3" >3 invités</mat-option>
+                    <mat-option  value="4" >4 invités</mat-option>
+                    <mat-option   value="5" >5 invités</mat-option>
+                    <mat-option  value="6" >6 invités</mat-option>
+                    <mat-option   value="7" >7 invités</mat-option>
+                    <mat-option   value="8" >8 invités</mat-option>
+                    <mat-option   value="9" >9 invités</mat-option>
+                    <mat-option   value="10" >10 invités</mat-option>
+                    <mat-option  value="11" >11+ invités</mat-option>
+
+
+                  </mat-select>
+                  <mat-error  *ngIf="!rechercheform.controls['id_invite'].valid && rechercheform.controls['id_invite'].touched">*Champ obligatoire</mat-error>
+                </mat-form-field>
+              </div>
+              
+            
+             </form>
+   
+             <div class="search_submit">
+              <button (click)="Rechercher(rechercheform.value)">Chercher</button>
+            </div>
+        </div>
+
+        <a href="https://www.tunrooms.com/rooms/new" class="become_link">
+          <i class="fa fa-home" aria-hidden="true"></i><span>Gagnez de l'argent en hébergeant des voyageurs sur TunRooms.</span>
+        </a>
+      </div>
+
+    </div>
+   
+
+
+      <div class="page-container-responsive">
+
+        <!-- home button -->
+        
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 home_button_field">        
+         <div class="home_button_opt">
+          <h3>Découvrez tous les logements disponibles:</h3>
+          <ul class="homes_button">
+            <li>
+              <a href="#">
+                <div class="image_home">
+                  <img lazy-src="https://www.tunrooms.com/images/slider/home3.jpg" class="ng-isolate-scope" style="opacity: 1; transition: opacity 1s ease 0s;" src="https://www.tunrooms.com/images/slider/home3.jpg">
+                </div>
+                <div class="content_home">
+                  <span>Tous les logements</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <br> <br>
+        <div class="home_page_list">
+          <h3>Les Tendances:</h3>
+          <div  class="home_page_listimg" >
+           
+            
+                <div *ngFor="let tendance of tendances; let i=index">
+                  <div  class="card" >
+                           
+                  <a href="#"> <img id="imgcard"
+                  class="ng-isolate-scope"  
+                    src="{{tendance.image}}" alt="img" ></a>
+                    <div class="card-body">
+                      <div class="category_city hm_cate">
+                        <span class="pull-left ng-binding">Logement entier</span>
+                        <span class="pull-left dot-cont">·</span>
+                        <span class="pull-left ng-binding">{{tendance.logement}}</span>
+                      </div>
+                      <a href="#" target="listing_10001" class="text-normal" style="text-decoration:none !important;">
+                        <h3  itemprop="name" class="h5 listing-name text-truncate row-space-top-1 ng-binding" style="width:95%;">
+                       {{tendance.designation}}
+                        </h3>
+                      </a>
+                      <div class="exp_price ng-binding">
+                        <span ng-bind-html="reservation.rooms_price.currency.symbol" class="ng-binding">TND</span>
+                        {{tendance.prix}}
+                        Par nuit
+                       
+                      </div>
+                     
+                     
+
+                    </div>
+                  
+                      
+                  </div>
+                    </div>
+                 
+                 
+          </div>
+            
+        </div>
+
+
+
+      </div>
+    
+    
+    
+    
+    
+    
+      
+      
+   
+    
+</div>
+
+</div>
+
+<app-footer></app-footer>
+</div>
