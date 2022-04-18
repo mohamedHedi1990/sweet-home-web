@@ -1,3 +1,4 @@
+import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'main-profile',
+    component: DashbordUserComponent,
   },
   //{ path: '', redirectTo: 'HomeComponent', pathMatch: 'full' },
 ];

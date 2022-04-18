@@ -25,8 +25,20 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
+import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TabsModule, WavesModule } from 'ng-uikit-pro-standard';
+import { AnnouncemntDetailsComponent } from './components/announcemnt-details/announcemnt-details.component';
+
 @NgModule({
-  declarations: [AppComponent, SignUpComponent, HomeComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    SignUpComponent,
+    HomeComponent,
+    LoginComponent,
+    DashbordUserComponent,
+    AnnouncemntDetailsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,6 +63,8 @@ import { LoginComponent } from './components/login/login.component';
     MatSliderModule,
     NgSelectModule,
     ToastrModule.forRoot({ timeOut: 8000, positionClass: 'toast-bottom-left' }), // ToastrModule added
+    MatTabsModule,
+    TabsModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
