@@ -22,121 +22,71 @@
             type de séjour sur TunRooms et payez en toute sécurité.
           </h4>
 
-          <form #form1="ngForm" [formGroup]="rechercheform" class="form-inline">
+          <form
+            #form1="ngForm"
+            role="form"
+            (ngSubmit)="search()"
+            ngNativeValidate
+          >
             <div>
-              <mat-label id="label">Lieu (Ville/Gouvernorat)</mat-label>
-              <mat-form-field id="ville_invite" appearance="outline">
-                <mat-select
-                  formControlName="id_ville"
-                  placeholder="Tapez votre recherche ici"
+              <label>Lieu (Ville/Gouvernorat)</label>
+              <ng-select
+                required
+                [(ngModel)]="rechercheform.announcementCityLabel"
+              >
+                <ng-option
+                  *ngFor="let city of cities"
+                  [value]="city.cityLabel"
+                  >{{ city.cityLabel }}</ng-option
                 >
-                  <mat-option *ngFor="let item of villes">
-                    <!-- {{ item.designation}} -->
-                  </mat-option>
-                </mat-select>
-                <mat-error
-                  *ngIf="
-                    !rechercheform.controls['id_ville'].valid &&
-                    rechercheform.controls['id_ville'].touched
-                  "
-                  >*Champ obligatoire</mat-error
-                >
-              </mat-form-field>
+              </ng-select>
             </div>
 
-            <div class="input-group">
-              <div>
-                <mat-label id="label">Arrivée</mat-label><br />
-                <mat-form-field id="datearr" appearance="outline">
-                  <input
-                    autocomplete="off"
-                    matInput
-                    [(ngModel)]="iddate"
-                    formControlName="date_arr"
-                    [matDatepicker]="picker1"
-                    placeholder="Arrivée"
-                  />
-                  <mat-datepicker-toggle
-                    class="float-right"
-                    matSuffix
-                    [for]="picker1"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #picker1></mat-datepicker>
-                  <mat-error
-                    *ngIf="
-                      !rechercheform.controls['date_arr'].valid &&
-                      rechercheform.controls['date_arr'].touched
-                    "
-                    >*Champ obligatoire</mat-error
-                  >
-                </mat-form-field>
+            <div class="row">
+              <div class="col-md-6">
+                <label> Arrivée </label>
+                <input
+                  class="form-control"
+                  type="date"
+                  placeholder="Arrivée"
+                  required
+                  name="comingDate"
+                  [(ngModel)]="rechercheform.announcementStartDate"
+                />
               </div>
 
-              <div>
-                <mat-label id="labeldep">Départ</mat-label><br />
-                <mat-form-field id="datede" appearance="outline">
-                  <input
-                    autocomplete="off"
-                    matInput
-                    [(ngModel)]="datefin"
-                    formControlName="date_dep"
-                    [matDatepicker]="picker2"
-                    placeholder="Départ"
-                  />
-                  <mat-datepicker-toggle
-                    class="float-right"
-                    matSuffix
-                    [for]="picker2"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #picker2></mat-datepicker>
-                  <mat-error
-                    *ngIf="
-                      !rechercheform.controls['date_dep'].valid &&
-                      rechercheform.controls['date_dep'].touched
-                    "
-                    >*Champ obligatoire</mat-error
-                  >
-                </mat-form-field>
+              <div class="col-md-6">
+                <label> Départ </label>
+                <input
+                  class="form-control"
+                  type="date"
+                  placeholder="Départ"
+                  required
+                  name="departureDate"
+                  [(ngModel)]="rechercheform.announcementEndDate"
+                />
               </div>
             </div>
             <div>
-              <mat-label id="label">Nombre d’invités</mat-label>
-              <mat-form-field id="ville_invite" appearance="outline">
-                <mat-select formControlName="id_invite" [(value)]="selected">
-                  <mat-option value="1">1 invité</mat-option>
-                  <mat-option value="2">2 invités</mat-option>
-                  <mat-option value="3">3 invités</mat-option>
-                  <mat-option value="4">4 invités</mat-option>
-                  <mat-option value="5">5 invités</mat-option>
-                  <mat-option value="6">6 invités</mat-option>
-                  <mat-option value="7">7 invités</mat-option>
-                  <mat-option value="8">8 invités</mat-option>
-                  <mat-option value="9">9 invités</mat-option>
-                  <mat-option value="10">10 invités</mat-option>
-                  <mat-option value="11">11+ invités</mat-option>
-                </mat-select>
-                <mat-error
-                  *ngIf="
-                    !rechercheform.controls['id_invite'].valid &&
-                    rechercheform.controls['id_invite'].touched
-                  "
-                  >*Champ obligatoire</mat-error
-                >
-              </mat-form-field>
+              <label>Nombre d’invités</label>
+              <ng-select required [(ngModel)]="rechercheform.nbGuest">
+                <ng-option value="1">1 invité</ng-option>
+                <ng-option value="2">2 invités</ng-option>
+                <ng-option value="3">3 invités</ng-option>
+                <ng-option value="4">4 invités</ng-option>
+                <ng-option value="5">5 invités</ng-option>
+                <ng-option value="6">6 invités</ng-option>
+                <ng-option value="7">7 invités</ng-option>
+                <ng-option value="8">8 invités</ng-option>
+                <ng-option value="9">9 invités</ng-option>
+                <ng-option value="10">10 invités</ng-option>
+                <ng-option value="11">11+ invités</ng-option>
+              </ng-select>
             </div>
           </form>
 
-          <div class="search_submit">
-            <button (click)="Rechercher(rechercheform.value)">Chercher</button>
-          </div>
+          <input class="btn-upload save" type="submit" value="Chercher" />
         </div>
-
-        <a href="https://www.tunrooms.com/rooms/new" class="become_link">
-          <i class="fa fa-home" aria-hidden="true"></i
-          ><span
-            >Gagnez de l'argent en hébergeant des voyageurs sur TunRooms.</span
-          >
-        </a>
       </div>
     </div>
 
