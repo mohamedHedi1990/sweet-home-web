@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocationComponent } from './location/location.component';
 import { LocationtRouting } from './location.routing';
-import { SharedModule } from './shared/shared.module';
-import { NavbarComponent } from './shared/navbar/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -21,31 +18,24 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
-import { MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTreeModule } from '@angular/material/tree';
 
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    LocationComponent,
-    NavbarComponent,
-    FooterComponent,
-    
-    
-  ],
+  declarations: [LocationComponent],
   imports: [
     CommonModule,
     LocationtRouting,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
     MatDialogModule,
     MatSelectModule,
 
@@ -53,15 +43,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatFormFieldModule,
     MatButtonToggleModule,
     MatInputModule,
-  
+
     MatRippleModule,
     MatCheckboxModule,
-    MatDatepickerModule, 
-    MatNativeDateModule, 
-    MatRadioModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
     MatSliderModule,
-  
-
-  ]
+  ],
 })
-export class LocationModule { }
+export class LocationModule {}

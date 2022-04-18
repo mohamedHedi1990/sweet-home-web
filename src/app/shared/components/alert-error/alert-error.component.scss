@@ -1,0 +1,33 @@
+@import '../../../../assets/variables';
+.alert-error {
+  color: #720000;
+  font-weight: 700;
+  background-color: #FFB4B4;
+  border-color: #FFB4B4;
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.close {
+  width: 22px;
+  height: 22px;
+}
+.alert-icon-btn {
+  margin-top: -5px;
+  margin-left: -2px;
+  display: block;
+  font-size: 16px;
+}
+
+.close{
+margin-right: 20px;
+color: #720000;
+  font-weight: 700;
+  background-color: #FFB4B4;
+  border-color: #720000;
+  border-radius: 50%;
+  box-shadow: none!important;
+}

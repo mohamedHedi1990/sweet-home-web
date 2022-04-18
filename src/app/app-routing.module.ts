@@ -1,19 +1,22 @@
+import { HomeComponent } from './components/home/home.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [
-  
-  
-    {path:'location', loadChildren: () => import('../app/location/location.module').then(m => m.LocationModule )},  
-   
-  
-    { path: '', redirectTo: 'location', pathMatch: 'full' },
- 
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'sign-up',
+    component: SignUpComponent,
+  },
+  //{ path: '', redirectTo: 'HomeComponent', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,232 @@
+#page-container {
+    position: relative;
+   
+  }
+  
+
+
+.main{
+
+    height: 750px;
+    background-image: url('src/assets/img/bizerte.jpg');
+   
+    animation: animatedBackground 10s linear infinite alternate;
+ 
+ 
+}
+  
+
+  @keyframes animatedBackground {
+    from {
+        background-image: url('src/assets/img/monastir-810x469.webp');
+    }
+    to {
+        background-image: url('src/assets/img/vivre-a-tunis-1920x1080.jpg');
+    }
+  }
+  .new_search_form {
+    display: inline-block;
+    width: 100%;
+    padding-top: 60px;
+    position: relative;
+    padding-left: 150px;
+}
+.new_search_list {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 4px;
+    width: 500px;
+}
+.new_search_form h2{
+   
+    color:#484848 ;
+    line-height: 40px;
+    font-size: 34px;
+}
+.new_search_form h2 span{
+    color: #27aae1;
+   
+}
+
+.change-content:after{
+    content: '';
+    animation: changetext 5s infinite;
+}
+@keyframes changetext {
+   0%{
+       content: 'Uniques';
+   }
+   60%{
+    content: 'Magiques';
+}
+100%{
+    content: 'Pour Vous';
+}
+  }
+.new_search_form h4{
+    font-size: 14px;
+}
+#ville_invite{
+    
+    width: 450px;
+}
+#label{
+    font-size: 16px;
+}
+#datearr{
+    width: 220px;
+   
+   
+}
+#datede{
+    width: 220px;
+    padding-left: 5px;
+   
+}
+#labeldep{
+    font-size: 16px;
+    padding-left: 5px;
+}
+.search_submit {
+    text-align: right;
+    margin-left: 15px;
+    width: 100%;
+}
+.search_submit button {
+    padding: 10px;
+    background: #27aae1;
+    color: #fff;
+    border: 1px solid #27aae1;
+    font-size: 16px;
+    border-radius: 3px;
+    width: 100px;
+    
+}
+.become_link, .become_link:hover, .become_link:focus {
+    display: inline-block;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 14px;
+    text-decoration: none;
+    position: relative;
+}
+a.become_link {
+    background: transparent;
+}
+.become_link .fa {
+    padding-right: 5px;
+    font-size: 16px;
+}
+.home_top_slider {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    /* height: 100vh; */
+    height: 700px;
+}
+.page-container-responsive {
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    
+}
+.home_button_opt h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #484848;
+}
+.home_page_list h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #484848;
+}
+.image_home {
+    float: left;
+    width: 100px;
+    height: 75px;
+}
+.homes_button img {
+    width: 100%;
+    height: 75px;
+    /* object-fit: cover; */
+}
+.content_home span {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    text-align: center;
+    left: 70%;
+   
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.homes_button li a {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+    position: relative;
+    color: #808080;
+    font-size: 15px;
+    box-shadow: 0 1px 3px 0px rgb(0 0 0 / 8%);
+    /* float: left; */
+}
+
+
+.homes_button li {
+    list-style-type: none;
+    width: 230px;
+    display: inline-block;
+    margin-right: 20px;
+    /* float: left; */
+}
+.home_page_listimg{
+    margin-left: -175px;
+}
+.home_page_listimg img {
+    width: 100%;
+    height: 175px;
+    border-radius:5px
+}
+
+.card{
+    width: 20%;
+    border: none;
+    float: right;
+    margin:10px;
+}
+.category_city span {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 75%;
+    text-overflow: ellipsis;
+}
+.category_city.hm_cate {
+    color: #b43616;
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 0!important
+}
+h3.listing-name {
+    margin: 0;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    color: #484848;
+    width: 100% !important;
+}
+.exp_price {
+    font-weight: 300;
+    font-size: 15px;
+    color: #484848;
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+}
+.mat-error{
+    font-size: 13px;
+}

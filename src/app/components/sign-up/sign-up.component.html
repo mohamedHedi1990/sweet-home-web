@@ -1,0 +1,135 @@
+<div class="row no-espace">
+  <div class="col-md-5 display-form">
+    <div class="body-content">
+      <div class="content-form">
+        <form
+          id="form1"
+          (ngSubmit)="onFormSubmit()"
+          role="form"
+          ngNativeValidate
+        >
+          <app-alert-error *ngIf="showAlertError"></app-alert-error>
+          <div class="form-Login">
+            <h1 class="title">Créer un compte</h1>
+          </div>
+          <div>
+            <div>
+              <label>Type de votre compte</label>
+              <ng-select
+                required
+                [(ngModel)]="user.userType"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                <ng-option value="OWNER">Annonceur</ng-option>
+                <ng-option value="LODGER">Locataire</ng-option>
+              </ng-select>
+            </div>
+            <div>
+              <label> Prénom </label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Prénom"
+                required
+                [(ngModel)]="user.userFirstName"
+                name="firstName"
+              />
+            </div>
+
+            <div>
+              <label> Nom </label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Nom"
+                required
+                [(ngModel)]="user.userLastName"
+                name="lastName"
+              />
+            </div>
+
+            <div>
+              <label>E-Mail</label>
+              <input
+                class="form-control"
+                type="email"
+                placeholder="name@beispiel.com"
+                required
+                [(ngModel)]="user.userEmail"
+                name="email"
+                (input)="verifyUser()"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
+              />
+              <p *ngIf="existe" class="alert-password">E-Mail existe déja!</p>
+            </div>
+
+            <div>
+              <label> Téléphone </label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="+4900000000000"
+                required
+                [(ngModel)]="user.userPhoneNumber"
+                name="phoneNumber"
+                pattern="([+]?)[0-9]+"
+                title="
+                Entrez un numéro de téléphone valide"
+              />
+            </div>
+
+            <div>
+              <label> Mot de passe </label>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Entrer le mot de passe"
+                required
+                [(ngModel)]="user.userPassword"
+                name="password"
+                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                oninvalid="setCustomValidity('Le mot de passe doit comporter 8 caractères et doit contenir au moins une lettre majuscule, une lettre minuscule, un caractère spécial et un chiffre.')"
+                oninput="setCustomValidity('')"
+              />
+              <p class="info-password">
+                Le mot de passe doit comporter 8 caractères et doit contenir au
+                moins un majuscule, une minuscule, un caractère spécial et
+                contenir un chiffre.
+              </p>
+            </div>
+            <div>
+              <label> Répéter le mot de passe </label>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Répéter le mot de passe"
+                (input)="matchPassword($event)"
+                [(ngModel)]="user.userConfirmPassword"
+                required
+                name="confirmPassword"
+                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                oninvalid="setCustomValidity('Le mot de passe doit comporter 8 caractères et doit contenir au moins une lettre majuscule, une lettre minuscule, un caractère spécial et un chiffre.')"
+                oninput="setCustomValidity('')"
+              />
+              <p *ngIf="showAlert" class="alert-password">
+                Les mots de passe ne correspondent pas.
+              </p>
+            </div>
+          </div>
+
+          <input
+            class="btn-upload save"
+            type="submit"
+            value="Créer mon compte"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 image-back">
+    <div class="footer-div">
+      <p class="p-footer">Simon Rae</p>
+      <p class="p-footer">Manly Beach, Australia</p>
+    </div>
+  </div>
+</div>
