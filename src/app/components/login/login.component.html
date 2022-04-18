@@ -1,0 +1,69 @@
+<div class="row no-espace" style="position: relative">
+  <div class="col-md-5 display-form">
+    <div class="body-content">
+      <div class="content-form">
+        <form
+          id="form1"
+          (ngSubmit)="onFormSubmit()"
+          role="form"
+          #testForm="ngForm"
+          ngNativeValidate
+        >
+          <div class="form-Login">
+            <h1 class="title">Log in.</h1>
+            <app-alert-error
+              *ngIf="showAlertError"
+              [message]="message"
+            ></app-alert-error>
+            <p class="paragraphe">
+              Connectez-vous avec les informations que vous avez fournies lors
+              de votre inscription<br />
+            </p>
+          </div>
+
+          <div>
+            <div>
+              <label> E-mail </label>
+              <input
+                class="form-control"
+                type="email"
+                placeholder="name@beispiel.com"
+                required
+                [(ngModel)]="auth.username"
+                name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
+              />
+            </div>
+            <div>
+              <label> Mot de passe </label>
+              <div class="flex input-password-wrapper">
+                <input
+                  class="form-control input-wi-icon"
+                  [type]="viewPassword ? 'text' : 'password'"
+                  placeholder="Entrer le mot de passe"
+                  required
+                  [(ngModel)]="auth.userPassword"
+                  name="password"
+                  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
+                  title="
+                  Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, un chiffre et un caractère spécial."
+                />
+                <i
+                  class="icon-input"
+                  [ngClass]="{
+                    'ri-eye-close-line': !viewPassword,
+                    'ri-eye-line': viewPassword
+                  }"
+                  (click)="changeViewPassword()"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-upload save" type="submit">S'inscrire</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 image-back"></div>
+</div>
