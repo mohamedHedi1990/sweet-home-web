@@ -1,4 +1,4 @@
-export class AnnouncementRequest {
+export class AnnouncementRequestModel {
 
   constructor(){
 
