@@ -1,4 +1,4 @@
-import {CountryDtoModel} from "./CountryDtoModel";
+import {CountryDtoModel} from "./CountryDto.model";
 
 export class CityDtoModel {
 
