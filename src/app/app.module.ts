@@ -29,6 +29,7 @@ import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.
 import { MatTabsModule } from '@angular/material/tabs';
 import { TabsModule, WavesModule } from 'ng-uikit-pro-standard';
 import { AnnouncemntDetailsComponent } from './components/announcemnt-details/announcemnt-details.component';
+import {TendancesComponent} from "./components/tendances/tendances.component";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AnnouncemntDetailsComponent } from './components/announcemnt-details/an
     LoginComponent,
     DashbordUserComponent,
     AnnouncemntDetailsComponent,
+    TendancesComponent
   ],
   imports: [
     BrowserModule,
