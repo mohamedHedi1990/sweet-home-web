@@ -12,7 +12,7 @@ import { SearchCriteriaModel } from '../../../../src/app/models/searchCriteria.m
 import { CityModel } from '../../../../src/app/models/city.model';
 import {AnnouncementModel} from "../../models/Announcement.model";
 import {AnnouncementService} from "../../services/announcement.service";
-import {AnnouncementResponse} from "../../models/dto/response/AnnouncementResponse";
+import {AnnouncementResponseModel} from "../../models/dto/response/AnnouncementResponse.model";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     1
   );
   cities: CityModel[] = [];
-   tendances :AnnouncementResponse [] = [];
+   lastPublishedAnnouncements :AnnouncementResponseModel [] = [];
   /*tendances = [
     {
       image:
@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
 
   getAllAnnouncement() {
     this.announcementService.getAllAnnouncement().subscribe(data =>{
-      this.tendances=data;
+      this.lastPublishedAnnouncements=data;
     })
   }
   search() {}
