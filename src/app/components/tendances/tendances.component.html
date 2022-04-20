@@ -4,7 +4,7 @@
           <img
             id="imgcard"
             class="ng-isolate-scope"
-            src="{{ tendance.announcementMainPictureUrl }}"
+            src="{{ lastPublishedAnnouncement.announcementMainPictureUrl }}"
             alt="img"
           /></a>
         <div class="card-body">
@@ -12,7 +12,7 @@
             <span class="pull-left ng-binding">Logement entier</span>
             <span class="pull-left dot-cont">·</span>
             <span class="pull-left ng-binding">{{
-              tendance.announcementType
+              lastPublishedAnnouncement.announcementType
               }}</span>
           </div>
           <a
@@ -26,7 +26,7 @@
               class="h5 listing-name text-truncate row-space-top-1 ng-binding"
               style="width: 95%"
             >
-              {{ tendance.announcementType }}
+              {{ lastPublishedAnnouncement.announcementType }}
             </h3>
           </a>
           <div class="exp_price ng-binding">
@@ -35,7 +35,7 @@
                       class="ng-binding"
                     >TND</span
                     >
-            {{ tendance.announcementCost }}
+            {{ lastPublishedAnnouncement.announcementCost }}
             Par nuit
           </div>
         </div>
