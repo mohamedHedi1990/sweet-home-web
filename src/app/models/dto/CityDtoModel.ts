@@ -1,6 +1,6 @@
 import {CountryDtoModel} from "./CountryDtoModel";
 
-export class CityDto {
+export class CityDtoModel {
 
   cityId:number;
   cityLabel:string;
