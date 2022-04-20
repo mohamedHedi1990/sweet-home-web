@@ -8,9 +8,9 @@ export class AddressDtoModel {
   addressCity:CityDtoModel;
 
 
-  constructor(addressStreet: string, addressStreetNumber: number, addressCityModel: CityDtoModel) {
+  constructor(addressStreet: string, addressStreetNumber: number, addressCity: CityDtoModel) {
     this.addressStreet = addressStreet;
     this.addressStreetNumber = addressStreetNumber;
-    this.addressCityModel = addressCityModel;
+    this.addressCity = addressCity;
   }
 }
