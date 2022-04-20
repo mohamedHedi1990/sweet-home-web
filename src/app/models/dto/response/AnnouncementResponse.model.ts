@@ -1,7 +1,7 @@
-import {AddressDto} from "../AddressDto";
-import {UserDto} from "../UserDto";
+import {AddressDto} from "../AddressDto.model";
+import {UserDto} from "../UserDto.model";
 
-export class AnnouncementResponse {
+export class AnnouncementResponseModel {
 
   announcementId:number;
   announcementTitle:string;
@@ -13,7 +13,7 @@ export class AnnouncementResponse {
 
   announcementType:string;
 
-  announcementAddress:AddressDto;
+  announcementAddress:AddressDtoModel;
 
   announcementBedNumber:number;
   announcementRoomNumber:number;
@@ -22,15 +22,15 @@ export class AnnouncementResponse {
   globalRate:number = 0.0;
   announcementCost:number;
 
-  announcementOwnerPublished:UserDto;
+  announcementOwnerPublished:UserDtoModel;
   announcementMainPictureUrl:string;
 
 
   constructor(announcementId: number, announcementTitle: string, announcementCreatedDate: Date,
               announcementNumberLike: number, announcementNumberDislike: number, announcementType: string,
-              announcementAddress: AddressDto, announcementBedNumber: number, announcementRoomNumber: number,
+              announcementAddress: AddressDtoModel, announcementBedNumber: number, announcementRoomNumber: number,
               announcementBathRoomNumber: number, globalRate: number, announcementCost: number,
-              announcementOwnerPublished: UserDto, announcementMainPictureUrl: string) {
+              announcementOwnerPublished: UserDtoModel, announcementMainPictureUrl: string) {
     this.announcementId = announcementId;
     this.announcementTitle = announcementTitle;
     this.announcementCreatedDate = announcementCreatedDate;
