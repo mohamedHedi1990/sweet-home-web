@@ -1,5 +1,5 @@
-import {AddressDto} from "../AddressDto.model";
-import {UserDto} from "../UserDto.model";
+import {AddressDtoModel} from "../AddressDto.model";
+import {UserDtoModel} from "../UserDto.model";
 
 export class AnnouncementResponseModel {
 
