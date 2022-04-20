@@ -1,14 +1,14 @@
-import {CountryDto} from "./CountryDto";
+import {CountryDtoModel} from "./CountryDtoModel";
 
 export class CityDto {
 
   cityId:number;
   cityLabel:string;
   cityCode:string;
-  country:CountryDto;
+  country:CountryDtoModel;
 
 
-  constructor(cityId: number, cityLabel: string, cityCode: string, country: CountryDto) {
+  constructor(cityId: number, cityLabel: string, cityCode: string, country: CountryDtoModel) {
     this.cityId = cityId;
     this.cityLabel = cityLabel;
     this.cityCode = cityCode;
