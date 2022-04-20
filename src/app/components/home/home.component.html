@@ -119,14 +119,9 @@
         <div class="home_page_list">
           <h3>Les Tendances:</h3>
           <div class="home_page_listimg">
-            <div *ngFor="let tendance of tendances; let i = index">
+            <div *ngFor="let lastPublishedAnnouncement of lastPublishedAnnouncements; let i = index">
               <!-- Juste pour montrer plusieurs car vous avez une seule dans votre base pour le moment -->
-              <app-tendances [tendance]="tendance"></app-tendances>
-              <app-tendances [tendance]="tendance"></app-tendances>
-              <app-tendances [tendance]="tendance"></app-tendances>
-              <app-tendances [tendance]="tendance"></app-tendances>
-              <app-tendances [tendance]="tendance"></app-tendances>
-              <app-tendances [tendance]="tendance"></app-tendances>
+              <app-tendances [lastPublishedAnnouncement]="lastPublishedAnnouncement"></app-tendances>
               <!--<div class="card">
                 <a href="#">
                   <img
