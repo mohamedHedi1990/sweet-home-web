@@ -22,6 +22,12 @@ const routes: Routes = [
     path: 'main-profile',
     component: DashbordUserComponent,
   },
+  {
+    path: '',
+    redirectTo : 'home',
+    pathMatch : 'full'
+  },
+  {path: '**', redirectTo: 'home'}
   //{ path: '', redirectTo: 'HomeComponent', pathMatch: 'full' },
 ];
 

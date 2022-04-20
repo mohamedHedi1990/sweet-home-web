@@ -1,0 +1,43 @@
+
+      <div class="card">
+        <a href="#">
+          <img
+            id="imgcard"
+            class="ng-isolate-scope"
+            src="{{ lastPublishedAnnouncement.announcementMainPictureUrl }}"
+            alt="img"
+          /></a>
+        <div class="card-body">
+          <div class="category_city hm_cate">
+            <span class="pull-left ng-binding">Logement entier</span>
+            <span class="pull-left dot-cont">·</span>
+            <span class="pull-left ng-binding">{{
+              lastPublishedAnnouncement.announcementType
+              }}</span>
+          </div>
+          <a
+            href="#"
+            target="listing_10001"
+            class="text-normal"
+            style="text-decoration: none !important"
+          >
+            <h3
+              itemprop="name"
+              class="h5 listing-name text-truncate row-space-top-1 ng-binding"
+              style="width: 95%"
+            >
+              {{ lastPublishedAnnouncement.announcementType }}
+            </h3>
+          </a>
+          <div class="exp_price ng-binding">
+                    <span
+                      ng-bind-html="reservation.rooms_price.currency.symbol"
+                      class="ng-binding"
+                    >TND</span
+                    >
+            {{ lastPublishedAnnouncement.announcementCost }}
+            Par nuit
+          </div>
+        </div>
+      </div>
+

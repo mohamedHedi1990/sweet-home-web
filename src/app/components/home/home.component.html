@@ -32,7 +32,7 @@
               <label>Lieu (Ville/Gouvernorat)</label>
               <ng-select
                 required
-                [(ngModel)]="rechercheform.announcementCityLabel"
+                [(ngModel)]="rechercheform.announcementCityLabel" name="announcementCityLabel"
               >
                 <ng-option
                   *ngFor="let city of cities"
@@ -69,7 +69,7 @@
             </div>
             <div>
               <label>Nombre d’invités</label>
-              <ng-select required [(ngModel)]="rechercheform.nbGuest">
+              <ng-select required [(ngModel)]="rechercheform.nbGuest" name="nbGuest">
                 <ng-option value="1">1 invité</ng-option>
                 <ng-option value="2">2 invités</ng-option>
                 <ng-option value="3">3 invités</ng-option>
@@ -119,8 +119,10 @@
         <div class="home_page_list">
           <h3>Les Tendances:</h3>
           <div class="home_page_listimg">
-            <div *ngFor="let tendance of tendances; let i = index">
-              <div class="card">
+            <div *ngFor="let lastPublishedAnnouncement of lastPublishedAnnouncements; let i = index">
+              <!-- Juste pour montrer plusieurs car vous avez une seule dans votre base pour le moment -->
+              <app-tendances [lastPublishedAnnouncement]="lastPublishedAnnouncement"></app-tendances>
+              <!--<div class="card">
                 <a href="#">
                   <img
                     id="imgcard"
@@ -160,7 +162,7 @@
                     Par nuit
                   </div>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
