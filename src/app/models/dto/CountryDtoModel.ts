@@ -1,4 +1,4 @@
-export class CountryDto {
+export class CountryDtoModel {
 
   countryId:number;
   countryLabel:string;
