@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {AnnouncementResponse} from "../../models/dto/response/AnnouncementResponse";
+import {AnnouncementResponseModel} from "../../models/dto/response/AnnouncementResponse.model";
 
 @Component({
   selector: 'app-tendances',
@@ -8,13 +8,14 @@ import {AnnouncementResponse} from "../../models/dto/response/AnnouncementRespon
 })
 export class TendancesComponent implements OnInit {
 
-  @Input() tendance:AnnouncementResponse;
+  // @ts-ignore
+  @Input() lastPublishedAnnouncement:AnnouncementResponseModel;
 
   constructor() { }
 
   ngOnInit(): void {
 
-    console.log("tendance : ",this.tendance)
+    console.log("tendance : ",this.lastPublishedAnnouncement)
   }
 
 }
