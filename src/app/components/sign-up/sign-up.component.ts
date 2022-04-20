@@ -65,7 +65,7 @@ export class SignUpComponent implements OnInit {
         this.showAlertSuccess = true;
         this.message = 'Votre compte a été bien crée';
         this.showSuccess(this.message);
-        this.router.navigateByUrl(`/user-edit`);
+        this.router.navigateByUrl(`/login`);
       },
       (error) => {
         //this.showAlertError = true;

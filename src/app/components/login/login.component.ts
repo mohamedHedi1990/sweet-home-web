@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   messageSuccess = 'Das Passwort wurde erfolgreich geändert';
   viewPassword: boolean = false;
 
-  redirectUrl: string = `/agent-calendar`;
+  redirectUrl: string = `/main-profile`;
   constructor(
     private route: ActivatedRoute,
     public router: Router,

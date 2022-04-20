@@ -10,9 +10,9 @@ import {
 //import moment from 'moment';
 import { SearchCriteriaModel } from '../../../../src/app/models/searchCriteria.model';
 import { CityModel } from '../../../../src/app/models/city.model';
-import {AnnouncementModel} from "../../models/Announcement.model";
-import {AnnouncementService} from "../../services/announcement.service";
-import {AnnouncementResponseModel} from "../../models/dto/response/AnnouncementResponse.model";
+import { AnnouncementModel } from '../../models/Announcement.model';
+import { AnnouncementService } from '../../services/announcement.service';
+import { AnnouncementResponseModel } from '../../models/dto/response/AnnouncementResponse.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     1
   );
   cities: CityModel[] = [];
-   lastPublishedAnnouncements :AnnouncementResponseModel [] = [];
+  lastPublishedAnnouncements: AnnouncementModel[] = [];
   /*tendances = [
     {
       image:
@@ -125,7 +125,10 @@ export class HomeComponent implements OnInit {
       avis: '',
     },
   ];*/
-  constructor(private cityService: CityService, private announcementService:AnnouncementService) {}
+  constructor(
+    private cityService: CityService,
+    private announcementService: AnnouncementService
+  ) {}
 
   ngOnInit(): void {
     this.getAllCities();
@@ -138,9 +141,9 @@ export class HomeComponent implements OnInit {
   }
 
   getAllAnnouncement() {
-    this.announcementService.getAllAnnouncement().subscribe(data =>{
-      this.lastPublishedAnnouncements=data;
-    })
+    this.announcementService.getAllAnnouncement().subscribe((data) => {
+      this.lastPublishedAnnouncements = data;
+    });
   }
   search() {}
 }
