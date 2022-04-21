@@ -1,5 +1,6 @@
 import {AddressDtoModel} from "../AddressDto.model";
 import {UserDtoModel} from "../UserDto.model";
+import {AnnouncementType} from "../../../enums/announcement-type";
 
 export class AnnouncementResponseModel {
 
@@ -11,7 +12,7 @@ export class AnnouncementResponseModel {
   announcementNumberLike:number = 0;
   announcementNumberDislike:number = 0;
 
-  announcementType:string;
+  announcementType:AnnouncementType;
 
   announcementAddress:AddressDtoModel;
 
@@ -27,7 +28,7 @@ export class AnnouncementResponseModel {
 
 
   constructor(announcementId: number, announcementTitle: string, announcementCreatedDate: Date,
-              announcementNumberLike: number, announcementNumberDislike: number, announcementType: string,
+              announcementNumberLike: number, announcementNumberDislike: number, announcementType: AnnouncementType,
               announcementAddress: AddressDtoModel, announcementBedNumber: number, announcementRoomNumber: number,
               announcementBathRoomNumber: number, globalRate: number, announcementCost: number,
               announcementOwnerPublished: UserDtoModel, announcementMainPictureUrl: string) {

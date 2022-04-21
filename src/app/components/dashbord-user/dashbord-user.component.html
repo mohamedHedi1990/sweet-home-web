@@ -1,44 +1,55 @@
-<div class="container-lg page-container">
-  <div class="agent-main-wrapper">
-    <div class="row">
-      <div class="col-md-10">
-        <h1 class="title d-none d-md-block">Mon compte</h1>
+<div id="page-container">
+  <div class="main">
+    <app-navbar></app-navbar>
+
+    <div class="container-lg page-container" style="min-height: calc(180vh - 227px) !important">
+      <div class="agent-main-wrapper">
+        <div class="row">
+          <div class="col-md-10">
+            <h1 class="title d-none d-md-block">Mon compte</h1>
+          </div>
+        </div>
+        <div class="global-wrapper">
+          <div class="margLeft mt-md-0 mt-4 d-md-block d-none">
+            <mdb-tabset
+              #staticTabs
+              [vertical]="true"
+              [buttonClass]="'md-tabs tabs-3 indigo '"
+              [contentClass]="'card'"
+            >
+              <!--Panel 1-->
+              <mdb-tab heading="Mon profil" [active]="true">
+                <div class="row">
+                  <!--<div class="col-12">Salut 1</div>-->
+                  <app-user-information></app-user-information>
+                </div>
+              </mdb-tab>
+              <!--Panel 2-->
+              <mdb-tab heading="Mes annonces">
+                <div class="row">
+                  <div class="col-12">Salut 2</div>
+                </div>
+              </mdb-tab>
+              <!--Panel 3-->
+              <mdb-tab heading="Mes réservations">
+                <div class="row">
+                  <div class="col-12">Salut 3</div>
+                </div>
+              </mdb-tab>
+              <!--Panel 4-->
+              <mdb-tab heading="Publier une annonce">
+                <div class="row">
+                  <div class="col-12">Salut 4</div>
+                </div>
+              </mdb-tab>
+            </mdb-tabset>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="global-wrapper">
-      <div class="margLeft mt-md-0 mt-4 d-md-block d-none">
-        <mdb-tabset
-          #staticTabs
-          [vertical]="true"
-          [buttonClass]="'md-tabs tabs-3 indigo '"
-          [contentClass]="'card'"
-        >
-          <!--Panel 1-->
-          <mdb-tab heading="Mon profil">
-            <div class="row">
-              <div class="col-12">Salut 1</div>
-            </div>
-          </mdb-tab>
-          <!--Panel 2-->
-          <mdb-tab heading="Mes annonces">
-            <div class="row">
-              <div class="col-12">Salut 2</div>
-            </div>
-          </mdb-tab>
-          <!--Panel 3-->
-          <mdb-tab heading="Mes réservations">
-            <div class="row">
-              <div class="col-12">Salut 3</div>
-            </div>
-          </mdb-tab>
-          <!--Panel 4-->
-          <mdb-tab heading="Publier une annonce">
-            <div class="row">
-              <div class="col-12">Salut 4</div>
-            </div>
-          </mdb-tab>
-        </mdb-tabset>
-      </div>
-    </div>
+
   </div>
+
+  <app-footer></app-footer>
+
 </div>

@@ -1,0 +1,241 @@
+@import '../../../../assets/variables';
+.image-back{
+  background-image:url("../../../../assets/images/Rectangle25.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.no-espace{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.title{
+  color:$primary;
+  margin-bottom: 23px;
+  margin-top: 5rem;
+}
+.paragraphe{
+  color:$secondary;
+  font-size: 14px;
+}
+
+::placeholder {
+  font-size: 14px;
+  line-height: 24px;
+  color: #9BA2A1;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: normal;
+  -webkit-user-select: none;
+  font-size: 14px;
+  line-height: 24px;
+  color: $grey;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: #fff;
+  border: 2px solid $light-blue;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: $white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: $orange;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.primary-btn{
+  width: 100%;
+  background: $orange;
+  border: none;
+  padding: 10px;
+  color:$white;
+  border-radius: 8px;
+  margin-bottom:1rem;
+}
+.forgot{
+  color:#FA8D62;
+}
+.content-form{
+  padding-top: 2rem;
+}
+.icon-input{
+  height: 2.75rem;
+  border: 1px solid $light-blue;
+  border-left: 0;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: $grey;
+  padding-right: 18px;
+}
+.flex{
+  display: flex;
+}
+.input-wi-icon{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: 0;
+}
+.icon-pass{
+  padding-right: 1rem;
+}
+.p-footer{
+  margin-bottom: 0px;
+  color: $white;
+}
+.footer-div{
+  margin-left: 1rem;
+  position: fixed;
+  left: 44%;
+  bottom: 32px;
+  width: 100%;
+  color: white;
+}
+.display-form{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.form-control:focus {
+  border-color: $input;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 25%);
+}
+.sign-up-info{
+  font-size: 12px;
+  line-height: 1rem;
+}
+
+.alert-password{
+  color: red;
+  font-size: 10px;
+  margin-top: -1rem;
+}
+
+.info-password{
+  color: #9BA2A1;
+  font-size: 10px;
+  margin-top: -1rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .image-back {
+    display: none;
+  }
+}
+input:focus:invalid {
+  box-shadow: 0 0 4px 1px red;
+}
+
+:host ::ng-deep ng-select .ng-select-container {
+  padding: 10px !important;
+  width: 100% !important;
+  height: 2.75rem !important;
+  border: 1px solid #D9DDE0;
+  border-radius: 0.5rem !important;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+:host ::ng-deep ng-select .ng-select-container > .ng-value-container > div[role="combobox"] > input {
+  height: 19px !important;
+  margin-bottom: 0 !important;
+}
+
+:host ::ng-deep ng-select ng-dropdown-panel {
+  z-index: 9999999;
+}
+
+:host ::ng-deep ng-select .ng-dropdown-panel {
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 8px !important;
+}
+
+:host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items div.ng-option span.ng-option-label {
+  color: #565656;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+:host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items div.ng-option.ng-option-selected {
+  background-color: #c2e5f5;
+  .ng-option-label {
+    color: #2B616D;
+    font-weight: 600 !important;
+  }
+}
+
+:host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar {
+  width: 8px;
+}
+:host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+:host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+:host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+:host ::ng-deep ng-select div.ng-select-container > span.ng-clear-wrapper .ng-clear{
+  display: none !important;
+}

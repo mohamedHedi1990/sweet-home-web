@@ -29,7 +29,8 @@ import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.
 import { MatTabsModule } from '@angular/material/tabs';
 import { TabsModule, WavesModule } from 'ng-uikit-pro-standard';
 import { AnnouncemntDetailsComponent } from './components/announcemnt-details/announcemnt-details.component';
-import {TendancesComponent} from "./components/tendances/tendances.component";
+import {AnnouncementMainInfoComponent} from "./components/announcement-main-info/announcement-main-info.component";
+import {UserInformationComponent} from "./components/dashbord-user/user-information/user-information.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {TendancesComponent} from "./components/tendances/tendances.component";
     LoginComponent,
     DashbordUserComponent,
     AnnouncemntDetailsComponent,
-    TendancesComponent
+    AnnouncementMainInfoComponent,
+    UserInformationComponent
   ],
   imports: [
     BrowserModule,
