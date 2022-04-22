@@ -36,4 +36,5 @@ export class UserService {
   getUser():Observable<any>{
     return this.http.get<any>(`${this.USER_API}/AnyUser`);
   }
+
 }
