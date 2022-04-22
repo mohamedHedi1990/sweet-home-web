@@ -37,7 +37,7 @@
                 <ng-option
                   *ngFor="let city of cities"
                   [value]="city.cityLabel"
-                  >{{ city.cityLabel }}</ng-option
+                >{{ city.cityLabel }}</ng-option
                 >
               </ng-select>
             </div>
@@ -118,53 +118,53 @@
         <br />
         <div class="home_page_list">
           <h3>Les Tendances:</h3>
-          <div class="home_page_listimg">
-            <div *ngFor="let lastPublishedAnnouncement of lastPublishedAnnouncements; let i = index">
-              <!-- Juste pour montrer plusieurs car vous avez une seule dans votre base pour le moment -->
-              <app-tendances [lastPublishedAnnouncement]="lastPublishedAnnouncement"></app-tendances>
-              <!--<div class="card">
-                <a href="#">
-                  <img
-                    id="imgcard"
-                    class="ng-isolate-scope"
-                    src="{{ tendance.image }}"
-                    alt="img"
-                /></a>
-                <div class="card-body">
-                  <div class="category_city hm_cate">
-                    <span class="pull-left ng-binding">Logement entier</span>
-                    <span class="pull-left dot-cont">·</span>
-                    <span class="pull-left ng-binding">{{
-                      tendance.logement
-                    }}</span>
-                  </div>
-                  <a
-                    href="#"
-                    target="listing_10001"
-                    class="text-normal"
-                    style="text-decoration: none !important"
-                  >
-                    <h3
-                      itemprop="name"
-                      class="h5 listing-name text-truncate row-space-top-1 ng-binding"
-                      style="width: 95%"
-                    >
-                      {{ tendance.designation }}
-                    </h3>
-                  </a>
-                  <div class="exp_price ng-binding">
-                    <span
-                      ng-bind-html="reservation.rooms_price.currency.symbol"
-                      class="ng-binding"
-                      >TND</span
-                    >
-                    {{ tendance.prix }}
-                    Par nuit
-                  </div>
+
+          <div *ngFor="let lastPublishedAnnouncement of lastPublishedAnnouncements; let i = index">
+            <!-- Juste pour montrer plusieurs car vous avez une seule dans votre base pour le moment -->
+            <app-announcement-main-info [lastPublishedAnnouncement]="lastPublishedAnnouncement"></app-announcement-main-info>
+            <!--<div class="card">
+              <a href="#">
+                <img
+                  id="imgcard"
+                  class="ng-isolate-scope"
+                  src="{{ tendance.image }}"
+                  alt="img"
+              /></a>
+              <div class="card-body">
+                <div class="category_city hm_cate">
+                  <span class="pull-left ng-binding">Logement entier</span>
+                  <span class="pull-left dot-cont">·</span>
+                  <span class="pull-left ng-binding">{{
+                    tendance.logement
+                  }}</span>
                 </div>
-              </div>-->
-            </div>
+                <a
+                  href="#"
+                  target="listing_10001"
+                  class="text-normal"
+                  style="text-decoration: none !important"
+                >
+                  <h3
+                    itemprop="name"
+                    class="h5 listing-name text-truncate row-space-top-1 ng-binding"
+                    style="width: 95%"
+                  >
+                    {{ tendance.designation }}
+                  </h3>
+                </a>
+                <div class="exp_price ng-binding">
+                  <span
+                    ng-bind-html="reservation.rooms_price.currency.symbol"
+                    class="ng-binding"
+                    >TND</span
+                  >
+                  {{ tendance.prix }}
+                  Par nuit
+                </div>
+              </div>
+            </div>-->
           </div>
+
         </div>
       </div>
     </div>
