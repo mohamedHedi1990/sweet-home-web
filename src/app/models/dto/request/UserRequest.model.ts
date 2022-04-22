@@ -4,6 +4,7 @@ import {RoleCode} from "../../../enums/role-code";
 
 export class UserRequestModel {
 
+    userId:number;
     userEmail:string;
     userPassword:string;
     userLogin:string;
@@ -15,8 +16,9 @@ export class UserRequestModel {
     userType:RoleCode;
 
 
-  constructor(userEmail: string, userPassword: string, userLogin: string, userFirstName: string, userLastName: string,
+  constructor(userId:number,userEmail: string, userPassword: string, userLogin: string, userFirstName: string, userLastName: string,
               userBirthDate: Date, userAddress: AddressRequestModel, provider: Provider, userType: RoleCode) {
+    this.userId = userId;
     this.userEmail = userEmail;
     this.userPassword = userPassword;
     this.userLogin = userLogin;

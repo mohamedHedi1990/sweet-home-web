@@ -32,4 +32,8 @@ export class UserService {
   saveUser(userRequestModel:UserRequestModel){
     return this.http.post(`${this.USER_API}`, userRequestModel);
   }
+
+  getUser():Observable<any>{
+    return this.http.get<any>(`${this.USER_API}/AnyUser`);
+  }
 }
