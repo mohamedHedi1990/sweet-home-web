@@ -11,9 +11,10 @@
     /></a>
   <div class="card-body">
     <div class="category_city hm_cate">
-      <!--<span class="pull-left ng-binding">Logement entier</span>
-      <span class="pull-left dot-cont">·</span>-->
       <span class="pull-left ng-binding">{{ getAnnouncementType(lastPublishedAnnouncement.announcementType) }}</span>
+      <span class="pull-left dot-cont">·</span>
+      <span class="pull-left ng-binding">{{ lastPublishedAnnouncement.announcementBedNumber }}</span>
+      <span class="pull-left">{{getLabelBed(lastPublishedAnnouncement.announcementBedNumber)}}</span>
     </div>
     <a
       href="#"
