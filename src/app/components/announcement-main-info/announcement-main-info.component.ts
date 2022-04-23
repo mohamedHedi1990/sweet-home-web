@@ -26,6 +26,15 @@ export class AnnouncementMainInfoComponent implements OnInit {
     return AnnouncementType[type as keyof typeof AnnouncementType];
 
   }
+  
+  getLabelBed(announcementBedNumber: number):string {
+    if(announcementBedNumber <= 1){
+      return " Lit";
+    }
+
+    return " Lits";
+
+  }
 
 
 }
