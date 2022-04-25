@@ -1,0 +1,96 @@
+@import '../../../assets/variables.scss';
+#page-container {
+    position: relative;
+   color: $davys-grey; 
+  }
+
+ ::ng-deep ngb-carousel .picsum-img-wrapper img {
+      height: 350px !important;
+  }
+  ::ng-deep ngb-carousel .carousel-control-next {
+    right: 140px;
+}
+.link-reset {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+    color:$davys-grey;
+ 
+}
+.fw-100 {
+    font-weight: 100;
+    margin-bottom: unset;
+}
+.summary-info {
+    color: #82888a;
+    font-size: 15px;
+}
+.b-bottom {
+    border-bottom: 1px solid #dce0e0
+}
+.border-black {
+    border: 1px solid #000;
+}
+.title {
+    color: $davys-grey;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+p, ul{
+    color: $davys-grey;
+}
+.subtile-descrip {
+    font-size: 15px;
+    line-height: 1.43;
+    color: $davys-grey;
+}
+hr {
+    width: 710px;
+}
+a {
+    color: #27aae1;
+}
+.price-info {
+ 
+        background-color: rgba(60, 63, 64, 0.9);
+        border: 0;
+        color: #fff;
+        height: 40px;
+
+}
+.price-info h2 {
+    font-weight: 400;
+    line-height: initial;
+}
+.per-night {
+    float: right;
+    position: relative;
+    color: white;
+    top: -26px;
+    text-transform: uppercase;
+}
+.card-reservation {
+    position: absolute !important;
+}
+.card-reservation button {
+    background-color: #27aae1 !important;
+    border-color: #27aae1 !important;
+    color: #fff !important;
+}
+label {
+    font-size: 16px !important;
+    font-weight: 200 !important;
+}
+
+
+
+
+
+@media (min-width: 1400px){
+.container {
+    /*max-width: 1080px;*/
+    max-width: 1180px;
+}
+}
