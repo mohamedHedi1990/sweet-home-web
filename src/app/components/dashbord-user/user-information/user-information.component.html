@@ -3,163 +3,138 @@
   <div class="new_search_form">
     <div class="new_search_list">
 
-<form (ngSubmit)="onFormSubmit()" ngNativeValidate>
-<div class="row col-10">
+      <form (ngSubmit)="onFormSubmit()" ngNativeValidate>
+        <div class="row col-10">
 
-  <!--<div class="form-group">
-    <ng-select
-      [searchable]="false"
-      [clearable]="false"
-      placeholder="Pa&iacute;s"
-      [(ngModel)]="user.country"
-      class="custom"
-      name="county"
-    >
-      <ng-option *ngFor="let country of countries" [value]="country.id">
-        &lt;!&ndash; <img src="{{ country.image }}" width="20px" height="20px" /> &ndash;&gt;
-        {{ country.value }}
-      </ng-option>
-    </ng-select>
-  </div>-->
+          <div class="col-6">
+            <label> Prénom </label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Prénom"
+              required
+              [(ngModel)]="user.userFirstName"
+              name="firstName"
+            />
+          </div>
+          <div class="col-6">
+            <label> Nom </label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Nom"
+              required
+              [(ngModel)]="user.userLastName"
+              name="lastName"
+            />
+          </div>
+          <div class="col-6">
+            <label> Nom d'utilisateur </label>
+            <input readonly
+                   class="form-control"
+                   type="text"
+                   placeholder="Nom d'utilisateur"
+                   required
+                   [(ngModel)]="user.userLogin"
+                   name="username"
+            />
+          </div>
 
 
-<div class="col-6">
-  <label> Prénom </label>
-  <input
-    class="form-control"
-    type="text"
-    placeholder="Prénom"
-    required
-    [(ngModel)]="userRequest.userFirstName"
-    name="firstName"
-  />
-</div>
-<div class="col-6">
-  <label> Nom </label>
-  <input
-    class="form-control"
-    type="text"
-    placeholder="Nom"
-    required
-    [(ngModel)]="userRequest.userLastName"
-    name="lastName"
-  />
-</div>
-  <div class="col-6">
-    <label> Nom d'utilisateur </label>
-    <input
-      class="form-control"
-      type="text"
-      placeholder="Nom d'utilisateur"
-      required
-      [(ngModel)]="userRequest.userLogin"
-      name="username"
-    />
-  </div>
-  <div class="col-6">
-    <label> Mot de passe </label>
-    <input
-      class="form-control"
-      type="text"
-      placeholder="Mot de passe"
-      required
-      [(ngModel)]="userRequest.userPassword"
-      name="password"
-    />
-  </div>
-<div class="col-6">
-  <label>E-Mail</label>
-  <input
-    class="form-control"
-    type="email"
-    placeholder="name@beispiel.com"
-    required
-    [(ngModel)]="userRequest.userEmail"
-    name="email"
-    (input)="verifyUser()"
-    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
-  />
-  <p *ngIf="existe" class="alert-password">E-Mail existe déja!</p>
-</div>
+          <div class="col-6">
 
-<div class="col-6">
-
-  <label> Téléphone </label>
-  <input
-    class="form-control"
-    type="text"
-    placeholder="+21600000000"
-    required
-    [(ngModel)]="user.userPhoneNumber"
-    name="phoneNumber"
-    pattern="([+]?)[0-9]+"
-    title="
+            <label> Téléphone </label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="+21600000000"
+              required
+              [(ngModel)]="user.userPhoneNumber"
+              name="phoneNumber"
+              pattern="([+]?)[0-9]+"
+              title="
                 Entrez un numéro de téléphone valide"
-  />
-</div>
+            />
+          </div>
 
-  <div class="col-6">
-    <div>
-    <label>Pays</label>
-    <ng-select
-      required
-      [(ngModel)]="userRequest.userAddress.addressCity.country.countryLabel"
-      name="announcementCityLabel" (ngModelChange)="getCitiesByCoutryId($event)"
-    >
-      <ng-option
-        *ngFor="let coutry of countries"
-        [value]="coutry.countryLabel"
-      >{{ coutry.countryLabel }}</ng-option>
-    </ng-select>
+          <div class="col-6">
+            <label>E-Mail</label>
+            <input readonly
+                   class="form-control"
+                   type="email"
+                   placeholder="name@beispiel.com"
+                   required
+                   [(ngModel)]="user.userEmail"
+                   name="email"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label> Date de naissance </label>
+            <input
+              class="form-control"
+              type="date"
+              placeholder="Date de naissance"
+              required
+              name="userBirthDate"
+              [(ngModel)]="user.userBirthDate"
+            />
+          </div>
+
+          <div class="col-6">
+            <label>Pays</label>
+            <ng-select [compareWith]="compareCountry"  name="selectedCountry"
+                       [(ngModel)]="selectedCountry" (ngModelChange)="onChangeCountry($event)">
+              <ng-option *ngFor="let country of countries" [value]="country">
+                {{country.countryLabel}}
+              </ng-option>
+            </ng-select>
+          </div>
+
+          <div class="col-6">
+            <label>Ville</label>
+            <ng-select [compareWith]="compareCity"  name="selectedCity"
+                       [(ngModel)]="selectedCity">
+              <ng-option *ngFor="let city of cities" [value]="city">
+                {{city.cityLabel}}
+              </ng-option>
+            </ng-select>
+          </div>
+
+          <div class="col-8">
+            <label> Rue </label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Ville, Rue, Appartement, ..."
+              required
+              [(ngModel)]="addressStreet"
+              name="addressStreet"
+            />
+          </div>
+          <div class="col-4">
+            <label> Num de rue </label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Numéro de rue"
+              required
+              [(ngModel)]="addressStreetNumber"
+              name="addressStreetNumber"
+            />
+          </div>
+
+          <div class="row col-12">
+            <input
+              class="btn-upload save btn-modify"
+              type="submit"
+              value="Modifier mon profil"
+            />
+          </div>
+        </div>
+      </form>
     </div>
-  </div>
-  <div class="col-6">
-    <label>Ville</label>
-    <ng-select
-      required
-      [(ngModel)]="userRequest.userAddress.addressCity.cityLabel"
-      name="announcementCityLabel">
-      <ng-option
-        *ngFor="let city of cities"
-        [value]="city.cityLabel"
-      >{{ city.cityLabel }}</ng-option>
-    </ng-select>
-  </div>
-  <!--<ng-select
-    required
-    [(ngModel)]="rechercheform.announcementCityLabel" name="announcementCityLabel"
-  >
-    <ng-option
-      *ngFor="let city of cities"
-      [value]="city.cityLabel"
-    >{{ city.cityLabel }}</ng-option
-    >
-  </ng-select>-->
 
-  <div class="col-12">
-    <label> Adresse </label>
-    <input
-      class="form-control"
-      type="text"
-      placeholder="Ville, Rue, Appartement, ..."
-      required
-      [(ngModel)]="userRequest.userAddress.addressStreet"
-      name="phoneNumber"
-    />
-
-  </div>
-</div>
-
-   <div class="row col-10">
-  <input
-    class="btn-upload save col-8"
-    type="submit"
-    value="Modifier mon profil"
-  />
-  </div>
-</form>
-
-    </div>
   </div>
 </div>
 

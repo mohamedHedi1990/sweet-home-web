@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserModel} from "../../../models/user.model";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {CountryModel} from "../../../models/country.model";
 import {CityModel} from "../../../models/city.model";
 import {CityService} from "../../../services/city.service";
@@ -20,34 +20,75 @@ import {UserService} from "../../../services/user.service";
 })
 export class UserInformationComponent implements OnInit {
 
-  // @ts-ignore
-  userInfoForm: FormGroup;
   countries: CountryModel[]= [];
   cities : CityModel[]=[]
   // @ts-ignore
   @Input() user:UserModel=new UserModel();
-  /* (userEmail: string, userPassword: string, userLogin: string, userFirstName: string, userLastName: string,
-              userBirthDate: Date, userAddress: AddressRequestModel, provider: Provider, userType: RoleCode) */
-  userRequest : UserRequestModel=new UserRequestModel(this.user.userEmail,this.user.userPassword, this.user.userLogin,
-                                                      this.user.userFirstName, this.user.userLastName, new Date(),
-                                                       new AddressRequestModel("",0,
-                                                         new CityDtoModel(0,"","",
-                                                           new CountryDtoModel(0,"",""))), Provider.LOCAL, RoleCode.ADMINISTRATOR);
+
+  userRequest : UserRequestModel=new UserRequestModel(this.user.userId,this.user.userEmail,this.user.userPassword, this.user.userLogin,
+    this.user.userFirstName, this.user.userLastName, new Date(),
+    new AddressRequestModel("",0,
+      new CityDtoModel(0,"","",
+        new CountryDtoModel(0,"",""))),
+    Provider.LOCAL, RoleCode.ADMINISTRATOR);
 
 
-  existe: boolean=false;
+
+
+  addressStreet: string = "";
+  addressStreetNumber : number=0;
+  userType: RoleCode=RoleCode.OWNER;
+
+
+  selectedCountry : CountryModel = new CountryModel(0, "","");
+  selectedCity : CityModel = new CityModel(0, "","", this.selectedCountry);
 
   constructor(private fb: FormBuilder, private cityService:CityService, private countryService:CountryService,
-              private userService:UserService) { }
+              private userService:UserService) {
 
-  ngOnInit(): void {
-    this.getAllCountries();
-    this.createUserInfoForm();
-    //this.userRequest=new UserRequestModel()
   }
 
-  getCitiesByCoutryId(e:CountryModel){
-    this.cityService.getCitiesByCoutryId(e.countryId).subscribe((res) =>{
+  ngOnInit(): void {
+
+    this.getAllCountries();
+
+    this.userService.getUser().subscribe((res) =>{
+
+      this.addressStreet= res.userAddress.addressStreet;
+
+      this.addressStreetNumber= res.userAddress.addressStreetNumber;
+
+      if(res.userAddress.addressCity != null) {
+        this.selectedCity = res.userAddress.addressCity;
+
+        if (res.userAddress.addressCity.country != null) {
+          this.selectedCountry = res.userAddress.addressCity.country;
+        }
+      }
+
+
+      this.getCitiesByCoutryId();
+
+      this.userType= res.userRole.roleCode;
+
+      this.user = res as UserModel;
+
+    })
+
+
+  }
+
+  compareCountry(c1: CountryModel, c2: CountryModel): boolean {
+
+    return c1 && c2 ? c1.countryId === c2.countryId : c1 === c2;
+  }
+  compareCity(item:CityModel, selected:CityModel) {
+
+    return item && selected ? item.cityId === selected.cityId : item === selected;
+  }
+
+  getCitiesByCoutryId(){
+    this.cityService.getCitiesByCoutryId(this.selectedCountry.countryId).subscribe((res) =>{
       this.cities = res;
     })
   }
@@ -58,29 +99,33 @@ export class UserInformationComponent implements OnInit {
     })
   }
 
-
-
-  createUserInfoForm() {
-    this.userInfoForm = this.fb.group({
-      userFirstName: [null, [Validators.required]],
-      userLastName: [null, [Validators.required]],
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      userEmail: [null, [Validators.required]],
-      userPhoneNumber: [null, [Validators.required]],
-      userType: [null, [Validators.required]],
-      ville : [null, [Validators.required]],
-      adresse : [null, [Validators.required]]
-    });
-  }
-
-  verifyUser() {
-
-  }
-
   onFormSubmit() {
-     this.userService.saveUser(this.userRequest).subscribe(res =>{
 
-     })
+    let userAdress:AddressRequestModel=new AddressRequestModel(this.addressStreet, this.addressStreetNumber, this.selectedCity);
+    this.userRequest.userAddress = userAdress;
+
+    this.userRequest.userId= this.user.userId;
+    this.userRequest.userBirthDate=this.user.userBirthDate;
+    this.userRequest.userEmail=this.user.userEmail;
+    this.userRequest.userFirstName=this.user.userFirstName;
+    this.userRequest.userLastName=this.user.userLastName;
+    this.userRequest.userLogin=this.user.userLogin;
+    this.userRequest.userPassword=this.user.userPassword;
+    this.userRequest.userType=this.userType;
+    this.userRequest.provider = this.user.provider != null ? this.user.provider:Provider.LOCAL;
+
+    console.log("UserRequest to modify : ", this.userRequest)
+    this.userService.saveUser(this.userRequest).subscribe(res =>{
+
+    })
   }
+
+  onChangeCountry(event: any) {
+
+    this.getCitiesByCoutryId();
+
+  }
+
+
+
 }

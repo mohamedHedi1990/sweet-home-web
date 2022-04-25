@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -31,6 +31,7 @@ import { TabsModule, WavesModule } from 'ng-uikit-pro-standard';
 import { AnnouncemntDetailsComponent } from './components/announcemnt-details/announcemnt-details.component';
 import {AnnouncementMainInfoComponent} from "./components/announcement-main-info/announcement-main-info.component";
 import {UserInformationComponent} from "./components/dashbord-user/user-information/user-information.component";
+import {InterceptorService} from "./services/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import {UserInformationComponent} from "./components/dashbord-user/user-informat
     MatTabsModule,
     TabsModule.forRoot(),
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { UserModel } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {UserModel} from '../../models/user.model';
+import {UserService} from '../../services/user.service';
+import {RoleCode} from "../../enums/role-code";
+import {Provider} from "../../enums/Provider";
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +14,8 @@ import { UserService } from '../../services/user.service';
 export class SignUpComponent implements OnInit {
   private currentRoute: any;
 
-  user: UserModel = new UserModel('', '', '', '', '', '', 'OWNER');
+  user: UserModel = new UserModel(0,'', '', '', '',
+    '', '', RoleCode.OWNER, new Date(), Provider.LOCAL);
   showAlert = false;
   isApplicationEmailsActive: boolean = false;
   showAlertError: boolean = false;
@@ -37,13 +40,16 @@ export class SignUpComponent implements OnInit {
     }
     if (this.existe === false && this.showAlert === false) {
       const user = new UserModel(
+        this.user.userId,
         this.user.userFirstName,
         this.user.userLastName,
         this.user.userLogin,
         this.user.userPassword,
         this.user.userPhoneNumber,
         this.user.userEmail,
-        this.user.userType
+        this.user.userType,
+        this.user.userBirthDate,
+        Provider.LOCAL
       );
       this.signUp(user);
     }
