@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -28,12 +32,11 @@ import { LoginComponent } from './components/login/login.component';
 import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TabsModule, WavesModule } from 'ng-uikit-pro-standard';
-import {AnnouncementMainInfoComponent} from "./components/announcement-main-info/announcement-main-info.component";
-import {UserInformationComponent} from "./components/dashbord-user/user-information/user-information.component";
-import {ResultSearchAnnouncementComponent} from "./components/result-search-announcement/result-search-announcement.component";
-import {InterceptorService} from "./services/interceptor.service";
-import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
+import { AnnouncementMainInfoComponent } from './components/announcement-main-info/announcement-main-info.component';
 import { UserInformationComponent } from './components/dashbord-user/user-information/user-information.component';
+import { ResultSearchAnnouncementComponent } from './components/result-search-announcement/result-search-announcement.component';
+import { InterceptorService } from './services/interceptor.service';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -46,7 +49,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashbordUserComponent,
     AnnounceDetailsComponent,
     UserInformationComponent,
-    ResultSearchAnnouncementComponent
+    ResultSearchAnnouncementComponent,
+    AnnouncementMainInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbCarouselModule,
     NgbModule,
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
