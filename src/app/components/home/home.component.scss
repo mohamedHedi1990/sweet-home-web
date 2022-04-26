@@ -4,24 +4,20 @@
   }
   
 
-
-.main{
-
+.home_top_slider {
     height: 750px;
-    background-image: url('../../../../src/assets/img/bizerte.jpg');
+    background-image: url('../../../assets/img/bizerte.jpg');
    
     animation: animatedBackground 10s linear infinite alternate;
  
- 
 }
-  
 
   @keyframes animatedBackground {
     from {
-        background-image: url('../../../../src/assets/img/monastir-810x469.webp');
+        background-image: url('../../../assets/img/monastir-810x469.webp');
     }
     to {
-        background-image: url('../../../../src/assets/img/vivre-a-tunis-1920x1080.jpg');
+        background-image: url('../../../assets/img/vivre-a-tunis-1920x1080.jpg');
     }
   }
   .new_search_form {

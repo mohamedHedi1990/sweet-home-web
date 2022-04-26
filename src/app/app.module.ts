@@ -28,10 +28,11 @@ import { LoginComponent } from './components/login/login.component';
 import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TabsModule, WavesModule } from 'ng-uikit-pro-standard';
-import { AnnouncemntDetailsComponent } from './components/announcemnt-details/announcemnt-details.component';
-import {AnnouncementMainInfoComponent} from "./components/announcement-main-info/announcement-main-info.component";
-import {UserInformationComponent} from "./components/dashbord-user/user-information/user-information.component";
+import { AnnouncementMainInfoComponent } from './components/announcement-main-info/announcement-main-info.component';
+import { UserInformationComponent } from './components/dashbord-user/user-information/user-information.component';
 
+import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +40,9 @@ import {UserInformationComponent} from "./components/dashbord-user/user-informat
     HomeComponent,
     LoginComponent,
     DashbordUserComponent,
-    AnnouncemntDetailsComponent,
+    AnnounceDetailsComponent,
     AnnouncementMainInfoComponent,
-    UserInformationComponent
+    UserInformationComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +70,8 @@ import {UserInformationComponent} from "./components/dashbord-user/user-informat
     ToastrModule.forRoot({ timeOut: 8000, positionClass: 'toast-bottom-left' }), // ToastrModule added
     MatTabsModule,
     TabsModule.forRoot(),
+
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
