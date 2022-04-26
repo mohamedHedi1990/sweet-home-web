@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.clear();
+  }
 
   onFormSubmit() {
     const auth = new AuthModel(this.auth.userPassword, this.auth.username);

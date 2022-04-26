@@ -4,6 +4,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import {ResultSearchAnnouncementComponent} from "./components/result-search-announcement/result-search-announcement.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'main-profile',
     component: DashbordUserComponent,
+  },
+  {
+    path: 'result-announcement',
+    component: ResultSearchAnnouncementComponent,
   },
   {
     path: '',
