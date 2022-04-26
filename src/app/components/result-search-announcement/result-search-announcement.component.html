@@ -1,0 +1,91 @@
+<div id="page-container">
+  <div class="main">
+    <app-navbar></app-navbar>
+
+    <div class="container-lg page-container" style="min-height: calc(180vh - 227px) !important">
+      <div class="agent-main-wrapper">
+<div class="row">
+
+  <div class="col-4">
+  <ngb-carousel #ngcarousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="wrapper">
+        <img [src]="images[0]" alt="Random first slide"  class="w-100" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="wrapper">
+        <img [src]="images[1]" alt="Random second slide"  class="w-100"/>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="wrapper">
+        <img [src]="images[2]" alt="Random third slide"  class="w-100" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  </div>
+  <div class="col-4">
+    <ngb-carousel #ngcarousel *ngIf="images">
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[0]" alt="Random first slide"  class="w-100" />
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[1]" alt="Random second slide"  class="w-100"/>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[2]" alt="Random third slide"  class="w-100" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="col-4">
+    <ngb-carousel #ngcarousel *ngIf="images">
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[0]" alt="Random first slide"  class="w-100" />
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[1]" alt="Random second slide"  class="w-100"/>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[2]" alt="Random third slide"  class="w-100" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="col-4">
+    <ngb-carousel #ngcarousel *ngIf="images">
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[0]" alt="Random first slide"  class="w-100" />
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[1]" alt="Random second slide"  class="w-100"/>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img [src]="images[2]" alt="Random third slide"  class="w-100" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+</div>
+      </div>
+    </div>
+  </div>
+    <app-footer></app-footer>
+  </div>

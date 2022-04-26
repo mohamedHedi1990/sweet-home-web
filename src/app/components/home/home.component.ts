@@ -12,6 +12,7 @@ import { SearchCriteriaModel } from '../../../../src/app/models/searchCriteria.m
 import { CityModel } from '../../../../src/app/models/city.model';
 import {AnnouncementService} from "../../services/announcement.service";
 import {AnnouncementResponseModel} from "../../models/dto/response/AnnouncementResponse.model";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,26 +27,8 @@ export class HomeComponent implements OnInit {
   );
   cities: CityModel[] = [];
   lastPublishedAnnouncements :AnnouncementResponseModel [] = [];
-  /*tendances = [
-    {
-      image:
-        'https://res.cloudinary.com/tunrooms/image/upload/c_fill,f_auto,fl_lossy,q_auto,w_450/v1/Tunrooms/iy8padzw5nquble4nn5x',
-      designation: 'La Villa du Cap',
-      logement: '3 Lits',
-      prix: '750',
-      avis: '',
-    },
-    {
-      image:
-        'https://res.cloudinary.com/tunrooms/image/upload/c_fill,f_auto,fl_lossy,q_auto,w_450/v1/Tunrooms/iy8padzw5nquble4nn5x',
-      designation: 'La Villa du Cap',
-      logement: '3 Lits',
-      prix: '750',
-      avis: '',
-    },
-
-  ];*/
-  constructor(private cityService: CityService, private announcementService:AnnouncementService) {}
+  constructor(private cityService: CityService, private announcementService:AnnouncementService,
+              private router:Router) {}
 
   ngOnInit(): void {
     this.getAllCities();
@@ -62,5 +45,7 @@ export class HomeComponent implements OnInit {
       this.lastPublishedAnnouncements=data;
     })
   }
-  search() {}
+  search() {
+    this.router.navigateByUrl("/result-announcement");
+  }
 }

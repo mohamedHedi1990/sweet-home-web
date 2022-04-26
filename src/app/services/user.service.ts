@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UtilsService } from './utils.service';
 import { SKIP_AUTH_INTERCEPTOR_HEADER } from '../shared/constants/header';
 import { UserRequestModel } from '../models/dto/request/UserRequest.model';
+import {UserDetailsResponseModel} from "../models/dto/response/UserDetailsResponse.model";
 @Injectable({
   providedIn: 'root',
 })
@@ -31,5 +32,13 @@ export class UserService {
 
   saveUser(userRequestModel: UserRequestModel) {
     return this.http.post(`${this.USER_API}/add-new-user`, userRequestModel);
+  }
+
+  getUser():Observable<UserDetailsResponseModel>{
+    return this.http.get<UserDetailsResponseModel>(`${this.USER_API}/user-info`);
+  }
+
+  patchUser(userRequest: UserRequestModel) {
+    return this.http.patch(`${this.USER_API}`, userRequest);
   }
 }
