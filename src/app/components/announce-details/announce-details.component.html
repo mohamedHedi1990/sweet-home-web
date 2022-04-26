@@ -351,7 +351,8 @@
 
                                   <div class="col-sm-5">                                            
                                         <a (click)="toggleDisplay('essentiel')" href="javascript:void(0)">
-                                          <strong>+ Plus</strong>
+                                          <strong [hidden]="!isShowEssentiel">+ Plus</strong>
+                                          <strong [hidden]="isShowEssentiel">- Plus</strong>
                                         </a>
   
                                   </div>
@@ -439,7 +440,8 @@
                     </div>
 
                     <a (click)="toggleDisplay('descript')" href="javascript:void(0)">
-                      <strong>+ Plus</strong>
+                      <strong [hidden]="!isShowDescript">+ Plus</strong>
+                      <strong [hidden]="isShowDescript">- Plus</strong>
                     </a> 
                    
                   
@@ -515,17 +517,17 @@
                     </div>
                    
                     <div class="row">
-                               
-        
- 
-                      <ngb-carousel *ngIf="imagesDetails.length>0">
+                      <div class="col-md-10">
+                        <ngb-carousel *ngIf="imagesDetails.length>0">
+
                           <ng-template ngbSlide *ngFor="let img of imagesDetails">
                             <div class="picsum-img-wrapper">
-                              <img [src]="img.image" [alt]="img.title">
+                              <img [src]="img.image" [alt]="img.title" class="img-fluid">
                             </div>
                           </ng-template>
-                      
+                          
                         </ngb-carousel>
+                      </div>
                     </div>
               </div>
             </div>

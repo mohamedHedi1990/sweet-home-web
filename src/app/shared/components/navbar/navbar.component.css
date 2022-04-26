@@ -1,7 +1,7 @@
 
 .navHome {
-  box-shadow: inset 0 90px 90px -70px rgb(31 29 29 / 50);
-  color: white;
+  /*box-shadow: inset 0 90px 90px -70px rgb(31 29 29 / 50);*/
+  background-color: white; 
 }
 .navOther {
   box-shadow: none;
@@ -16,9 +16,9 @@ img{
 position: absolute;
     right: 20px;
 }
-/*.nav-link{
-    color: white;
-}*/
+.nav-link{
+    color: black;
+}
 a {
     outline: none;
     text-decoration: none;

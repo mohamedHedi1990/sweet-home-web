@@ -4,17 +4,13 @@
   }
   
 
-
-.main{
-
+.home_top_slider {
     height: 750px;
     background-image: url('../../../assets/img/bizerte.jpg');
    
     animation: animatedBackground 10s linear infinite alternate;
  
- 
 }
-  
 
   @keyframes animatedBackground {
     from {
