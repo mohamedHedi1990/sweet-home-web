@@ -4,7 +4,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import {ResultSearchAnnouncementComponent} from "./components/result-search-announcement/result-search-announcement.component";
+import { ResultSearchAnnouncementComponent } from './components/result-search-announcement/result-search-announcement.component';
 import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'main-profile',
     component: DashbordUserComponent,
   },
-  { path: 'annouce-details', component: AnnounceDetailsComponent },
+  { path: 'annoucement-details', component: AnnounceDetailsComponent },
   {
     path: 'result-announcement',
     component: ResultSearchAnnouncementComponent,
