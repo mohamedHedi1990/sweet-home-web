@@ -16,6 +16,6 @@ export class CityService {
   }
 
   getCitiesByCoutryId(coutryId: number): Observable<CityModel[]>{
-    return this.http.get<CityModel[]>(`${this.CITY_API}/getCityByCountryId/`+coutryId);
+    return this.http.get<CityModel[]>(`${this.CITY_API}/by-country-id/`+coutryId);
   }
 }

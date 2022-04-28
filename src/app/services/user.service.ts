@@ -39,6 +39,6 @@ export class UserService {
   }
 
   patchUser(userRequest: UserRequestModel) {
-    return this.http.patch(`${this.USER_API}`, userRequest);
+    return this.http.patch(`${this.USER_API}/update-user`, userRequest);
   }
 }

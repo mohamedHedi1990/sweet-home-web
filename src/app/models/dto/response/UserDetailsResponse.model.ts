@@ -11,11 +11,12 @@ export class UserDetailsResponseModel {
   userBirthDate:Date;
   userAddress:AddressDtoModel;
   role: RoleCode;
+  userPictureUrl:string;
 
 
   constructor(userFirstName: string, userLastName: string, userDateInscription: Date,
               userEmail: string, userPhoneNumber: string, userBirthDate: Date,
-              userAddress: AddressDtoModel, role: RoleCode) {
+              userAddress: AddressDtoModel, role: RoleCode, userPictureUrl:string) {
     this.userFirstName = userFirstName;
     this.userLastName = userLastName;
     this.userDateInscription = userDateInscription;
@@ -24,5 +25,6 @@ export class UserDetailsResponseModel {
     this.userBirthDate = userBirthDate;
     this.userAddress = userAddress;
     this.role = role;
+    this.userPictureUrl = userPictureUrl
   }
 }

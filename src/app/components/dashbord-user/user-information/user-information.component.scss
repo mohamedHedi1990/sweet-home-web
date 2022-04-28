@@ -239,3 +239,61 @@ input:focus:invalid {
 :host ::ng-deep ng-select div.ng-select-container > span.ng-clear-wrapper .ng-clear{
   display: none !important;
 }
+.img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.profile-agent{
+  //margin-bottom: 2rem;
+  .uploaddiv {
+    .profile-edit-photo {
+      flex: 1!important;
+    }
+    .edit-photo-actions {
+      flex: 1 1 auto!important;
+    }
+  }
+  #myfilephotoMobile {
+    margin-bottom: 0!important;
+  }
+  input{
+    font-size: 14px;
+  }
+
+
+}
+@media screen and (max-width: 767px) {
+  .edit-photo-actions {
+    .btn-upload.save,  .btn-upload.cancel{
+      font-size: 12px!important;
+      margin-right: 0!important;
+    }
+  }
+  .uploaddiv  {
+    padding: 0 12px;
+    .profile-edit-photo {
+      padding: 0!important;
+    }
+    .edit-photo-actions {
+      padding: 0!important;
+      text-align: right;
+    }
+  }
+  .btn-upload.cancel {
+    margin-left: 8px!important;
+  }
+  .form-submit-btn {
+    width: 100%!important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .uploaddiv {
+    flex-wrap: wrap!important;
+    .edit-photo-actions {
+      text-align: left;
+    }
+  }
+}

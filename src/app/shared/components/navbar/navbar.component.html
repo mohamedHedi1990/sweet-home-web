@@ -5,8 +5,8 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="#">Publier votre annonce </a>
       <a class="nav-item nav-link" href="#">Aide</a>
-      <a class="nav-item nav-link" href="/sign-up">S'inscrire</a>
-      <a class="nav-item nav-link" href="/login">S'identifier</a>
+      <a *ngIf="ifTokenExist" class="nav-item nav-link" href="/sign-up">S'inscrire</a>
+      <a *ngIf="ifTokenExist" class="nav-item nav-link" href="/login">S'identifier</a>
     </div>
   </div>
 </nav>

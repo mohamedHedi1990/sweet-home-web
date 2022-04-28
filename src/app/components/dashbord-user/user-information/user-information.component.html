@@ -2,7 +2,21 @@
 <div class="home_top_slider">
   <div class="new_search_form">
     <div class="new_search_list">
+      <div class="profile-agent">
+      <div>
+        <div class="row uploaddiv d-flex align-items-center flex-nowrap">
+          <div class="profile-edit-photo">
+            <div  *ngIf="userDetailsResponseModel?.userPictureUrl!='' "><img [src]="userDetailsResponseModel.userPictureUrl" class="img"></div>
+            <div  *ngIf="userDetailsResponseModel?.userPictureUrl=='' "><img [src]="notFoundPhoto" class="img"></div>
 
+          </div>
+          <div class="edit-photo-actions">
+            <label for="myfilephotoMobile" class="btn-upload save"> Télécharger une image</label>
+            <button class="btn-upload cancel" (click)="deletePhoto()">Supprimer</button></div>
+        </div>
+        <input type='file'  id="myfilephotoMobile" name="myfilephoto" (change)="onSelectFile($event)" style="visibility: hidden" accept="image/*">
+      </div>
+    </div>
       <form (ngSubmit)="onFormSubmit()" ngNativeValidate>
         <div class="row col-10">
 
