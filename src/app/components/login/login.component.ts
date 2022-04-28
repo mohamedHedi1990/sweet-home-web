@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.clear();
+    console.log("token : ",localStorage.getItem("token"))
   }
 
   onFormSubmit() {

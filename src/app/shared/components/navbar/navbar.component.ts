@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  ifTokenExist: boolean=false;
   constructor() {  
   }
   
   ngOnInit(): void {
 
-
+    console.log("in navbar : ",localStorage.getItem("token"))
+   this.ifTokenExist = localStorage.getItem("token") !== null ? false : true;
   
   }
 
