@@ -1,3 +1,4 @@
+
 <div class="home_top_slider">
   <div class="new_search_form">
     <div class="new_search_list">
@@ -5,37 +6,19 @@
         <div>
           <div class="row uploaddiv d-flex align-items-center flex-nowrap">
             <div class="profile-edit-photo">
-              <div *ngIf="userDetailsResponseModel?.userPictureUrl != ''">
-                <img
-                  [src]="userDetailsResponseModel.userPictureUrl"
-                  class="img"
-                />
-              </div>
-              <div *ngIf="userDetailsResponseModel?.userPictureUrl == ''">
-                <img [src]="notFoundPhoto" class="img" />
-              </div>
+              <div><img [src]="userDetailsResponseModel.userPictureUrl" class="img"></div>
+
             </div>
             <div class="edit-photo-actions">
-              <label for="myfilephotoMobile" class="btn-upload save">
-                Télécharger une image</label
-              >
-              <button class="btn-upload cancel" (click)="deletePhoto()">
-                Supprimer
-              </button>
-            </div>
+              <label for="myfilephotoMobile" class="btn-upload save"> Télécharger une image</label>
+              <button class="btn-upload cancel" (click)="deletePhoto()">Supprimer</button></div>
           </div>
-          <input
-            type="file"
-            id="myfilephotoMobile"
-            name="myfilephoto"
-            (change)="onSelectFile($event)"
-            style="visibility: hidden"
-            accept="image/*"
-          />
+          <input type='file'  id="myfilephotoMobile" name="myfilephoto" (change)="onSelectFile($event)" style="visibility: hidden" accept="image/*">
         </div>
       </div>
       <form (ngSubmit)="onFormSubmit()" ngNativeValidate>
         <div class="row col-10">
+
           <div class="col-6">
             <label> Prénom </label>
             <input
@@ -62,7 +45,6 @@
           <div class="col-6">
             <label>E-Mail</label>
             <input
-              readonly
               class="form-control"
               type="email"
               placeholder="name@beispiel.com"
@@ -73,6 +55,7 @@
           </div>
 
           <div class="col-6">
+
             <label> Téléphone </label>
             <input
               class="form-control"
@@ -92,9 +75,7 @@
             <ng-select
               required
               [(ngModel)]="userDetailsResponseModel.role"
-              [ngModelOptions]="{ standalone: true }"
-              name="role"
-              ><!-- [bindLabel]="getRole(userDetailsResponseModel.role)" -->
+              [ngModelOptions]="{ standalone: true }" name="role"><!-- [bindLabel]="getRole(userDetailsResponseModel.role)" -->
               <ng-option value="OWNER">Annonceur</ng-option>
               <ng-option value="LODGER">Locataire</ng-option>
             </ng-select>
@@ -114,48 +95,24 @@
 
           <div class="col-6">
             <label>Pays</label>
-            <!--
             <ng-select [compareWith]="compareCountry"  name="selectedCountry"
                        [(ngModel)]="userDetailsResponseModel.userAddress.addressCity.country" (ngModelChange)="onChangeCountry($event)">
               <ng-option *ngFor="let country of countries" [value]="country">
                 {{country.countryLabel}}
               </ng-option>
             </ng-select>
-             -->
-            <ng-select
-              name="selectedCountry"
-              [(ngModel)]="userCountry"
-              (ngModelChange)="onChangeCountry($event)"
-            >
-              <ng-option *ngFor="let country of countries" [value]="country">
-                {{ country.countryLabel }}
-              </ng-option>
-            </ng-select>
           </div>
-          <!-- 
-          <div class="col-6">
-            <label>Ville</label>
-            <ng-select
-              [compareWith]="compareCity"
-              name="selectedCity"
-              [(ngModel)]="userDetailsResponseModel.userAddress.addressCity"
-            >
-              <ng-option *ngFor="let city of cities" [value]="city">
-                {{ city.cityLabel }}
-              </ng-option>
-            </ng-select>
-          </div>
--->
 
           <div class="col-6">
             <label>Ville</label>
-            <ng-select name="selectedCity">
+            <ng-select [compareWith]="compareCity"  name="selectedCity"
+                       [(ngModel)]="userDetailsResponseModel.userAddress.addressCity">
               <ng-option *ngFor="let city of cities" [value]="city">
-                {{ city.cityLabel }}
+                {{city.cityLabel}}
               </ng-option>
             </ng-select>
           </div>
-          <!-- 
+
           <div class="col-8">
             <label> Rue </label>
             <input
@@ -174,33 +131,11 @@
               type="text"
               placeholder="Numéro de rue"
               required
-              [(ngModel)]="
-                userDetailsResponseModel.userAddress.addressStreetNumber
-              "
+              [(ngModel)]="userDetailsResponseModel.userAddress.addressStreetNumber"
               name="addressStreetNumber"
             />
           </div>
--->
-          <div class="col-8">
-            <label> Rue </label>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Rue"
-              required
-              name="addressStreet"
-            />
-          </div>
-          <div class="col-4">
-            <label> Num de rue </label>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Numéro de rue"
-              required
-              name="addressStreetNumber"
-            />
-          </div>
+
           <div class="row col-12">
             <input
               class="btn-upload save btn-modify"
@@ -211,5 +146,7 @@
         </div>
       </form>
     </div>
+
   </div>
 </div>
+

@@ -3,10 +3,51 @@
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">Publier votre annonce </a>
+      <a class="nav-item nav-link" href="#" [routerLink]="(hasOwnerRole() && ifTokenExist) ? '/main-profile' : '/login'">Publier votre annonce </a>
       <a class="nav-item nav-link" href="#">Aide</a>
-      <a *ngIf="ifTokenExist" class="nav-item nav-link" href="/sign-up">S'inscrire</a>
-      <a *ngIf="ifTokenExist" class="nav-item nav-link" href="/login">S'identifier</a>
+      <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/sign-up">S'inscrire</a>
+      <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/login">S'identifier</a>
+
+      <div *ngIf="ifTokenExist" class="dropdown" dropdown container="body">
+        <a
+          href="#"
+          class="
+          d-flex
+          align-items-center
+          link-dark
+          text-decoration-none
+          dropdown-toggle
+        "
+          id="dropdownUser2"
+          dropdownToggle
+          (click)="(false)"
+          aria-expanded="false"
+        >
+          <img
+            [src]="userDetailsResponseModel.userPictureUrl"
+            class="img"
+          />
+          <strong>{{userDetailsResponseModel.userFirstName}} {{userDetailsResponseModel.userLastName}}</strong>
+        </a>
+        <!-- d-none is temporary -->
+        <ul
+          class="dropdown-menu text-small shadow"
+          *dropdownMenu
+          aria-labelledby="dropdownUser2"
+        >
+          <li><a class="dropdown-item" href="#" routerLink="/main-profile">Mon Profil</a></li>
+
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li><a class="dropdown-item" href="#" routerLink="/login">Se déconnecter</a></li>
+        </ul>
+      </div>
+
     </div>
+
   </div>
+
+
 </nav>
+

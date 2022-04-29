@@ -18,26 +18,26 @@
               [contentClass]="'card'"
             >
               <!--Panel 1-->
-              <mdb-tab heading="Mon profil" [active]="true">
+              <mdb-tab *ngIf="hasOwnerRole() || hasLodgerRole()" heading="Mon profil" [active]="true">
                 <div class="row">
                   <!--<div class="col-12">Salut 1</div>-->
                   <app-user-information></app-user-information>
                 </div>
               </mdb-tab>
               <!--Panel 2-->
-              <mdb-tab heading="Mes annonces">
+              <mdb-tab *ngIf="hasOwnerRole()" heading="Mes annonces">
                 <div class="row">
                   <div class="col-12">Salut 2</div>
                 </div>
               </mdb-tab>
               <!--Panel 3-->
-              <mdb-tab heading="Mes réservations">
+              <mdb-tab *ngIf="hasOwnerRole() || hasLodgerRole()" heading="Mes réservations">
                 <div class="row">
                   <div class="col-12">Salut 3</div>
                 </div>
               </mdb-tab>
               <!--Panel 4-->
-              <mdb-tab heading="Publier une annonce">
+              <mdb-tab *ngIf="hasOwnerRole()" heading="Publier une annonce">
                 <div class="row">
                   <div class="col-12">Salut 4</div>
                 </div>
