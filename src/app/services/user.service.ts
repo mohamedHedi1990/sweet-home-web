@@ -34,10 +34,10 @@ export class UserService {
     return this.http.post(`${this.USER_API}/add-new-user`, userRequestModel);
   }
 
-  getUser(): Observable<UserDetailsResponseModel> {
-    return this.http.get<UserDetailsResponseModel>(
-      `${this.USER_API}/user-info`
-    );
+  getUser(): Promise<UserDetailsResponseModel> {
+    return this.http
+      .get<UserDetailsResponseModel>(`${this.USER_API}/user-info`)
+      .toPromise();
   }
 
   patchUser(userRequest: UserRequestModel) {
