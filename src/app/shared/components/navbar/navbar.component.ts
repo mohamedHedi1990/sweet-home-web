@@ -74,4 +74,9 @@ export class NavbarComponent implements OnInit {
 
     return false;
   }
+
+  isHomePage(): boolean{
+    if(this.currentRoute === "/home") return true;
+    return  false;
+  }
 }

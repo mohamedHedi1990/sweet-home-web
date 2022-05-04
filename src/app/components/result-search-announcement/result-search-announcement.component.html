@@ -2,7 +2,69 @@
   <div class="main">
     <app-navbar></app-navbar>
 
-    <div class="container-lg page-container" style="min-height: calc(180vh - 227px) !important">
+    <div class="container" style="margin-top: 138px;min-height: calc(100vh - 227px) !important">
+      <form class="row" #myForm="ngForm" >
+        <div class="col-3">
+          <label>Lieu (Ville/Gouvernorat)</label>
+          <ng-select ngControl="announcementCityLabel"
+            required
+            [(ngModel)]="announcementService.rechercheform.announcementCityLabel"
+            name="announcementCityLabel">
+            <ng-option
+              *ngFor="let city of cities"
+              [value]="city.cityLabel"
+            >{{ city.cityLabel }}</ng-option
+            >
+          </ng-select>
+        </div>
+        <div class="col-md-3">
+          <label> Arrivée </label>
+          <input ngControl="announcementStartDate"
+            class="form-control"
+            type="date"
+            placeholder="Arrivée"
+            required
+            name="announcementStartDate"
+            [(ngModel)]="announcementService.rechercheform.announcementStartDate"
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label> Départ </label>
+          <input ngControl="announcementEndDate"
+            class="form-control"
+            type="date"
+            placeholder="Départ"
+            required
+            name="announcementEndDate"
+            [(ngModel)]="announcementService.rechercheform.announcementEndDate"
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label>Nombre d’invités</label>
+          <ng-select required [(ngModel)]="announcementService.rechercheform.nbGuest" name="nbGuest"
+                     ngControl="nbGuest">
+            <ng-option value="1">1 invité</ng-option>
+            <ng-option value="2">2 invités</ng-option>
+            <ng-option value="3">3 invités</ng-option>
+            <ng-option value="4">4 invités</ng-option>
+            <ng-option value="5">5 invités</ng-option>
+            <ng-option value="6">6 invités</ng-option>
+            <ng-option value="7">7 invités</ng-option>
+            <ng-option value="8">8 invités</ng-option>
+            <ng-option value="9">9 invités</ng-option>
+            <ng-option value="10">10 invités</ng-option>
+            <ng-option value="11">11+ invités</ng-option>
+          </ng-select>
+        </div>
+      </form>
+    <div *ngFor="let announcementResponseModel of announcementResponseModels; let i = index">
+      <app-announcement-main-info [lastPublishedAnnouncement]="announcementResponseModel"></app-announcement-main-info>
+    </div>
+    </div>
+
+    <!--<div class="container-lg page-container" style="min-height: calc(180vh - 227px) !important">
       <div class="agent-main-wrapper">
 <div class="row">
 
@@ -85,7 +147,7 @@
 
 </div>
       </div>
-    </div>
+    </div>-->
   </div>
     <app-footer></app-footer>
   </div>

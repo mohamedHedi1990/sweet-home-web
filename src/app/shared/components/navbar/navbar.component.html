@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" [ngClass]="{transparent:isHomePage(),white: !isHomePage()} ">
   <img src="assets/img/logo.png" alt="logo" />
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -8,45 +8,74 @@
       <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/sign-up">S'inscrire</a>
       <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/login">S'identifier</a>
 
-      <div *ngIf="ifTokenExist" class="dropdown" dropdown container="body">
-        <a
-          href="#"
-          class="
-          d-flex
-          align-items-center
-          link-dark
-          text-decoration-none
-          dropdown-toggle
-        "
-          id="dropdownUser2"
-          dropdownToggle
-          (click)="(false)"
-          aria-expanded="false"
-        >
-          <img
-            [src]="userDetailsResponseModel.userPictureUrl"
-            class="img"
-          />
-          <strong>{{userDetailsResponseModel.userFirstName}} {{userDetailsResponseModel.userLastName}}</strong>
-        </a>
-        <!-- d-none is temporary -->
-        <ul
-          class="dropdown-menu text-small shadow"
-          *dropdownMenu
-          aria-labelledby="dropdownUser2"
-        >
-          <li><a class="dropdown-item" href="#" routerLink="/main-profile">Mon Profil</a></li>
-
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li><a class="dropdown-item" href="#" routerLink="/login">Se déconnecter</a></li>
-        </ul>
-      </div>
-
     </div>
 
+    <div *ngIf="ifTokenExist" class="dropdown" dropdown container="body">
+      <a
+        href="#"
+        class="dropdown-toggle"
+        id="dropdownUser"
+        data-bs-toggle="dropdown"
+        id="dropdownMenuButton"
+        aria-expanded="false"
+      >
+        <img
+          [src]="userDetailsResponseModel.userPictureUrl"
+          class="img"
+        />
+        <strong>{{userDetailsResponseModel.userFirstName}} {{userDetailsResponseModel.userLastName}}</strong>
+      </a>
+      <!-- d-none is temporary -->
+      <ul
+        class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-top: 20px"
+      >
+        <li><a class="dropdown-item" href="#" routerLink="/main-profile">
+          <i class="fa fa-cog" style="padding-left: 10px;margin-right: 10px;">
+          </i>Mon Profil</a></li>
+
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
+        <li><a class="dropdown-item" href="#" routerLink="/login">
+          <i class="fa fa-sign-in" style="padding-left: 10px;margin-right: 10px;">
+          </i>Se déconnecter</a></li>
+      </ul>
+    </div>
+
+
+    <!-- note: without the  'data-bs-toggle="dropdown"' dropdown will not work , as mentioned by @isabel-vallejo-gomez
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        id="dropdownMenuButton1"
+        aria-expanded="false"
+      >
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownMenuButton" ngbDropdownToggle>Dropdown button</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+            <button ngbDropdownItem>Action</button>
+            <button ngbDropdownItem>Another Action</button>
+            <button ngbDropdownItem>Something else here</button>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
   </div>
+
 
 
 </nav>

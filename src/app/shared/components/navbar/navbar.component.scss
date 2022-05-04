@@ -22,6 +22,7 @@ img{
 a {
   outline: none;
   text-decoration: none;
+  color: #000;
 ;
   /*margin-top: 28px;
   margin-right: 8px;*/
@@ -43,12 +44,31 @@ a:hover {
   margin-right: 4px;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
   position: static;
   display: block;
   width: auto;
   margin-top: 21px;
+}*/
+
+
+/*.dropdown.show .dropdown-menu {
+  opacity: 1 !important;
+}*/
+
+/*.dropdown {
+  position: inherit;
+}*/
+
+ul {
+  margin-top: 18px;
+  margin-left: 12px;
+
 }
 
-
-
+.transparent {
+  background-color: transparent;
+}
+.white{
+  background-color: white;
+}
