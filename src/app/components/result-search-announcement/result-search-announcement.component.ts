@@ -1,44 +1,62 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgbCarousel, NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
-import {AnnouncementService} from "../../services/announcement.service";
-import {AnnouncementResponseModel} from "../../models/dto/response/AnnouncementResponse.model";
-import {CityModel} from "../../models/city.model";
-import {CityService} from "../../services/city.service";
-import {NgForm} from "@angular/forms";
-import {SearchCriteriaModel} from "../../models/searchCriteria.model";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AnnouncementService } from '../../services/announcement.service';
+import { AnnouncementResponseModel } from '../../models/dto/response/AnnouncementResponse.model';
+import { CityModel } from '../../models/city.model';
+import { CityService } from '../../services/city.service';
+import { NgForm } from '@angular/forms';
+import { SearchCriteriaModel } from '../../models/searchCriteria.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-result-search-announcement',
   templateUrl: './result-search-announcement.component.html',
   styleUrls: ['./result-search-announcement.component.scss'],
-  providers: [NgbCarouselConfig]
+  providers: [NgbCarouselConfig],
 })
 export class ResultSearchAnnouncementComponent implements OnInit {
-
   // @ts-ignore
-  @ViewChild('myForm') form:NgForm;
+  @ViewChild('myForm') form: NgForm;
 
-  images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  //images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-  announcementResponseModels:AnnouncementResponseModel[]=[];
+  announcementResponseModels: AnnouncementResponseModel[] = [];
 
   cities: CityModel[] = [];
 
-  constructor(config: NgbCarouselConfig, public announcementService:AnnouncementService,private cityService: CityService) {
+  public rechercheform: SearchCriteriaModel = new SearchCriteriaModel(
+    '',
+    new Date(),
+    new Date(),
+    1
+  );
+
+  constructor(
+    config: NgbCarouselConfig,
+    public announcementService: AnnouncementService,
+    private cityService: CityService,
+    private route: ActivatedRoute
+  ) {
     // customize default values of carousels used by this component tree
     config.interval = 0;
     config.keyboard = true;
     config.pauseOnHover = true;
     config.pauseOnFocus = true;
     config.wrap = false;
-
   }
 
   ngOnInit(): void {
-    this.announcementService.searchAnnouncements(this.announcementService.rechercheform)
-      .subscribe(res =>{
-        this.announcementResponseModels=res;
-      })
+    this.route.queryParams.subscribe((params) => {
+      this.rechercheform.announcementCityLabel = params.city;
+      this.rechercheform.nbGuest = params.guestNumber;
+      this.rechercheform.announcementStartDate = params.startDate;
+      this.rechercheform.announcementEndDate = params.endDate;
+      this.announcementService
+        .searchAnnouncements(this.rechercheform)
+        .subscribe((res) => {
+          this.announcementResponseModels = res;
+        });
+    });
 
     this.getAllCities();
   }
@@ -49,17 +67,11 @@ export class ResultSearchAnnouncementComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.form)
-    this.form.control.valueChanges
-      .subscribe((values)=> {
-
-        this.announcementService.searchAnnouncements(values)
-          .subscribe(res =>{
-            this.announcementResponseModels=res;
-          })
-
-        }
-      )
+    console.log(this.form);
+    this.form.control.valueChanges.subscribe((values) => {
+      this.announcementService.searchAnnouncements(values).subscribe((res) => {
+        this.announcementResponseModels = res;
+      });
+    });
   }
-
 }
