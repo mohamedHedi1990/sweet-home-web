@@ -45,7 +45,13 @@ export class HomeComponent implements OnInit {
       this.lastPublishedAnnouncements=data;
     })
   }
+
   search() {
+    console.log("rechercheform in home: ",this.rechercheform)
+    /*this.announcementService.searchAnnouncements(this.rechercheform).subscribe(res =>{
+      console.log("res search : ",res);
+    })*/
+    this.announcementService.rechercheform=this.rechercheform;
     this.router.navigateByUrl("/result-announcement");
   }
 }

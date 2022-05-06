@@ -40,6 +40,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
