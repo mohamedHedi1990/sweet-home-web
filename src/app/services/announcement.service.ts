@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AnnouncementResponseModel } from '../models/dto/response/AnnouncementResponse.model';
 import { SearchCriteriaModel } from '../models/searchCriteria.model';
+import {MyAnnouncementResponseModel} from "../models/dto/response/MyAnnouncementResponse.model";
 
 @Injectable({
   providedIn: 'root',
@@ -31,5 +32,13 @@ export class AnnouncementService {
       `${this.ANNOUNCEMENT_API}/search`,
       rechercheform
     );
+  }
+
+  myAnnouncements(): Observable<MyAnnouncementResponseModel[]>{
+    return this.http.get<MyAnnouncementResponseModel[]>(`${this.ANNOUNCEMENT_API}/my-announcements`);
+  }
+
+  deleteAnnouncement(announcementId: number) {
+    return this.http.delete(`${this.ANNOUNCEMENT_API}/`+announcementId)
   }
 }

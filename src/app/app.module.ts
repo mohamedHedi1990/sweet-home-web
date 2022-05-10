@@ -40,6 +40,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AnnouncementUserComponent } from './components/dashbord-user/announcement-user/announcement-user.component';
+import {NgbdSortableHeader} from "./services/sortable.service";
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserInformationComponent,
     ResultSearchAnnouncementComponent,
     AnnouncementMainInfoComponent,
+    AnnouncementUserComponent,
+    NgbdSortableHeader,
   ],
   imports: [
     BrowserModule,
