@@ -10,9 +10,9 @@ import {
 //import moment from 'moment';
 import { SearchCriteriaModel } from '../../../../src/app/models/searchCriteria.model';
 import { CityModel } from '../../../../src/app/models/city.model';
-import {AnnouncementService} from "../../services/announcement.service";
-import {AnnouncementResponseModel} from "../../models/dto/response/AnnouncementResponse.model";
-import {Router} from "@angular/router";
+import { AnnouncementService } from '../../services/announcement.service';
+import { AnnouncementResponseModel } from '../../models/dto/response/AnnouncementResponse.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,9 +26,12 @@ export class HomeComponent implements OnInit {
     1
   );
   cities: CityModel[] = [];
-  lastPublishedAnnouncements :AnnouncementResponseModel [] = [];
-  constructor(private cityService: CityService, private announcementService:AnnouncementService,
-              private router:Router) {}
+  lastPublishedAnnouncements: AnnouncementResponseModel[] = [];
+  constructor(
+    private cityService: CityService,
+    private announcementService: AnnouncementService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllCities();
@@ -41,11 +44,21 @@ export class HomeComponent implements OnInit {
   }
 
   getAllAnnouncement() {
-    this.announcementService.getAllAnnouncement().subscribe(data =>{
-      this.lastPublishedAnnouncements=data;
-    })
+    this.announcementService.getAllAnnouncement().subscribe((data) => {
+      this.lastPublishedAnnouncements = data;
+    });
   }
+
   search() {
-    this.router.navigateByUrl("/result-announcement");
+    this.router.navigateByUrl(
+      '/result-announcement?city=' +
+        this.rechercheform.announcementCityLabel +
+        '&guestNumber=' +
+        this.rechercheform.nbGuest +
+        '&startDate=' +
+        this.rechercheform.announcementStartDate +
+        '&endDate=' +
+        this.rechercheform.announcementEndDate
+    );
   }
 }
