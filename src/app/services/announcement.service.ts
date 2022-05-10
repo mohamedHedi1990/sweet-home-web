@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AnnouncementModel } from '../models/Announcement.model';
 import {AnnouncementResponseModel} from "../models/dto/response/AnnouncementResponse.model";
+import { AnnouncementDetailsModel } from '../models/annoucementDetails.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,12 @@ export class AnnouncementService {
   getAllAnnouncement(): Observable<AnnouncementResponseModel[]> {
     return this.http.get<AnnouncementResponseModel[]>(
       `${this.ANNOUNCEMENT_API}/last-published`
+    );
+  }
+
+  getAnnouncementDetails(annoucementId: number): Observable<AnnouncementDetailsModel> {
+    return this.http.get<AnnouncementDetailsModel>(
+      `${this.ANNOUNCEMENT_API}/details/`+annoucementId
     );
   }
 }
