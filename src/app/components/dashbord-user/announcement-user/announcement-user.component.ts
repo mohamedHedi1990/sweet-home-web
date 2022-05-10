@@ -46,6 +46,30 @@ export class AnnouncementUserComponent implements OnInit {
 
   }
 
+  getCSSClasses(announcement: MyAnnouncementResponseModel): any{
+    let cssClasses;
+    if(announcement.announcementStatus.toString() == 'BOOKED') {
+      cssClasses = {
+        'badge-style-published': false,
+        'badge-style-finished': false,
+        'badge-style-reserved' : true
+      }
+    } else if(announcement.announcementStatus.toString() == 'CREATED'){
+      cssClasses = {
+        'badge-style-published': true,
+        'badge-style-finished': false,
+        'badge-style-reserved' : false
+      }
+    }else if(announcement.announcementStatus.toString() == 'FINISHED'){
+      cssClasses = {
+        'badge-style-published': false,
+        'badge-style-finished': true,
+        'badge-style-reserved' : false
+      }
+    }
+    return cssClasses;
+  }
+
   getAnnouncementStatus(announcementStatus: AnnouncementStatus):string {
     const status = announcementStatus.toString();
     return AnnouncementStatus[status as keyof typeof AnnouncementStatus];
