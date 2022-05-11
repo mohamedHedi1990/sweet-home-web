@@ -1,62 +1,124 @@
 <div class="home_top_slider" style="min-height: calc(100vh - 227px) !important">
   <div class="new_search_form">
     <div class="new_search_list">
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Titre d'annonce</th>
-    <th scope="col">Date Création</th>
-    <th scope="col">Date Fin</th>
-    <th scope="col">Statut</th>
-    <th scope="col">Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let announcement of myAnnouncementResponseModels, let i=index">
-    <th scope="row" class="pt-3">{{ i+1 }}</th>
-    <td class="pt-3">
-      {{ announcement.announcementTitle }}
-    </td>
-    <td class="pt-3">{{ announcement.announcementCreatedDate }}</td>
-    <td class="pt-3">{{ announcement.announcementEndAvailableDate }}</td>
-    <td class="pt-3"><span class="badge"
-       [ngClass]="getAnnouncementStatusBadge(announcement)">p
-      {{ getAnnouncementStatus(announcement.announcementStatus) }}</span></td>
-    <td>
-      <button (click)="onViewAnnouncement(announcement.announcementId)" class="btn btn-outline-info btn-style"><i class="fa fa-eye"></i> </button>
-      <button (click)="onEditAnnouncement()" class="btn btn-outline-success btn-style"><i class="fa fa-edit"></i> </button>
-      <button (click)="onDeleteAnnouncement(deleteContent, announcement)" class="btn btn-outline-warning btn-style"><i class="fa fa-remove"></i> </button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre d'annonce</th>
+            <th scope="col">Date Création</th>
+            <th scope="col">Date Fin</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let announcement of myAnnouncementResponseModels;
+              let i = index
+            "
+          >
+            <th scope="row" class="pt-3">{{ i + 1 }}</th>
+            <td class="pt-3">
+              {{ announcement.announcementTitle }}
+            </td>
+            <td class="pt-3">{{ announcement.announcementCreatedDate }}</td>
+            <td class="pt-3">
+              {{ announcement.announcementEndAvailableDate }}
+            </td>
+            <td class="pt-3">
+              <span
+                class="badge"
+                [ngClass]="getAnnouncementStatusBadge(announcement)"
+              >
+                {{
+                  getAnnouncementStatus(announcement.announcementStatus)
+                }}</span
+              >
+            </td>
+            <td>
+              <button
+                (click)="onViewAnnouncement(announcement.announcementId)"
+                class="btn btn-outline-info btn-style"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+              <button
+                (click)="onEditAnnouncement()"
+                class="btn btn-outline-success btn-style"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+              <button
+                (click)="onDeleteAnnouncement(deleteContent, announcement)"
+                class="btn btn-outline-warning btn-style"
+              >
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-<div class="d-flex justify-content-between p-2">
-  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshAnnouncements()">
-  </ngb-pagination>
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+          [collectionSize]="collectionSize"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          (pageChange)="refreshAnnouncements()"
+        >
+        </ngb-pagination>
 
-
-  <ng-select style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshAnnouncements()">
-    <ng-option [value]="2">2 annonces par page</ng-option>
-    <ng-option [value]="4">4 annonces par page</ng-option>
-    <ng-option [value]="6">6 annonces par page</ng-option>
-  </ng-select>
-</div>
+        <ng-select
+          style="width: auto"
+          [(ngModel)]="pageSize"
+          (ngModelChange)="refreshAnnouncements()"
+        >
+          <ng-option [value]="2">2 annonces par page</ng-option>
+          <ng-option [value]="4">4 annonces par page</ng-option>
+          <ng-option [value]="6">6 annonces par page</ng-option>
+        </ng-select>
+      </div>
     </div>
   </div>
 </div>
 
 <ng-template #deleteContent let-c="close" let-d="dismiss">
-<div class="modal-header" >
-  <h4 class="modal-title" id="modal-title">Confirmation de Suppression</h4>
-  <button type="button" class="btn-close" aria-describedby="modal-title" (click)="d('Cross click')"></button>
-</div>
-<div class="modal-body">
-  <p><strong>Voulez-vous vraiment supprimer l'annonce <span class="text-primary">{{announcementToDelete.announcementTitle}}</span> ?</strong></p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')">Cancel</button>
-  <button type="button" class="btn btn-danger" (click)="onConfirmDelete(announcementToDelete)">Supprimer</button>
-</div>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Confirmation de Suppression</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-describedby="modal-title"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong
+        >Voulez-vous vraiment supprimer l'annonce
+        <span class="text-primary">{{
+          announcementToDelete.announcementTitle
+        }}</span>
+        ?</strong
+      >
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="d('Cross click')"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onConfirmDelete(announcementToDelete)"
+    >
+      Supprimer
+    </button>
+  </div>
 </ng-template>
