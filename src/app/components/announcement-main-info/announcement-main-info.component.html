@@ -1,13 +1,13 @@
 
 <div class="home_page_listimg">
 <div class="card">
-  <a href="#">
+  <a  [routerLink]="'/annoucement-details/'+lastPublishedAnnouncement.announcementId">
     <img
       id="imgcard"
       class="ng-isolate-scope"
       src="{{ lastPublishedAnnouncement.announcementMainPictureUrl }}"
       alt="img"
-    /></a>
+    />
   <div class="card-body">
     <div class="category_city hm_cate">
       <!--<span class="pull-left ng-binding">Logement entier</span>
@@ -15,7 +15,7 @@
       <span class="pull-left ng-binding">{{ getAnnouncementType(lastPublishedAnnouncement.announcementType) }}</span>
     </div>
     <a
-      href="#"
+   
       target="listing_10001"
       class="text-normal"
       style="text-decoration: none !important"
@@ -38,6 +38,7 @@
       Par nuit
     </div>
   </div>
+  </a>
 </div>
 </div>
 

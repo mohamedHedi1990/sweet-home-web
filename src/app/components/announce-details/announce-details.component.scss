@@ -38,8 +38,12 @@
     font-weight: 500;
     font-size: 1.4rem;
 }
+p {
+    text-align: justify;
+}
 p, ul{
     color: $davys-grey;
+    
 }
 .subtile-descrip {
     font-size: 15px;
