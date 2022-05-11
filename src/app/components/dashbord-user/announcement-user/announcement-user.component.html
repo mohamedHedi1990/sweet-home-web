@@ -21,7 +21,7 @@
     <td class="pt-3">{{ announcement.announcementCreatedDate }}</td>
     <td class="pt-3">{{ announcement.announcementEndAvailableDate }}</td>
     <td class="pt-3"><span class="badge"
-       [ngClass]="getAnnouncementStatusBadge(announcement)">
+       [ngClass]="getAnnouncementStatusBadge(announcement)">p
       {{ getAnnouncementStatus(announcement.announcementStatus) }}</span></td>
     <td>
       <button (click)="onViewAnnouncement(announcement.announcementId)" class="btn btn-outline-info btn-style"><i class="fa fa-eye"></i> </button>
