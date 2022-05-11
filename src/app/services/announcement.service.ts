@@ -3,11 +3,10 @@ import { UtilsService } from './utils.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AnnouncementModel } from '../models/Announcement.model';
-import {AnnouncementResponseModel} from "../models/dto/response/AnnouncementResponse.model";
 import { AnnouncementDetailsModel } from '../models/annoucementDetails.model';
 import { AnnouncementResponseModel } from '../models/dto/response/AnnouncementResponse.model';
 import { SearchCriteriaModel } from '../models/searchCriteria.model';
-import {MyAnnouncementResponseModel} from "../models/dto/response/MyAnnouncementResponse.model";
+import { MyAnnouncementResponseModel } from '../models/dto/response/MyAnnouncementResponse.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +22,12 @@ export class AnnouncementService {
     );
   }
 
-
-  getAnnouncementDetails(annoucementId: number): Observable<AnnouncementDetailsModel> {
+  getAnnouncementDetails(
+    annoucementId: number
+  ): Observable<AnnouncementDetailsModel> {
     return this.http.get<AnnouncementDetailsModel>(
-      `${this.ANNOUNCEMENT_API}/details/`+annoucementId
-);
+      `${this.ANNOUNCEMENT_API}/details/` + annoucementId
+    );
   }
   searchAnnouncements(
     rechercheform: SearchCriteriaModel
@@ -43,11 +43,13 @@ export class AnnouncementService {
     );
   }
 
-  myAnnouncements(): Observable<MyAnnouncementResponseModel[]>{
-    return this.http.get<MyAnnouncementResponseModel[]>(`${this.ANNOUNCEMENT_API}/my-announcements`);
+  myAnnouncements(): Observable<MyAnnouncementResponseModel[]> {
+    return this.http.get<MyAnnouncementResponseModel[]>(
+      `${this.ANNOUNCEMENT_API}/my-announcements`
+    );
   }
 
   deleteAnnouncement(announcementId: number) {
-    return this.http.delete(`${this.ANNOUNCEMENT_API}/`+announcementId)
+    return this.http.delete(`${this.ANNOUNCEMENT_API}/` + announcementId);
   }
 }
