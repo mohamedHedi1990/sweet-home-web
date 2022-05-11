@@ -120,7 +120,7 @@
         <div class="home_page_list">
           <h3>Les Tendances:</h3>
 
-          <div *ngFor="let lastPublishedAnnouncement of lastPublishedAnnouncements; let i = index">
+          <div *ngFor="let lastPublishedAnnouncement of lastPublishedAnnouncements.slice(1)">
             <app-announcement-main-info [lastPublishedAnnouncement]="lastPublishedAnnouncement"></app-announcement-main-info>
 
           </div>

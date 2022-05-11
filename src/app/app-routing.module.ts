@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'main-profile',
     component: DashbordUserComponent,
   },
-  { path: 'annoucement-details', component: AnnounceDetailsComponent },
+  { path: 'annoucement-details/:id', component: AnnounceDetailsComponent },
   {
     path: 'result-announcement',
     component: ResultSearchAnnouncementComponent,

@@ -2,34 +2,34 @@
     <div>
         <app-navbar></app-navbar>
     </div>
-
+  <div>
     <div class="gallery">
     
-        <div class="row">
+        <div class="row" >
                
-          <div class="col-md-6">
-            <img src="../../../assets/images/announce-details/img-2.png" class="img-responsive w-100 border-black">
+          <div class="col-md-6" >
+            <img [src]="announcementDetails.announcementPictureUrls[0]" height="500px" class="img-responsive w-100 border-black">
           </div>
 
           <div class="col-md-6">
             
             <div class="row mb-3">
-              <div class="col-md-6">
-                <img src="../../../assets/images/announce-details/img-3.webp" class="img-fluid border-black">
+              <div class="col-md-6" *ngFor="let imgGalerie of galerieWithoutFirstImg | slice:0:4">
+                <img [src]="imgGalerie" height="250px" class="img-responsive border-black">
               </div>
-              <div  class="col-md-6">
+              <!--<div  class="col-md-6">
                 <img src="../../../assets/images/announce-details/img-4.webp" class="img-fluid border-black">
-              </div>
+              </div>-->
             </div>
 
-            <div class="row">
+            <!--<div class="row">
               <div class="col-md-6">
                 <img src="../../../assets/images/announce-details/img-1.jpg" class="img-fluid border-black">
               </div>
               <div class="col-md-6">
                 <img src="../../../assets/images/announce-details/img-5.webp" class="img-fluid border-black">
               </div>
-            </div>
+            </div>-->
 
           </div>
         </div>
@@ -56,9 +56,9 @@
                                     </div>
                                     <div class="col-md-9">
                                         <h1>
-                                            La Villa du Cap
+                                           {{this.announcementDetails.announcementTitle}}
                                         </h1>
-                                        <p class="summary-info">Bizerte ,  Tunisia</p>
+                                        <p class="summary-info">{{this.announcementDetails.announcementAddress.addressCity.cityLabel}},  {{this.announcementDetails.announcementAddress.addressCity.country.countryLabel}}</p>
                                         <div class="mt-3 row row-condensed text-muted text-center roomtype-img">
                                             <div class="col-md-3 col-sm-3 col-xs-4 roomty">
                                              
@@ -68,11 +68,11 @@
                                            </div>
                                            <div class="col-md-3 col-sm-3 col-xs-4 roomty">
                                             <img src="../../../assets/images/icons/group.png" width="30px">
-                                            <div class="mt-3 summary-info">6 Invités</div>
+                                            <div class="mt-3 summary-info">{{announcementDetails.announcementGuestNumber}} Invités</div>
                                           </div>
                                           <div class="col-md-3 col-sm-3 col-xs-4 roomty">
                                             <img src="../../../assets/images/icons/bed.png" width="30px">
-                                            <div class="mt-3 summary-info">3 Lits</div>
+                                            <div class="mt-3 summary-info"> {{this.announcementDetails.announcementBedNumber}} Lits</div>
                                           </div>
                         
                        
@@ -99,7 +99,7 @@
                                  <!-- form user info -->
             <div class="card card-reservation">
                 <div class="card-header price-info">
-                  <h2 class="mb-0">TND 750</h2>
+                  <h2 class="mb-0">TND {{this.announcementDetails.announcementCost}}</h2>
                 
                     <p class="per-night">
                       Par nuit
@@ -107,7 +107,12 @@
                  
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form
+                  #form1="ngForm"
+                  role="form"
+                  (ngSubmit)="onReserveSubmit()"
+                  ngNativeValidate
+                  >
                     
 
                     <div class="row mb-3">
@@ -119,7 +124,7 @@
                           placeholder="Arrivée"
                           required
                           name="comingDate"
-                          
+                          [(ngModel)]="reservation.reservationStartDate"
                         />
                       </div>
 
@@ -131,12 +136,13 @@
                           placeholder="Départ"
                           required
                           name="departureDate"
+                          [(ngModel)]="reservation.reservationEndDate"
                         
                         />
                       </div>
                       <div>
                       <label>Nombre d’invités</label>
-                      <ng-select required >
+                      <ng-select required [(ngModel)]="reservation.reservationGuestNumber" name="nbGuest">
                         <ng-option value="1">1 invité</ng-option>
                         <ng-option value="2">2 invités</ng-option>
                         <ng-option value="3">3 invités</ng-option>
@@ -151,18 +157,19 @@
                       </ng-select>
                     </div>
                     </div>
-                      
+                 
                       <div class="form-group text-center row">
                         <div class="col-sm-12">
                           <button type="submit" class="btn">Réserver le logement</button>
                         </div>
                       </div>
+                    </form>
                       <p class="text-center pt-3">
                         <small>
                           Vous serez en mesure d'examiner avant de payer.
                         </small>
                       </p>
-                  </form>
+                 
                 </div>
               </div><!-- /form user info -->
                     </div>
@@ -181,7 +188,7 @@
                                 A propos de cette annonce
                             </h2>
                             <p>
-                                La Villa du Cap est située à Cap Zbib, surplombant la Méditerranée. Lorsque vous traversez le salon ouvert sur la cuisine américaine, vous serez librement attiré par la brise marine. La vue panoramique sur la mer vous invite à la piscine à débordement, et à profiter de la terrasse pour votre café du matin ou vos boissons du soir. C'est le lieu idéal pour un dépaysement en famille ou entre amis, à 1 heure de la capitale. N.B: La villa n'est accessible qu'en 4x4.
+                                {{announcementDetails.announcementSummary}}
                             </p>
                        </div>
                 </div>
@@ -199,18 +206,25 @@
                           <div class="col-md-7 col-sm-12">
                             <div class="row">
                               <div class="col-md-5 col-sm-5">
-                                      <div class="subtile-descrip">Type de lit: <strong>Lit double</strong></div>
-                                      <div class="subtile-descrip">Type de propriété: <strong>Maison</strong></div>
+                                      <div class="subtile-descrip">Type de lit: <strong> {{announcementDetails.announcementBedType}}</strong></div>
+                                      <div class="subtile-descrip">Type de propriété: 
+                                        <strong *ngIf="announcementDetails.announcementType == 'HOUSE'">Logement entier</strong>
+                                        <strong *ngIf="announcementDetails.announcementType == 'APPARTMENT'">Appartment</strong>
+                                        <strong *ngIf="announcementDetails.announcementType == 'STAGE'">Etage entiére</strong>
+                                        <strong *ngIf="announcementDetails.announcementType == 'VILLA'">Villa</strong>
+                                      
+                                      
+                                      </div>
             
-                                      <div class="subtile-descrip">Capacité d'accueil: <strong>6</strong></div>
+                                      <div class="subtile-descrip">Capacité d'accueil: <strong>{{announcementDetails.announcementGuestNumber}}</strong></div>
                               </div>
                               <div class="col-md-5">
             
-                                      <div class="subtile-descrip">Chambres: <strong>3</strong></div>
+                                      <div class="subtile-descrip">Chambres: <strong>{{announcementDetails.announcementRoomNumber}}</strong></div>
                   
-                                      <div class="subtile-descrip">Salle de bain: <strong>3.0</strong></div>
+                                      <div class="subtile-descrip">Salle de bain: <strong>{{announcementDetails.announcementBathRoomNumber}}</strong></div>
                   
-                                      <div class="subtile-descrip">Lits: <strong>3</strong></div>
+                                      <div class="subtile-descrip">Lits: <strong>{{announcementDetails.announcementBedNumber}}</strong></div>
                               </div>
                             </div>
                           </div>
@@ -226,25 +240,25 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="row rooms_essentiels">
+                                  
                 
-                
-                                    <div class="col-sm-5 mb-2">
+                               <div class="col-sm-5 mb-2"  *ngFor="let equipement of announcementDetails.announcementEquipements | slice:0:5"
+                                   >
                                         <div>                       
-                                            <img src="../../../assets/images/icons/towel.png" width="22px">
-                                        &nbsp;
-                                        <span >
-                                            <strong>Équipements de base</strong>
-                                        </span>
-                
+                                            <img [src]="'../../../assets/images/icons/equipements_icons/'+equipement.equipementCode+'.png'" width="22px">
+                                            &nbsp;
+                                            <span>
+                                               <strong>{{equipement.equipementLabel}}</strong>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5 mb-2">
+                                   <!-- <div class="col-sm-5 mb-2">
                                         <div>
                                             <img src="../../../assets/images/icons/television.png" width="22px">
-                                        &nbsp;
-                                        <span >
-                                            <strong> Télévision</strong>
-                                        </span>
+                                            &nbsp;
+                                            <span>
+                                                <strong>Télévision</strong>
+                                            </span>
                 
                                         </div>
             
@@ -281,19 +295,19 @@
                                         </div>
                 
                 
-                                    </div>
+                                    </div>-->
                                 
                                     <div [hidden]="isShowEssentiel" class="row">
-                                      <div class="col-sm-5 mb-2">
+                                      <div class="col-sm-5 mb-2"  *ngFor="let equipement of announcementDetails.announcementEquipements | slice:6:12">
                                              <div>
-                                              <img src="../../../assets/images/icons/wifi.png" width="22px">
+                                              <img [src]="'../../../assets/images/icons/equipements_icons/'+equipement.equipementCode+'.png'" width="22px">
                                               &nbsp;
-                                                <span><strong> Wi-Fi</strong></span>
+                                                <span><strong> {{equipement.equipementLabel}}</strong></span>
                   
                                           </div>
 
                                       </div>
-                                      <div class="col-sm-5 mb-2">
+                                      <!--<div class="col-sm-5 mb-2">
                   
                                              <div>
                                               <img src="../../../assets/images/icons/swimming-pool.png" width="22px">
@@ -304,7 +318,7 @@
                                       </div>
                                       <div class="col-sm-5 mb-2">
 
-                                            <div >
+                                            <div>
                                               <img src="../../../assets/images/icons/parking.png" width="22px">
                                               &nbsp;
                                               <span><strong>Parking gratuit sur place</strong></span>
@@ -339,12 +353,12 @@
                                           <div>
                                             <img src="../../../assets/images/icons/family.png" width="22px">
                                             &nbsp;
-                                          <span><strong>Convient aux familles avec enfants </strong></span>
+                                           <span><strong>Convient aux familles avec enfants </strong></span>
                   
                                           </div>
                   
                   
-                                      </div>
+                                      </div>-->
                                   
               
                                     </div>
@@ -376,7 +390,8 @@
                       <div class="row">
                             <div class="pb-2 col-md-5 col-sm-5">
                             <div class="subtile-descrip">Personnes supplémentaires: 
-                                <strong> <span>Non</span></strong>
+                                <strong> <span *ngIf="announcementDetails.announcementAuthorizedExtraGuests === false">Non</span></strong>
+                                <strong> <span *ngIf="announcementDetails.announcementAuthorizedExtraGuests === true">Oui</span></strong>
                             </div>
             
                             </div>
@@ -414,16 +429,17 @@
                 <div class="col-md-7 ">
                     <p><strong>Le logement</strong>
                      Les principales caractéristiques comprennent:
+                     {{announcementDetails.announcementDescription}}
                     </p>
-                      <ul style="padding-left: 14px;">
+                     <!-- <ul style="padding-left: 14px;">
                         <li>Villa face à La Méditerranée</li>
                         <li>Distance à pied d'une petite crique pour les nageurs confirmés.</li>
                         <li>Tranquille, calme, intimité avec des jardins magnifiquement entretenus tout autour</li>
                         <li>Piscine à débordement et coin détente</li>
                         <li>3 Chambres doubles avec une literie haut de gamme pour un confort optimal</li>
                         <li>La suite parentale bénéficie d'une douche et d'un bain avec une vue sur mer</li>
-                      </ul> 
-                     <p><strong>Accès clients</strong></p>
+                      </ul> -->
+                     <!---<p><strong>Accès clients</strong></p>
                      <p>Les voyageurs auront accès à toute la Villa </p>
                       
 
@@ -431,9 +447,7 @@
                      <div [hidden]="isShowDescript">
 
                         <p><strong>Règles de la maison</strong></p>
-                        <p> - Interdiction de fumer dans le logement<br>
-                            - Animaux non acceptés
-                        </p>
+                        <p> {{announcementDetails.announcementRules}} </p>
                         <p><strong>Le quartier</strong></p>
                         <p> Pieds dans l'eau à Sounine </p>
 
@@ -442,7 +456,7 @@
                     <a (click)="toggleDisplay('descript')" href="javascript:void(0)">
                       <strong [hidden]="!isShowDescript">+ Plus</strong>
                       <strong [hidden]="isShowDescript">- Plus</strong>
-                    </a> 
+                    </a> -->
                    
                   
                 </div>
@@ -457,8 +471,9 @@
                 </div>
                 <div class="col-md-7 col-sm-12">
                   <div>
-                    <p>- La Villa n'est accessible qu'en 4x4 ou voiture tout terrain, la piste qui <br>mène au logement est assez difficile, ce qui assure une intimité meme en plein été.<br>
-                        - Les événements ne sont pas acceptés<br>
+                    <p>{{announcementDetails.announcementRules}}
+                      <!-- La Villa n'est accessible qu'en 4x4 ou voiture tout terrain, la piste qui <br>mène au logement est assez difficile, ce qui assure une intimité meme en plein été.<br>
+                        - Les événements ne sont pas acceptés-->
                     </p>
                    
                   </div>
@@ -504,25 +519,26 @@
                     <div class="row">
                         <div class="col-md-5">
                             <span>Séjour minimum:</span>
-                            <strong>2</strong>
+                            <strong>{{announcementDetails.announcementMinStay}}</strong>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>Pendant 01 Jul 2022 - 11 Sep 2022</p>
-                            <p>les clients restent pour un minimum de 4 nuits</p>
-                            <p>les clients restent pour un maximum de 60 nuits</p>
+                            <p>Pendant {{announcementDetails.announcementFirstAvailableDate | date: 'dd/MM/yyyy'}} - {{announcementDetails.announcementEndAvailableDate | date: 'dd/MM/yyyy'}} </p>
+                            <p>les clients restent pour un minimum de {{announcementDetails.announcementMinStay}} nuits</p>
+                            <p>les clients restent pour un maximum de {{announcementDetails.announcementMaxStay}} nuits</p>
+                            
                         </div>
                      
                     </div>
                    
                     <div class="row">
                       <div class="col-md-10">
-                        <ngb-carousel *ngIf="imagesDetails.length>0">
+                        <ngb-carousel *ngIf="announcementDetails.announcementPictureUrls.length>0">
 
-                          <ng-template ngbSlide *ngFor="let img of imagesDetails">
+                          <ng-template ngbSlide *ngFor="let img of announcementDetails.announcementPictureUrls">
                             <div class="picsum-img-wrapper">
-                              <img [src]="img.image" [alt]="img.title" class="img-fluid">
+                              <img [src]="img" class="img-fluid">
                             </div>
                           </ng-template>
                           
@@ -547,8 +563,9 @@
                                 <img alt="" src="assets/img/sigle.png" title="TunRooms Properties" width="115" height="115">
                             </a>
                         </div>
-                        <div class="col-md-3">
-                            <p>  Member since 2019</p>
+                        <div class="col-md-5">
+                            <p>{{announcementDetails.announcementOwnerPublished.userFirstName}} {{announcementDetails.announcementOwnerPublished.userLastName}}</p>
+                            <p>Member since {{announcementDetails.announcementOwnerPublished.userDateInscription | date: 'dd/MM/yyyy'}}</p>
                               
                         </div>
                     </div>
@@ -559,6 +576,7 @@
        
     </section>
     <!-- Section ends -->
+  </div>
     <div>
         <app-footer></app-footer>
     </div>
