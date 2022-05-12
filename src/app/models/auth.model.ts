@@ -1,14 +1,8 @@
-
 export class AuthModel {
-  username: string;
+  email: string;
   userPassword: string;
-  constructor(
-    userPassword: string,
-    username: string,
-  ) {
+  constructor(userPassword: string, email: string) {
     this.userPassword = userPassword;
-    this.username = username;
-
-
+    this.email = email;
   }
 }

@@ -12,8 +12,8 @@ export class UserService {
   USER_API = UtilsService.REMOTE_ADDRESS + '/api/user';
   constructor(private http: HttpClient) {}
 
-  signUp(payload: any): Observable<any> {
-    return this.http.post<any>(`${this.USER_API}/add-new-user`, payload, {
+  signUp(userRequest: any): Observable<any> {
+    return this.http.post<any>(`${this.USER_API}/add-new-user`, userRequest, {
       headers: new HttpHeaders().set(
         SKIP_AUTH_INTERCEPTOR_HEADER.name,
         SKIP_AUTH_INTERCEPTOR_HEADER.value

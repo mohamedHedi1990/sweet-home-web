@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.clear();
-    console.log("token : ",localStorage.getItem("token"))
+    console.log('token : ', localStorage.getItem('token'));
   }
 
   onFormSubmit() {
-    const auth = new AuthModel(this.auth.userPassword, this.auth.username);
+    const auth = new AuthModel(this.auth.userPassword, this.auth.email);
     this.login(auth);
   }
 
