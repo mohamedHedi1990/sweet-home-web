@@ -21,7 +21,16 @@
           >
             <th scope="row" class="pt-3">{{ i + 1 }}</th>
             <td class="pt-3">
-              {{ announcement.announcementTitle }}
+              <div *ngIf="isReserved(announcement.announcementStatus); else elseBlock" >
+                {{ announcement.announcementTitle }}
+              </div>
+              <ng-template #elseBlock>
+                <a (click)="onShowReservations(announcement.announcementId)" style="color: blue">
+                  {{ announcement.announcementTitle }}
+                </a>
+              </ng-template>
+
+
             </td>
             <td class="pt-3">{{ announcement.announcementCreatedDate }}</td>
             <td class="pt-3">
@@ -39,13 +48,13 @@
             </td>
             <td>
               <button
-                (click)="onViewAnnouncement(announcement.announcementId)"
+                (click)="onViewAnnouncement(announcement.announcementId)" [disabled]="isTerminated(announcement.announcementStatus)"
                 class="btn btn-outline-info btn-style"
               >
                 <i class="fa fa-eye"></i>
               </button>
               <button
-                (click)="onEditAnnouncement()"
+                (click)="onEditAnnouncement()" [disabled]="isTerminated(announcement.announcementStatus)"
                 class="btn btn-outline-success btn-style"
               >
                 <i class="fa fa-edit"></i>

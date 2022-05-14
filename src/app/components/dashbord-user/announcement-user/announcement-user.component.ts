@@ -5,6 +5,7 @@ import {AnnouncementStatus} from "../../../enums/announcement-status";
 import {NgbActiveModal, NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {ToastrService} from "ngx-toastr";
 import {MyAnnouncementResponseModel} from "../../../models/dto/response/MyAnnouncementResponse.model";
+import {ReservationAnnouncementComponent} from "./reservation-announcement/reservation-announcement.component";
 
 @Component({
   selector: 'app-announcement-user',
@@ -84,5 +85,22 @@ export class AnnouncementUserComponent implements OnInit {
     },error => {
       this.toastr.error('Il y a un erreur lors la suppression de l\'annonce '+announcementToDelete.announcementTitle+'!!', 'Erreur');
     })
+  }
+
+  onShowReservations(announcementId:number){
+    const modalRef = this.modalService.open(ReservationAnnouncementComponent, {size : "xl"});
+    modalRef.componentInstance.announcementId = announcementId;
+
+  }
+
+  isReserved(announcementStatus: AnnouncementStatus):boolean {
+    if(announcementStatus.toString() === 'BOOKED') return false;
+    return true;
+
+  }
+
+  isTerminated(announcementStatus: AnnouncementStatus):boolean {
+    if(announcementStatus.toString() === 'FINISHED') return true;
+    return false;
   }
 }
