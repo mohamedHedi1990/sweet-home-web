@@ -18,6 +18,10 @@
   padding: 8px;
   background-color: #ea0000;
 }
+a {
+  cursor: pointer;
+  color: blue;
+}
 :host ::ng-deep ng-select .ng-select-container {
   padding: 10px !important;
   width: 100% !important;

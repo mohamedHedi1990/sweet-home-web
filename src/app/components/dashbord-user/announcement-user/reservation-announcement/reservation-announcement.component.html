@@ -1,0 +1,154 @@
+<div class="modal-header">
+  <h2 class="modal-title">Liste des reservations</h2>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+
+  <p *ngIf="reservations.length==0">Il y a pas encore des reservations pour cette annonce!</p>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Photo</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Date Création</th>
+      <th scope="col">Date Fin</th>
+      <th scope="col">Nbr d'invité</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="
+              let reservation of reservations;
+              let i = index
+            "
+    >
+      <th scope="row" class="pt-3"> <div><img [src]="reservation.userDto.userPictureUrl!=null?reservation.userDto.userPictureUrl:photoNotFound" class="img"></div></th>
+      <td class="pt-3">
+       {{ reservation.userDto.userFirstName }} {{ reservation.userDto.userLastName }}
+      </td>
+      <td class="pt-3">{{ reservation.reservationStartDate }}</td>
+      <td class="pt-3">
+        {{ reservation.reservationEndDate }}
+      </td>
+      <td class="pt-3">
+        {{ reservation.reservationGuestNumber }}
+      </td>
+      <td class="pt-3">
+              <span
+                class="badge"
+                [ngClass]="getReservationStatusBadge(reservation)"
+              >
+                {{
+                getReservationStatus(reservation.reservationStatus)
+                }}</span
+              >
+      </td>
+      <td>
+        <button
+          (click)="onValidateReservation(updateReservation,reservation)" [disabled]="!isPending(reservation.reservationStatus)"
+          class="btn btn-outline-success btn-style"
+        >
+          <i class="fa fa-check-circle"></i>
+        </button>
+        <button
+          (click)="onRefuseReservation(deleteReservation,reservation)" [disabled]="!isPending(reservation.reservationStatus)"
+          class="btn btn-outline-warning btn-style"
+        >
+          <i class="fa fa-times-circle"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      (pageChange)="refreshReservations()"
+    >
+    </ngb-pagination>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+
+<ng-template #deleteReservation let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Confirmation de Suppression</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-describedby="modal-title"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong
+      >Voulez-vous vraiment supprimer cette reservation de
+        <span class="text-primary">{{ reservationToDelete.userDto.userFirstName }} {{ reservationToDelete.userDto.userLastName }}</span>
+        ?
+        </strong
+      >
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button" id="closeModalDelete"
+      class="btn btn-outline-secondary"
+      (click)="d('Cross click')"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onConfirmDelete()"
+    >
+      Supprimer
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #updateReservation let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title1">Confirmation de Validation</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-describedby="modal-title"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong
+      >Voulez-vous vraiment valider cette reservation de
+        <span class="text-primary">{{ reservationToValidate.userDto.userFirstName }} {{ reservationToValidate.userDto.userLastName }}</span>
+        ?
+      </strong
+      >
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button" id="closeModalUpdate"
+      class="btn btn-outline-secondary"
+      (click)="d('Cross click')"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="onConfirmValidate()"
+    >
+      Valider
+    </button>
+  </div>
+</ng-template>

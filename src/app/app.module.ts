@@ -41,6 +41,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnnouncementUserComponent } from './components/dashbord-user/announcement-user/announcement-user.component';
+import { ReservationAnnouncementComponent } from './components/dashbord-user/announcement-user/reservation-announcement/reservation-announcement.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AnnouncementUserComponent } from './components/dashbord-user/announceme
     ResultSearchAnnouncementComponent,
     AnnouncementMainInfoComponent,
     AnnouncementUserComponent,
+    ReservationAnnouncementComponent,
   ],
   imports: [
     BrowserModule,
