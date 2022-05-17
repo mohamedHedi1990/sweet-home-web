@@ -9,27 +9,17 @@ export class ReservationModel {
     reservationEndDate: Date;
     reservationGuestNumber: number;
 
-    reservationStatus:ReservationStatus;
-
-    reservationLodger: LodgerModel;
-
-    //reservationAnnouncmeent: AnnouncementModel;
-  
     constructor(
       reservationId:number,
       reservationStartDate: Date,
       reservationEndDate: Date,
-      reservationGuestNumber: number,
-      reservationStatus:ReservationStatus,
-      reservationLodger: LodgerModel,
+      reservationGuestNumber: number
 
     ) {
       this.reservationId = reservationId;
       this.reservationStartDate = reservationStartDate;
       this.reservationEndDate = reservationEndDate;
       this.reservationGuestNumber = reservationGuestNumber;
-      this.reservationStatus = reservationStatus;
-      this.reservationLodger = reservationLodger;
 
     }
   }

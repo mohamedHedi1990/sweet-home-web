@@ -30,8 +30,9 @@ export class ReservationService {
     return this.http.delete(`${this.RESERVATION_API}/`+id);
   }
 
-  patchReservation(reservationId: number) {
-    return this.http.get(`${this.RESERVATION_API}/validate/`+reservationId);
+  validateReservation(reservationId: number) {
+    return this.http.put(`${this.RESERVATION_API}/validate`,reservationId);
+
 
   }
 }

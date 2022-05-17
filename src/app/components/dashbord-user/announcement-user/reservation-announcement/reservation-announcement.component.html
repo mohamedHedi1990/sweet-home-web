@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
 
-  <p *ngIf="reservations.length==0">Il y a pas de reservations pour le moment!</p>
+  <p *ngIf="reservations.length==0">Il y a pas encore des reservations pour cette annonce!</p>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -14,7 +14,7 @@
       <th scope="col">Date Fin</th>
       <th scope="col">Nbr d'invité</th>
       <th scope="col">Statut</th>
-      <th scope="col">Action</th>
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -24,9 +24,9 @@
               let i = index
             "
     >
-      <th scope="row" class="pt-3"> <div><img [src]="reservation.userPictureUrl!=null?reservation.userPictureUrl:photoNotFound" class="img"></div></th>
+      <th scope="row" class="pt-3"> <div><img [src]="reservation.userDto.userPictureUrl!=null?reservation.userDto.userPictureUrl:photoNotFound" class="img"></div></th>
       <td class="pt-3">
-       {{ reservation.userFirstName }} {{ reservation.userLastName }}
+       {{ reservation.userDto.userFirstName }} {{ reservation.userDto.userLastName }}
       </td>
       <td class="pt-3">{{ reservation.reservationStartDate }}</td>
       <td class="pt-3">
@@ -91,7 +91,7 @@
     <p>
       <strong
       >Voulez-vous vraiment supprimer cette reservation de
-        <span class="text-primary">{{ reservationToDelete.userFirstName }} {{ reservationToDelete.userLastName }}</span>
+        <span class="text-primary">{{ reservationToDelete.userDto.userFirstName }} {{ reservationToDelete.userDto.userLastName }}</span>
         ?
         </strong
       >
@@ -129,7 +129,7 @@
     <p>
       <strong
       >Voulez-vous vraiment valider cette reservation de
-        <span class="text-primary">{{ reservationToValidate.userFirstName }} {{ reservationToValidate.userLastName }}</span>
+        <span class="text-primary">{{ reservationToValidate.userDto.userFirstName }} {{ reservationToValidate.userDto.userLastName }}</span>
         ?
       </strong
       >

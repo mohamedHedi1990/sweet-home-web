@@ -1,10 +1,9 @@
 import {ReservationStatus} from "../../../enums/reservation-status";
+import {UserDtoModel} from "../UserDto.model";
 
 export class ReservationDetailsResponseModel {
 
   reservationId:number;
-  userFirstName:string;
-  userLastName:string;
 
   reservationStartDate:Date;
   reservationEndDate:Date;
@@ -12,17 +11,16 @@ export class ReservationDetailsResponseModel {
   reservationGuestNumber:number;
   reservationStatus:ReservationStatus ;
 
-  userPictureUrl:string;
+  userDto: UserDtoModel;
 
 
-  constructor(reservationId:number,userFirstName: string, userLastName: string, reservationStartDate: Date, reservationEndDate: Date, reservationGuestNumber: number, reservationStatus: ReservationStatus, userPictureUrl: string) {
+
+  constructor(reservationId:number,userFirstName: string, userLastName: string, reservationStartDate: Date, reservationEndDate: Date, reservationGuestNumber: number, reservationStatus: ReservationStatus, userPictureUrl: string,userDto: UserDtoModel) {
     this.reservationId = reservationId;
-    this.userFirstName = userFirstName;
-    this.userLastName = userLastName;
     this.reservationStartDate = reservationStartDate;
     this.reservationEndDate = reservationEndDate;
     this.reservationGuestNumber = reservationGuestNumber;
     this.reservationStatus = reservationStatus;
-    this.userPictureUrl = userPictureUrl;
+    this.userDto = userDto;
   }
 }

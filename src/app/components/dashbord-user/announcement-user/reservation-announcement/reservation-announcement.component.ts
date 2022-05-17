@@ -59,8 +59,8 @@ export class ReservationAnnouncementComponent implements OnInit{
   }
 
   onConfirmValidate(){
-    this.reservationService.patchReservation(this.reservationToValidate.reservationId).subscribe(res =>{
-      this.toastr.success('La reservation de '+this.reservationToValidate.userFirstName+ ' ' +this.reservationToValidate.userLastName+' a été validé avec succès', 'Succès');
+    this.reservationService.validateReservation(this.reservationToValidate.reservationId).subscribe(res =>{
+      this.toastr.success('La reservation de '+this.reservationToValidate.userDto.userFirstName+ ' ' +this.reservationToValidate.userDto.userLastName+' a été validé avec succès', 'Succès');
       this.refreshReservations();
       if(document.getElementById('closeModalUpdate') != null){
         document.getElementById('closeModalUpdate').click();
@@ -68,7 +68,7 @@ export class ReservationAnnouncementComponent implements OnInit{
 
       //this.activeModal.dismiss();
     },error => {
-      this.toastr.error('Il y a un erreur lors la validation de la reservation de '+this.reservationToValidate.userFirstName+ ' ' +this.reservationToValidate.userLastName+'!!', 'Erreur');
+      this.toastr.error('Il y a un erreur lors la validation de la reservation de '+this.reservationToValidate.userDto.userFirstName+ ' ' +this.reservationToValidate.userDto.userLastName+'!!', 'Erreur');
     })
   }
 
@@ -79,14 +79,14 @@ export class ReservationAnnouncementComponent implements OnInit{
 
   onConfirmDelete() {
     this.reservationService.deleteReservation(this.reservationToDelete.reservationId).subscribe(res =>{
-      this.toastr.success('La reservation de '+this.reservationToDelete.userFirstName+ ' ' +this.reservationToDelete.userLastName+' a été supprimée avec succès', 'Succès');
+      this.toastr.success('La reservation de '+this.reservationToDelete.userDto.userFirstName+ ' ' +this.reservationToDelete.userDto.userLastName+' a été supprimée avec succès', 'Succès');
       this.refreshReservations();
       if(document.getElementById('closeModalDelete') != null){
         document.getElementById('closeModalDelete').click();
       }
      // this.activeModal.close();
     },error => {
-      this.toastr.error('Il y a un erreur lors la suppression de la reservation de '+this.reservationToDelete.userFirstName+ ' ' +this.reservationToDelete.userLastName+'!!', 'Erreur');
+      this.toastr.error('Il y a un erreur lors la suppression de la reservation de '+this.reservationToDelete.userDto.userFirstName+ ' ' +this.reservationToDelete.userDto.userLastName+'!!', 'Erreur');
     })
   }
 

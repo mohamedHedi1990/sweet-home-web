@@ -26,9 +26,7 @@ export class AnnounceDetailsComponent implements OnInit {
     0,
     new Date(),
     new Date(),
-    1,
-    ReservationStatus.PENDING,
-    new LodgerModel('', '', '', '', '', '', 'LODGER')
+    1
   );
 
   announcementDetails: AnnouncementDetailsModel = new AnnouncementDetailsModel(
@@ -51,7 +49,7 @@ export class AnnounceDetailsComponent implements OnInit {
     0,
     0,
     0,
-    new UserDtoModel('', '', new Date()),
+    new UserDtoModel('', '', new Date(),''),
     [],
     [],
     0,

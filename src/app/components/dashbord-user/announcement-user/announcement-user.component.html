@@ -9,7 +9,7 @@
             <th scope="col">Date Création</th>
             <th scope="col">Date Fin</th>
             <th scope="col">Statut</th>
-            <th scope="col">Action</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -21,15 +21,15 @@
           >
             <th scope="row" class="pt-3">{{ i + 1 }}</th>
             <td class="pt-3">
-              <div *ngIf="isReserved(announcement.announcementStatus); else elseBlock" >
+             <!-- <div *ngIf="isReserved(announcement.announcementStatus); else elseBlock" >
                 {{ announcement.announcementTitle }}
               </div>
               <ng-template #elseBlock>
                 <a (click)="onShowReservations(announcement.announcementId)" style="color: blue">
                   {{ announcement.announcementTitle }}
                 </a>
-              </ng-template>
-
+              </ng-template>-->
+              {{ announcement.announcementTitle }}
 
             </td>
             <td class="pt-3">{{ announcement.announcementCreatedDate }}</td>
@@ -48,13 +48,19 @@
             </td>
             <td>
               <button
-                (click)="onViewAnnouncement(announcement.announcementId)" [disabled]="isTerminated(announcement.announcementStatus)"
+                (click)="onShowReservations(announcement.announcementId)" [disabled]="isReserved(announcement.announcementStatus)"
+                class="btn btn-outline-danger btn-style"
+              >
+                <i class="fa fa-align-justify"></i>
+              </button>
+              <button
+                (click)="onViewAnnouncement(announcement.announcementId)" [disabled]="isFinished(announcement.announcementStatus)"
                 class="btn btn-outline-info btn-style"
               >
                 <i class="fa fa-eye"></i>
               </button>
               <button
-                (click)="onEditAnnouncement()" [disabled]="isTerminated(announcement.announcementStatus)"
+                (click)="onEditAnnouncement()" [disabled]="isFinished(announcement.announcementStatus)"
                 class="btn btn-outline-success btn-style"
               >
                 <i class="fa fa-edit"></i>

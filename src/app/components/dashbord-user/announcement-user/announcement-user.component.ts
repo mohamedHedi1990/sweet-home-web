@@ -99,7 +99,7 @@ export class AnnouncementUserComponent implements OnInit {
 
   }
 
-  isTerminated(announcementStatus: AnnouncementStatus):boolean {
+  isFinished(announcementStatus: AnnouncementStatus):boolean {
     if(announcementStatus.toString() === 'FINISHED') return true;
     return false;
   }
