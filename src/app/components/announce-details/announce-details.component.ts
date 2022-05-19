@@ -12,6 +12,8 @@ import {ToastrService} from 'ngx-toastr';
 import {ReservationStatus} from "../../enums/reservation-status";
 import {LodgerModel} from "../../models/lodger.model";
 import {UserModel} from "../../models/user.model";
+import {CommentDtoModel} from "../../models/dto/CommentDto.model";
+import {CommentService} from "../../services/comment.service";
 
 @Component({
   selector: 'app-announce-details',
@@ -56,29 +58,44 @@ export class AnnounceDetailsComponent implements OnInit {
     0,
     new Date(),
     new Date(),
-    0
+    0,
+    []
   );
 
   galerieWithoutFirstImg: string[] = [];
   idAnnounce: any;
   showAlertSuccess: boolean = false;
   message: string = '';
+
+  comment: CommentDtoModel = new CommentDtoModel("", new UserDtoModel('', '', new Date(),''));
+
+  photoNotFound: string = 'assets/images/agent/user.jpg';
+
   constructor(
     private announcementService: AnnouncementService,
     private route: ActivatedRoute,
     private reservationService: ReservationService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private commentService:CommentService
   ) {}
 
   ngOnInit(): void {
     this.idAnnounce = this.route.snapshot.paramMap.get('id');
     this.getAnnoucementDetails(this.idAnnounce);
+
   }
 
   getAnnoucementDetails(id: number) {
     this.announcementService.getAnnouncementDetails(id).subscribe((res) => {
       this.announcementDetails = res;
+      if(this.announcementDetails.announcementOwnerPublished.userPictureUrl == null)
+        this.announcementDetails.announcementOwnerPublished.userPictureUrl=this.photoNotFound;
+
+      this.announcementDetails.commentDtos.forEach(comment =>{
+        if(comment.writer.userPictureUrl == null) comment.writer.userPictureUrl=this.photoNotFound;
+      })
+      console.log("announcementDetails : ",this.announcementDetails);
 
       let arrayGalerie = this.announcementDetails.announcementPictureUrls;
       this.galerieWithoutFirstImg = arrayGalerie.slice(1);
@@ -123,5 +140,22 @@ export class AnnounceDetailsComponent implements OnInit {
 
   showSuccess(msg: string) {
     this.toastr.success('', msg);
+  }
+
+  onCommentSubmit() {
+    this.commentService.commentAnnouncement(this.idAnnounce, this.comment).subscribe( res =>{
+      this.comment.commentText="";
+      this.showSuccess("Commentaire ajouté avec succès");
+      this.getAnnoucementDetails((this.idAnnounce));
+    }, error =>{
+      console.log( "un erreur a été produit lors de l'ajout de commentaire ",
+        error
+      );
+    })
+  }
+
+  isUserLoggedIn():boolean {
+    if(localStorage.getItem("token"))  return true;
+    return false;
   }
 }

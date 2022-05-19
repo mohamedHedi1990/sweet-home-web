@@ -1,6 +1,7 @@
 import {UserDtoModel} from "./dto/UserDto.model";
 import { AddressDtoModel } from './dto/AddressDto.model';
 import { EquipementAnouncementModel } from './equipememntAnoucement.model';
+import {CommentDtoModel} from "./dto/CommentDto.model";
 
 export class AnnouncementDetailsModel {
   announcementId: number;
@@ -31,8 +32,8 @@ export class AnnouncementDetailsModel {
   announcementEndAvailableDate: Date;
   announcementGuestNumber: number;
 
+  commentDtos: CommentDtoModel[]=[];
 
-  
   constructor(
     announcementId: number,
     announcementTitle: string, 
@@ -56,7 +57,8 @@ export class AnnouncementDetailsModel {
     announcementMaxStay: number,
     announcementFirstAvailableDate: Date,
     announcementEndAvailableDate: Date,
-    announcementGuestNumber: number
+    announcementGuestNumber: number,
+    commentDtos: CommentDtoModel[]
   ) {
     this.announcementId = announcementId;
     this.announcementTitle = announcementTitle;
@@ -80,6 +82,7 @@ export class AnnouncementDetailsModel {
     this.announcementMaxStay = announcementMaxStay;
     this.announcementFirstAvailableDate = announcementFirstAvailableDate;
     this.announcementEndAvailableDate = announcementEndAvailableDate;
-    this.announcementGuestNumber = announcementGuestNumber
+    this.announcementGuestNumber = announcementGuestNumber;
+    this.commentDtos = commentDtos;
   }
 }
