@@ -212,6 +212,7 @@
         </div>
       </div>
       <div class="container">
+
         <div class="row mt-5">
           <div class="b-bottom col-lg-8 col-sm-8 col-xs-12">
             <div class="room-a-propos">
@@ -222,14 +223,19 @@
             </div>
           </div>
         </div>
+      </div>
 
+        <div class="row">
+
+        <div class="col-lg-8 col-sm-8 col-xs-12">
+          <div class="container" style="margin-left: 93px;">
         <div class="row mt-3">
           <div class="col-md-2 col-sm-12">
             <div>
               <p>Le logement</p>
             </div>
           </div>
-          <div class="col-md-7 col-sm-12">
+          <div class="col-md-10 col-sm-12">
             <div class="row">
               <div class="col-md-5 col-sm-5">
                 <div class="subtile-descrip">
@@ -296,7 +302,7 @@
             <p>Equipements de base</p>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-10">
             <div>
               <div class="row rooms_essentiels">
                 <div
@@ -463,7 +469,7 @@
           <div class="col-md-2 col-sm-12">
             <div><p>Prix</p></div>
           </div>
-          <div class="col-md-7 col-sm-12">
+          <div class="col-md-10 col-sm-12">
             <div class="row">
               <div class="pb-2 col-md-5 col-sm-5">
                 <div class="subtile-descrip">
@@ -512,7 +518,7 @@
             <p>Description</p>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-8">
             <p>
               Les principales caractéristiques comprennent:
               {{ announcementDetails.announcementDescription }}
@@ -552,7 +558,7 @@
               <p>Règles de la maison</p>
             </div>
           </div>
-          <div class="col-md-7 col-sm-12">
+          <div class="col-md-10 col-sm-12">
             <div>
               <p>
                 {{ announcementDetails.announcementRules }}
@@ -569,7 +575,7 @@
               <p>Dispositifs de sécurité</p>
             </div>
           </div>
-          <div class="col-md-7 col-sm-12">
+          <div class="col-md-10 col-sm-12">
             <div class="row">
               <div class="col-sm-5">
                 <div>
@@ -589,7 +595,7 @@
               <p>Disponibilité</p>
             </div>
           </div>
-          <div class="col-md-7 col-sm-12">
+          <div class="col-md-10 col-sm-12">
             <div class="row">
               <div class="col-md-5">
                 <span>Séjour minimum:</span>
@@ -647,20 +653,17 @@
           <div class="col-md-7 col-sm-12">
             <h2 class="title">A propos de l'hôte, TunRooms Properties</h2>
           </div>
-          <div class="col-md-7 col-sm-12">
-            <div class="row">
-              <div class="col-md-3">
+          <div class="col-md-10 col-sm-12">
+            <div class="row mb-3">
+              <div class="col-md-2">
                 <a href="javascript:void(0)" class="media-photo media-round">
                   <img
-                    alt=""
-                    src="assets/img/sigle.png"
-                    title="TunRooms Properties"
-                    width="115"
-                    height="115"
+                    class="img"
+                    [src]="announcementDetails.announcementOwnerPublished.userPictureUrl"
                   />
                 </a>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-8">
                 <p>
                   {{
                     announcementDetails.announcementOwnerPublished.userFirstName
@@ -680,7 +683,80 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
+
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+          <div class="container">
+          <div class="card card-comment">
+            <div class="card-header">
+
+               <h2 class="mb-0">
+                 Avis
+                 <span class="num-avis">{{ announcementDetails.commentDtos?.length }} avi(s)</span>
+               </h2>
+
+
+            </div>
+            <div class="card-body">
+
+              <form *ngIf="isUserLoggedIn()"
+                #form2="ngForm"
+                role="form"
+                (ngSubmit)="onCommentSubmit()"
+                ngNativeValidate
+              >
+                <div class="row mb-3">
+                  <div class="col-md-2">
+                    <label> Commentaire </label>
+                  </div>
+                  <div class="col-md-12">
+                    <textarea
+                      class="form-control"
+                      type="text"
+                      placeholder="Votre commentaire"
+                      required
+                      name="comment"
+                      [(ngModel)]="comment.commentText"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group text-center row">
+                  <div class="col-sm-12">
+                    <button type="submit" class="btn">
+                      Ajouter Commentaire
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <hr />
+              <table class="table table-borderless">
+                <tr *ngFor="let comment of announcementDetails.commentDtos">
+                  <td class="row">
+                    <div class="col-2">
+                      <img
+                        class="img"
+                        [src]="comment.writer.userPictureUrl"
+                      />
+                    </div>
+                    <div class="col-10">
+                      <p>
+                        {{ comment.writer.userFirstName }} {{ comment.writer.userLastName }}
+                      </p>
+                      <p>
+                        {{ comment.commentText }}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+
     </section>
     <!-- Section ends -->
   </div>
