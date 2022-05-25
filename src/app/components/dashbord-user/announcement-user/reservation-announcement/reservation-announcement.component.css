@@ -16,6 +16,11 @@ h2 {
   padding: 8px;
   background-color: #458ffd;
 }
+.badge-style-canceled {
+  border-radius: 50%;
+  padding: 8px;
+  background-color: #ea6011;
+}
 .badge-style-refused {
   border-radius: 50%;
   padding: 8px;

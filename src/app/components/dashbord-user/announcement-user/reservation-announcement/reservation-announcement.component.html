@@ -46,13 +46,13 @@
               >
       </td>
       <td>
-        <button
+        <button tooltip="Valider Réservation"
           (click)="onValidateReservation(updateReservation,reservation)" [disabled]="!isPending(reservation.reservationStatus)"
           class="btn btn-outline-success btn-style"
         >
           <i class="fa fa-check-circle"></i>
         </button>
-        <button
+        <button tooltip="Refuser Réservation"
           (click)="onRefuseReservation(deleteReservation,reservation)" [disabled]="!isPending(reservation.reservationStatus)"
           class="btn btn-outline-warning btn-style"
         >
@@ -108,9 +108,9 @@
     <button
       type="button"
       class="btn btn-danger"
-      (click)="onConfirmDelete()"
+      (click)="onConfirmRefuse()"
     >
-      Supprimer
+      Refuser
     </button>
   </div>
 </ng-template>

@@ -43,6 +43,8 @@ export class ReservationAnnouncementComponent implements OnInit{
       return 'badge-style-pending';
     }else if(reservation.reservationStatus.toString() == 'REFUSED'){
       return 'badge-style-refused'
+    }else if(reservation.reservationStatus.toString() == 'CANCELED'){
+      return 'badge-style-canceled';
     }
     return '';
   }
@@ -77,8 +79,8 @@ export class ReservationAnnouncementComponent implements OnInit{
     this.modalService.open(deleteReservation, {centered :true});
   }
 
-  onConfirmDelete() {
-    this.reservationService.deleteReservation(this.reservationToDelete.reservationId).subscribe(res =>{
+  onConfirmRefuse() {
+    this.reservationService.refuseReservation(this.reservationToDelete.reservationId).subscribe(res =>{
       this.toastr.success('La reservation de '+this.reservationToDelete.userDto.userFirstName+ ' ' +this.reservationToDelete.userDto.userLastName+' a été supprimée avec succès', 'Succès');
       this.refreshReservations();
       if(document.getElementById('closeModalDelete') != null){
@@ -101,8 +103,8 @@ export class ReservationAnnouncementComponent implements OnInit{
   }
 
   isPending(reservationStatus: ReservationStatus):boolean{
-    if(reservationStatus.toString() === 'ACCEPTED' || reservationStatus.toString() === 'REFUSED') return false;
-    return true;
+    if(reservationStatus.toString() === 'PENDING') return true;
+    return false;
   }
 
 

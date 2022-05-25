@@ -42,6 +42,10 @@ import { AnnounceDetailsComponent } from './components/announce-details/announce
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnnouncementUserComponent } from './components/dashbord-user/announcement-user/announcement-user.component';
 import { ReservationAnnouncementComponent } from './components/dashbord-user/announcement-user/reservation-announcement/reservation-announcement.component';
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { ReservationUserComponent } from './components/dashbord-user/reservation-user/reservation-user.component';
+import { AllAnnoucementComponent } from './components/all-annoucement/all-annoucement.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -56,6 +60,8 @@ import { ReservationAnnouncementComponent } from './components/dashbord-user/ann
     AnnouncementMainInfoComponent,
     AnnouncementUserComponent,
     ReservationAnnouncementComponent,
+    ReservationUserComponent,
+    AllAnnoucementComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,11 +86,13 @@ import { ReservationAnnouncementComponent } from './components/dashbord-user/ann
     MatRadioModule,
     MatSliderModule,
     NgSelectModule,
-    ToastrModule.forRoot({ timeOut: 8000, positionClass: 'toast-bottom-left' }), // ToastrModule added
+    ToastrModule.forRoot({timeOut: 8000, positionClass: 'toast-bottom-left'}), // ToastrModule added
     MatTabsModule,
     TabsModule.forRoot(),
     NgbCarouselModule,
     NgbModule,
+    TooltipModule,
+    MatChipsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
