@@ -26,13 +26,21 @@ export class ReservationService {
     return this.http.get<ReservationDetailsResponseModel[]>(`${this.RESERVATION_API}/by-announcement-id?announcementId=`+announcementId);
   }
 
-  deleteReservation(id:number) {
-    return this.http.delete(`${this.RESERVATION_API}/`+id);
+  refuseReservation(id:number) {
+    return this.http.put(`${this.RESERVATION_API}/refuse`,id);
   }
 
   validateReservation(reservationId: number) {
     return this.http.put(`${this.RESERVATION_API}/validate`,reservationId);
 
 
+  }
+
+  getMyReservations():Observable<ReservationDetailsResponseModel[]> {
+    return this.http.get<ReservationDetailsResponseModel[]>(`${this.RESERVATION_API}/user-reservation`);
+  }
+
+  cancelReservation(reservationId: number) {
+    return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
   }
 }

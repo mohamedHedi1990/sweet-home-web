@@ -47,25 +47,25 @@
               >
             </td>
             <td>
-              <button
+              <button tooltip="Voir Liste Réservations"
                 (click)="onShowReservations(announcement.announcementId)" [disabled]="isReserved(announcement.announcementStatus)"
                 class="btn btn-outline-danger btn-style"
               >
                 <i class="fa fa-align-justify"></i>
               </button>
-              <button
+              <button tooltip="Voir Détails Annonce"
                 (click)="onViewAnnouncement(announcement.announcementId)" [disabled]="isFinished(announcement.announcementStatus)"
                 class="btn btn-outline-info btn-style"
               >
                 <i class="fa fa-eye"></i>
               </button>
-              <button
+              <button tooltip="Modifier Annonce"
                 (click)="onEditAnnouncement()" [disabled]="isFinished(announcement.announcementStatus)"
                 class="btn btn-outline-success btn-style"
               >
                 <i class="fa fa-edit"></i>
               </button>
-              <button
+              <button tooltip="Supprimer Annonce"
                 (click)="onDeleteAnnouncement(deleteContent, announcement)"
                 class="btn btn-outline-warning btn-style"
               >

@@ -31,4 +31,7 @@ export class DashbordUserComponent implements OnInit {
     return false;
   }
 
+  alert() {
+    alert("I'm here !!")
+  }
 }

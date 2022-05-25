@@ -7,6 +7,8 @@ import { AnnouncementDetailsModel } from '../models/annoucementDetails.model';
 import { AnnouncementResponseModel } from '../models/dto/response/AnnouncementResponse.model';
 import { SearchCriteriaModel } from '../models/searchCriteria.model';
 import { MyAnnouncementResponseModel } from '../models/dto/response/MyAnnouncementResponse.model';
+import {SearchRequestModel} from "../models/dto/request/SearchRequest.model";
+import {SearchResponseModel} from "../models/dto/response/SearchResponse.model";
 
 @Injectable({
   providedIn: 'root',
@@ -51,5 +53,9 @@ export class AnnouncementService {
 
   deleteAnnouncement(announcementId: number) {
     return this.http.delete(`${this.ANNOUNCEMENT_API}/` + announcementId);
+  }
+
+  search(searchRequest: SearchRequestModel):Observable<SearchResponseModel>{
+    return this.http.post<SearchResponseModel>(`${this.ANNOUNCEMENT_API}/search-announcement`, searchRequest)
   }
 }

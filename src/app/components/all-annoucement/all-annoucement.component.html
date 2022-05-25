@@ -1,0 +1,124 @@
+<div id="page-container">
+  <div class="main">
+    <app-navbar></app-navbar>
+
+    <div
+      class="container"
+      style="margin-top: 138px; min-height: calc(100vh - 227px) !important"
+    >
+      <form class="row" #myForm="ngForm">
+        <div class="col-3">
+          <label>Lieu (Ville/Gouvernorat)</label>
+          <ng-select
+            ngControl="announcementCityLabel"
+            required
+            [(ngModel)]="searchRequest.searchCriteria.announcementCityLabel"
+            name="announcementCityLabel"
+          >
+            <ng-option *ngFor="let city of cities" [value]="city.cityLabel">{{
+              city.cityLabel
+              }}</ng-option>
+          </ng-select>
+        </div>
+        <div class="col-md-3">
+          <label> Arrivée </label>
+          <input
+            ngControl="announcementStartDate"
+            class="form-control"
+            type="date"
+            placeholder="Arrivée"
+            required
+            name="announcementStartDate"
+            [(ngModel)]="searchRequest.searchCriteria.announcementStartDate"
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label> Départ </label>
+          <input
+            ngControl="announcementEndDate"
+            class="form-control"
+            type="date"
+            placeholder="Départ"
+            required
+            name="announcementEndDate"
+            [(ngModel)]="searchRequest.searchCriteria.announcementEndDate"
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label>Nombre d’invités</label>
+          <ng-select
+            required
+            [(ngModel)]="searchRequest.searchCriteria.nbGuest"
+            name="nbGuest"
+            ngControl="nbGuest"
+          >
+            <ng-option value="1">1 invité</ng-option>
+            <ng-option value="2">2 invités</ng-option>
+            <ng-option value="3">3 invités</ng-option>
+            <ng-option value="4">4 invités</ng-option>
+            <ng-option value="5">5 invités</ng-option>
+            <ng-option value="6">6 invités</ng-option>
+            <ng-option value="7">7 invités</ng-option>
+            <ng-option value="8">8 invités</ng-option>
+            <ng-option value="9">9 invités</ng-option>
+            <ng-option value="10">10 invités</ng-option>
+            <ng-option value="11">11+ invités</ng-option>
+          </ng-select>
+        </div>
+
+      </form>
+<!-- pagination -->
+<div class="row mt-3">
+  <div class="col-3 mt-2">
+    <b>Total:</b>
+    <mat-chip-list class="chip_total_style">
+      <mat-chip color="primary" [(ngModel)]="totalItems" ngDefaultControl>{{totalItems}}</mat-chip>
+    </mat-chip-list>
+  </div>
+  <div class="offset-2 col-3">
+    <ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [pageSize] = "selectedSize" [maxSize]="10"
+                    (pageChange)="onBootPageChanged($event)"></ngb-pagination>
+
+  </div>
+  <div class="col-1 size-style">
+    <label>Size:</label>
+  </div>
+  <div class="col-1" style="width: 116px;">
+    <ng-select
+      style="width: auto"
+      [(ngModel)]="selectedSize"
+      (ngModelChange)="getAllAnnouncements()"
+    >
+      <ng-option *ngFor="let size of sizes" [value]="size">{{
+        size
+        }}</ng-option>
+    </ng-select>
+  </div>
+  <div class="col-1">
+    <button tooltip="Initialiser La Recherche" style="float: left"
+            (click)="initializeSearch()"
+            class="btn btn-outline-success btn-style"
+    >
+      <i class="fa fa-refresh"></i>
+    </button>
+  </div>
+</div>
+
+      <div
+        *ngFor="
+          let announcement of announcements;
+          let i = index
+        "
+      >
+        <app-announcement-main-info
+          [lastPublishedAnnouncement]="announcement"
+        ></app-announcement-main-info>
+      </div>
+
+
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

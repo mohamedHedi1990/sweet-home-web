@@ -43,6 +43,7 @@ export class AnnouncementUserComponent implements OnInit {
         .map((announcement, i) => ({id: i + 1, ...announcement}))
         .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
 
+      console.log("myAnnouncements : ",this.myAnnouncementResponseModels)
     })
 
   }
@@ -102,5 +103,9 @@ export class AnnouncementUserComponent implements OnInit {
   isFinished(announcementStatus: AnnouncementStatus):boolean {
     if(announcementStatus.toString() === 'FINISHED') return true;
     return false;
+  }
+
+  ngAfterView(){
+    console.log("salimaaaaaa!!!")
   }
 }
