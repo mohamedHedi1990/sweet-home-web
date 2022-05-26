@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from './utils.service';
 import { HttpClient } from '@angular/common/http';
-import { ReservationModel } from '../models/reservation.model';
+import { ReservationModel } from '../models/dto/request/reservation.model';
 import {Observable} from "rxjs";
 import {ReservationDetailsResponseModel} from "../models/dto/response/ReservationDetailsResponse.model";
 import {ReservationStatus} from "../enums/reservation-status";
@@ -35,4 +35,9 @@ export class ReservationService {
 
 
   }
+
+
+
+
+
 }

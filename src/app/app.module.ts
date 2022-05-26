@@ -42,6 +42,9 @@ import { AnnounceDetailsComponent } from './components/announce-details/announce
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnnouncementUserComponent } from './components/dashbord-user/announcement-user/announcement-user.component';
 import { ReservationAnnouncementComponent } from './components/dashbord-user/announcement-user/reservation-announcement/reservation-announcement.component';
+import { ReservationComponent } from './components/dashbord-user/reservation/reservation.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import { ReservationAnnouncementComponent } from './components/dashbord-user/ann
     AnnouncementMainInfoComponent,
     AnnouncementUserComponent,
     ReservationAnnouncementComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,8 +87,11 @@ import { ReservationAnnouncementComponent } from './components/dashbord-user/ann
     ToastrModule.forRoot({ timeOut: 8000, positionClass: 'toast-bottom-left' }), // ToastrModule added
     MatTabsModule,
     TabsModule.forRoot(),
+    MatExpansionModule,
+    MatIconModule,
     NgbCarouselModule,
-    NgbModule,
+    NgbModule
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

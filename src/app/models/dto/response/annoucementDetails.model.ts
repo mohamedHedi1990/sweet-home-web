@@ -1,6 +1,6 @@
-import {UserDtoModel} from "./dto/UserDto.model";
-import { AddressDtoModel } from './dto/AddressDto.model';
-import { EquipementAnouncementModel } from './equipememntAnoucement.model';
+import {UserDtoModel} from "./../../dto/UserDto.model";
+import { AddressDtoModel } from './../../dto/AddressDto.model';
+import { EquipementAnouncementModel } from './../../equipememntAnoucement.model';
 
 export class AnnouncementDetailsModel {
   announcementId: number;

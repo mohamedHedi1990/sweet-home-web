@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AnnouncementService} from 'src/app/services/announcement.service';
-import {AnnouncementDetailsModel} from 'src/app/models/annoucementDetails.model';
+import {AnnouncementDetailsModel} from 'src/app/models/dto/response/annoucementDetails.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddressDtoModel} from 'src/app/models/dto/AddressDto.model';
 import {CityDtoModel} from 'src/app/models/dto/CityDto.model';
 import {CountryDtoModel} from 'src/app/models/dto/CountryDto.model';
 import {UserDtoModel} from 'src/app/models/dto/UserDto.model';
-import {ReservationModel} from 'src/app/models/reservation.model';
+import {ReservationModel} from 'src/app/models/dto/request/reservation.model';
 import {ReservationService} from 'src/app/services/reservation.service';
 import {ToastrService} from 'ngx-toastr';
 import {ReservationStatus} from "../../enums/reservation-status";

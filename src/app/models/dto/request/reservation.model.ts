@@ -1,6 +1,6 @@
-import {ReservationStatus} from "../enums/reservation-status";
-import {AnnouncementModel} from "./Announcement.model";
-import {LodgerModel} from "./lodger.model";
+import {ReservationStatus} from "../../../enums/reservation-status";
+import {AnnouncementModel} from "../../Announcement.model";
+import {LodgerModel} from "../../lodger.model";
 
 export class ReservationModel {
 
