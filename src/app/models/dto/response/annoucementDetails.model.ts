@@ -1,30 +1,30 @@
-import {UserDtoModel} from "./dto/UserDto.model";
-import { AddressDtoModel } from './dto/AddressDto.model';
-import { EquipementAnouncementModel } from './equipememntAnoucement.model';
-import {CommentDtoModel} from "./dto/CommentDto.model";
+import { CommentDtoModel } from '../CommentDto.model';
+import { UserDtoModel } from '../UserDto.model';
+import { AddressDtoModel } from './../../dto/AddressDto.model';
+import { EquipementAnouncementModel } from './../../equipememntAnoucement.model';
 
 export class AnnouncementDetailsModel {
   announcementId: number;
-  announcementTitle:string;
-  announcementDescription:string;
-  announcementCreatedDate:Date;
-  announcementBedType:string;
+  announcementTitle: string;
+  announcementDescription: string;
+  announcementCreatedDate: Date;
+  announcementBedType: string;
   announcementAuthorizedExtraGuests: boolean;
-  announcementSummary:string;
+  announcementSummary: string;
   announcementRules: string;
-  announcementType:string;
-  announcementAddress:AddressDtoModel;
+  announcementType: string;
+  announcementAddress: AddressDtoModel;
 
   announcementBedNumber: number;
   announcementRoomNumber: number;
   announcementBathRoomNumber: number;
- 
+
   globalRate: number = 0;
   announcementCost: number;
-  
-  announcementOwnerPublished:UserDtoModel;
+
+  announcementOwnerPublished: UserDtoModel;
   announcementPictureUrls: any;
-  announcementEquipements: EquipementAnouncementModel [];
+  announcementEquipements: EquipementAnouncementModel[];
 
   announcementMinStay: number = 0;
   announcementMaxStay: number = 0;
@@ -32,11 +32,11 @@ export class AnnouncementDetailsModel {
   announcementEndAvailableDate: Date;
   announcementGuestNumber: number;
 
-  commentDtos: CommentDtoModel[]=[];
+  commentDtos: CommentDtoModel[] = [];
 
   constructor(
     announcementId: number,
-    announcementTitle: string, 
+    announcementTitle: string,
     announcementDescription: string,
     announcementCreatedDate: Date,
     announcementBedType: string,
@@ -44,15 +44,15 @@ export class AnnouncementDetailsModel {
     announcementSummary: string,
     announcementRules: string,
     announcementType: string,
-    announcementAddress:AddressDtoModel,
+    announcementAddress: AddressDtoModel,
     announcementBedNumber: number,
     announcementRoomNumber: number,
     announcementBathRoomNumber: number,
     globalRate: number,
     announcementCost: number,
-    announcementOwnerPublished:UserDtoModel,
+    announcementOwnerPublished: UserDtoModel,
     announcementPictureUrls: any,
-    announcementEquipements: EquipementAnouncementModel [],
+    announcementEquipements: EquipementAnouncementModel[],
     announcementMinStay: number,
     announcementMaxStay: number,
     announcementFirstAvailableDate: Date,
