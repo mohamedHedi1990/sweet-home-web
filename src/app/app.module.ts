@@ -46,9 +46,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ReservationUserComponent } from './components/dashbord-user/reservation-user/reservation-user.component';
 import { AllAnnoucementComponent } from './components/all-annoucement/all-annoucement.component';
 import { MatChipsModule } from '@angular/material/chips';
-import { ReservationComponent } from './components/dashbord-user/reservation/reservation.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { NewAnnoucementComponent } from './components/dashbord-user/new-announcement/new-announcement.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReservationAnnouncementComponent,
     ReservationUserComponent,
     AllAnnoucementComponent,
-    ReservationComponent,
+    NewAnnoucementComponent,
   ],
   imports: [
     BrowserModule,

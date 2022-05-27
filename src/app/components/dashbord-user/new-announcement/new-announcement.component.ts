@@ -15,11 +15,11 @@ import { NgForm } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-reservation',
-  templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.scss']
+  selector: 'app-new-announcement',
+  templateUrl: './new-announcement.component.html',
+  styleUrls: ['./new-announcement.component.scss']
 })
-export class ReservationComponent implements OnInit {
+export class NewAnnoucementComponent implements OnInit {
  
 
   countries: CountryModel[] = [];
