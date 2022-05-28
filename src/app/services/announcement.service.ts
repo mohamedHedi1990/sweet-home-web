@@ -66,5 +66,6 @@ export class AnnouncementService {
   }
   addAnnouncement(annoucementRequestModel: AnnouncementRequestModel) {
     return this.http.post(`${this.ANNOUNCEMENT_API}`, annoucementRequestModel);
+
   }
 }
