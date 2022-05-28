@@ -42,10 +42,13 @@ import { AnnounceDetailsComponent } from './components/announce-details/announce
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnnouncementUserComponent } from './components/dashbord-user/announcement-user/announcement-user.component';
 import { ReservationAnnouncementComponent } from './components/dashbord-user/announcement-user/reservation-announcement/reservation-announcement.component';
-import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ReservationUserComponent } from './components/dashbord-user/reservation-user/reservation-user.component';
 import { AllAnnoucementComponent } from './components/all-annoucement/all-annoucement.component';
-import {MatChipsModule} from "@angular/material/chips";
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { NewAnnoucementComponent } from './components/dashbord-user/new-announcement/new-announcement.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,7 @@ import {MatChipsModule} from "@angular/material/chips";
     ReservationAnnouncementComponent,
     ReservationUserComponent,
     AllAnnoucementComponent,
+    NewAnnoucementComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,9 +90,11 @@ import {MatChipsModule} from "@angular/material/chips";
     MatRadioModule,
     MatSliderModule,
     NgSelectModule,
-    ToastrModule.forRoot({timeOut: 8000, positionClass: 'toast-bottom-left'}), // ToastrModule added
+    ToastrModule.forRoot({ timeOut: 8000, positionClass: 'toast-bottom-left' }), // ToastrModule added
     MatTabsModule,
     TabsModule.forRoot(),
+    MatExpansionModule,
+    MatIconModule,
     NgbCarouselModule,
     NgbModule,
     TooltipModule,
