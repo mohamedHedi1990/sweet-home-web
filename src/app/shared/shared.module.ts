@@ -6,10 +6,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
 
 @NgModule({
-  declarations: [AlertErrorComponent, NavbarComponent, FooterComponent],
+  declarations: [AlertErrorComponent, NavbarComponent, FooterComponent, AlertSuccessComponent],
   imports: [CommonModule, BsDropdownModule.forRoot(), RouterModule,NgbModule],
-  exports: [AlertErrorComponent, NavbarComponent, FooterComponent],
+  exports: [AlertErrorComponent, NavbarComponent, FooterComponent, AlertSuccessComponent],
 })
 export class SharedModule {}

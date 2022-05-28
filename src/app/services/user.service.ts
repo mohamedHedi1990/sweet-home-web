@@ -5,6 +5,7 @@ import { UtilsService } from './utils.service';
 import { SKIP_AUTH_INTERCEPTOR_HEADER } from '../shared/constants/header';
 import { UserRequestModel } from '../models/dto/request/UserRequest.model';
 import { UserDetailsResponseModel } from '../models/dto/response/UserDetailsResponse.model';
+import {PasswordDtoModel} from "../models/dto/PasswordDto.model";
 @Injectable({
   providedIn: 'root',
 })
@@ -42,5 +43,17 @@ export class UserService {
 
   patchUser(userRequest: UserRequestModel) {
     return this.http.patch(`${this.USER_API}/update-user`, userRequest);
+  }
+
+  requestResetPassword(email:string){
+    return this.http.post(`${this.USER_API}/request-reset-password`, email);
+  }
+
+  verifyCodePassword(token:string){
+    return this.http.get(`${this.USER_API}/verify-code-password?token=`+token);
+  }
+
+  modifyPassword(passwordDto:PasswordDtoModel) {
+    return this.http.post(`${this.USER_API}/modify-password`,passwordDto);
   }
 }

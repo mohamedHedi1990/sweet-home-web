@@ -46,6 +46,8 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import { ReservationUserComponent } from './components/dashbord-user/reservation-user/reservation-user.component';
 import { AllAnnoucementComponent } from './components/all-annoucement/all-annoucement.component';
 import {MatChipsModule} from "@angular/material/chips";
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import {MatChipsModule} from "@angular/material/chips";
     ReservationAnnouncementComponent,
     ReservationUserComponent,
     AllAnnoucementComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
