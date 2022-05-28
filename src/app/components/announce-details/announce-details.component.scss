@@ -117,3 +117,61 @@ label {
   height: 40px;
   border-radius: 50%;
 }
+/* style pour le ng select : debut */
+:host ::ng-deep ng-select .ng-select-container {
+    padding: 10px !important;
+    width: 100% !important;
+    height: 2.75rem !important;
+    border: 1px solid #D9DDE0;
+    border-radius: 0.5rem !important;
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+  
+  :host ::ng-deep ng-select .ng-select-container > .ng-value-container > div[role="combobox"] > input {
+  height: 19px !important;
+  margin-bottom: 0 !important;
+  }
+  
+  :host ::ng-deep ng-select ng-dropdown-panel {
+  z-index: 9999999;
+  }
+  
+  :host ::ng-deep ng-select .ng-dropdown-panel {
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 8px !important;
+  }
+  
+  :host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items div.ng-option span.ng-option-label {
+    color: #565656;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  :host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items div.ng-option.ng-option-selected {
+  background-color: #c2e5f5;
+  .ng-option-label {
+    color: #2B616D;
+    font-weight: 600 !important;
+  }
+  }
+  
+  :host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar {
+  width: 8px;
+  }
+  :host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  }
+  :host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+  }
+  :host ::ng-deep ng-select .ng-dropdown-panel div.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  }
+  :host ::ng-deep ng-select div.ng-select-container > span.ng-clear-wrapper .ng-clear{
+    display: none !important;
+  }

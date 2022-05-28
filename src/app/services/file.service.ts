@@ -9,11 +9,18 @@ export class FileService {
   FILE_API = UtilsService.REMOTE_ADDRESS + '/api/file';
   constructor(private http: HttpClient) {}
 
-  uploadLogoFile(context: string, params : FormData){
-    return this.http.post(`${this.FILE_API}/post-media/`+context, params);
+  uploadLogoFile(context: string, params: FormData) {
+    return this.http.post(`${this.FILE_API}/post-media/` + context, params);
   }
 
-  deleteUserPhoto(){
+  uploadFilesWithContext(context: string, contextId: number, params: FormData) {
+    return this.http.post(
+      `${this.FILE_API}/post-media/${context}?contextId=${contextId}`,
+      params
+    );
+  }
+
+  deleteUserPhoto() {
     return this.http.get(`${this.FILE_API}/delete-user-photo`);
   }
 }
