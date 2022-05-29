@@ -31,8 +31,8 @@ export class ReservationService {
     );
   }
 
-  refuseReservation(id:number) {
-    return this.http.put(`${this.RESERVATION_API}/refuse`,id);
+  refuseReservation(id: number) {
+    return this.http.put(`${this.RESERVATION_API}/refuse`, id);
   }
 
   validateReservation(reservationId: number) {
@@ -43,14 +43,6 @@ export class ReservationService {
     return this.http.get<ReservationDetailsResponseModel[]>(
       `${this.RESERVATION_API}/user-reservation`
     );
-  }
-
-  cancelReservation(reservationId: number) {
-    return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
-  }
-
-  getMyReservations():Observable<ReservationDetailsResponseModel[]> {
-    return this.http.get<ReservationDetailsResponseModel[]>(`${this.RESERVATION_API}/user-reservation`);
   }
 
   cancelReservation(reservationId: number) {
