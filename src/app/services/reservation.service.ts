@@ -31,8 +31,8 @@ export class ReservationService {
     );
   }
 
-  refuseReservation(id:number) {
-    return this.http.put(`${this.RESERVATION_API}/refuse`,id);
+  refuseReservation(id: number) {
+    return this.http.put(`${this.RESERVATION_API}/refuse`, id);
   }
 
   validateReservation(reservationId: number) {
@@ -48,6 +48,5 @@ export class ReservationService {
   cancelReservation(reservationId: number) {
     return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
   }
-
 
 }

@@ -12,8 +12,9 @@ export class CommentService {
   constructor(private http: HttpClient) {}
 
   commentAnnouncement(idAnnounce: number, comment: CommentDtoModel) {
-    return this.http.post(`${this.COMMENT_API}/comment-announce?idAnnounce=`+idAnnounce, comment);
+    return this.http.post(
+      `${this.COMMENT_API}/comment-announce?idAnnounce=` + idAnnounce,
+      comment
+    );
   }
-
-
 }
