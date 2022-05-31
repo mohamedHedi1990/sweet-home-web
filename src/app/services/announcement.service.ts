@@ -3,12 +3,13 @@ import { UtilsService } from './utils.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AnnouncementModel } from '../models/Announcement.model';
-import { AnnouncementDetailsModel } from '../models/annoucementDetails.model';
+import { AnnouncementDetailsModel } from '../models/dto/response/annoucementDetails.model';
 import { AnnouncementResponseModel } from '../models/dto/response/AnnouncementResponse.model';
 import { SearchCriteriaModel } from '../models/searchCriteria.model';
 import { MyAnnouncementResponseModel } from '../models/dto/response/MyAnnouncementResponse.model';
-import {SearchRequestModel} from "../models/dto/request/SearchRequest.model";
-import {SearchResponseModel} from "../models/dto/response/SearchResponse.model";
+import { SearchRequestModel } from '../models/dto/request/SearchRequest.model';
+import { SearchResponseModel } from '../models/dto/response/SearchResponse.model';
+import { AnnouncementRequestModel } from '../models/dto/request/AnnouncementRequest.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,11 +35,13 @@ export class AnnouncementService {
   searchAnnouncements(
     rechercheform: SearchCriteriaModel
   ): Observable<AnnouncementResponseModel[]> {
-    /* let params = new HttpParams();
+    /*
+    let params = new HttpParams();
     params = params.append('announcementCityLabel', rechercheform.announcementCityLabel);
     params = params.append('announcementStartDate', rechercheform.announcementStartDate.toDateString());
     params = params.append('announcementEndDate', rechercheform.announcementEndDate.toDateString());
-    params = params.append('nbGuest', rechercheform.nbGuest);*/
+    params = params.append('nbGuest', rechercheform.nbGuest);
+    */
     return this.http.post<AnnouncementResponseModel[]>(
       `${this.ANNOUNCEMENT_API}/search`,
       rechercheform
@@ -55,7 +58,14 @@ export class AnnouncementService {
     return this.http.delete(`${this.ANNOUNCEMENT_API}/` + announcementId);
   }
 
-  search(searchRequest: SearchRequestModel):Observable<SearchResponseModel>{
-    return this.http.post<SearchResponseModel>(`${this.ANNOUNCEMENT_API}/search-announcement`, searchRequest)
+  search(searchRequest: SearchRequestModel): Observable<SearchResponseModel> {
+    return this.http.post<SearchResponseModel>(
+      `${this.ANNOUNCEMENT_API}/search-announcement`,
+      searchRequest
+    );
+  }
+  addAnnouncement(annoucementRequestModel: AnnouncementRequestModel) {
+    return this.http.post(`${this.ANNOUNCEMENT_API}`, annoucementRequestModel);
+
   }
 }

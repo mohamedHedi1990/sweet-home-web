@@ -46,8 +46,12 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import { ReservationUserComponent } from './components/dashbord-user/reservation-user/reservation-user.component';
 import { AllAnnoucementComponent } from './components/all-annoucement/all-annoucement.component';
 import {MatChipsModule} from "@angular/material/chips";
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { NewAnnoucementComponent } from './components/dashbord-user/new-announcement/new-announcement.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +68,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ReservationAnnouncementComponent,
     ReservationUserComponent,
     AllAnnoucementComponent,
+    NewAnnoucementComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
   ],
@@ -93,6 +98,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ToastrModule.forRoot({timeOut: 8000, positionClass: 'toast-bottom-left'}), // ToastrModule added
     MatTabsModule,
     TabsModule.forRoot(),
+    MatExpansionModule,
+    MatIconModule,
     NgbCarouselModule,
     NgbModule,
     TooltipModule,
