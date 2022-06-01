@@ -1,8 +1,8 @@
-<div class="alert-error" *ngIf="message">
+<div class="alert-error" *ngIf="isVisible">
   <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
     <span aria-hidden="true" class="alert-icon-btn">&times;</span></button
   >{{ message }}
 </div>
-<div class="alert-error" *ngIf="!message">
+<!--<div class="alert-error" *ngIf="!message">
   Une erreur s'est produite lors du traitement de votre demande !
-</div>
+</div>-->

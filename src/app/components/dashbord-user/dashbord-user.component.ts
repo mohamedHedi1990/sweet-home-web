@@ -14,24 +14,21 @@ export class DashbordUserComponent implements OnInit {
   }
 
   hasOwnerRole():boolean{
-    if(localStorage.getItem("current-user-role"))
-      if(localStorage.getItem("current-user-role") === RoleCode[0]
-        || localStorage.getItem("current-user-role") === RoleCode[2])
+    if(sessionStorage.getItem("current-user-role"))
+      if(sessionStorage.getItem("current-user-role") === RoleCode[0]
+        || sessionStorage.getItem("current-user-role") === RoleCode[2])
         return true;
 
     return false;
   }
 
   hasLodgerRole():boolean{
-    if(localStorage.getItem("current-user-role"))
-      if(localStorage.getItem("current-user-role") === RoleCode[0]
-        || localStorage.getItem("current-user-role") === RoleCode[1])
+    if(sessionStorage.getItem("current-user-role"))
+      if(sessionStorage.getItem("current-user-role") === RoleCode[0]
+        || sessionStorage.getItem("current-user-role") === RoleCode[1])
         return true;
 
     return false;
   }
 
-  alert() {
-    alert("I'm here !!")
-  }
 }

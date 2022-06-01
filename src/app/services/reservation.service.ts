@@ -48,4 +48,5 @@ export class ReservationService {
   cancelReservation(reservationId: number) {
     return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
   }
+
 }

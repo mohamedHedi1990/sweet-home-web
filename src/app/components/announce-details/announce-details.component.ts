@@ -111,12 +111,13 @@ export class AnnounceDetailsComponent implements OnInit {
   }
   onReserveSubmit() {
     const ifTokenExist: boolean =
-      localStorage.getItem('token') !== null ? true : false;
+      sessionStorage.getItem('token') !== null ? true : false;
 
     if (ifTokenExist) {
       this.bookReservation();
     } else {
-      this.router.navigateByUrl(`/login`);
+      //announcementId=16
+      this.router.navigateByUrl(`/login?announcementId=`+this.idAnnounce);
     }
   }
 
@@ -155,7 +156,7 @@ export class AnnounceDetailsComponent implements OnInit {
   }
 
   isUserLoggedIn():boolean {
-    if(localStorage.getItem("token"))  return true;
+    if(sessionStorage.getItem("token"))  return true;
     return false;
   }
 }
