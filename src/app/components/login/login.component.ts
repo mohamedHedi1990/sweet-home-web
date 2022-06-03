@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   viewPassword: boolean = false;
 
   redirectUrl: string = `/main-profile`;
+  idAnnounce:any;
   constructor(
     private route: ActivatedRoute,
     public router: Router,
@@ -25,8 +26,16 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    localStorage.clear();
-    console.log('token : ', localStorage.getItem('token'));
+
+    sessionStorage.clear();
+    //console.log('token : ', sessionStorage.getItem('token'));
+
+    this.route.queryParams.subscribe((params) => {
+      this.idAnnounce = params['announcementId'];
+    })
+    //this.idAnnounce = this.route.snapshot.paramMap.get('announcementId');
+    console.log("idAnnounce : ",this.idAnnounce)
+
   }
 
   onFormSubmit() {
@@ -41,10 +50,14 @@ export class LoginComponent implements OnInit {
   private login(auth: AuthModel) {
     this.authService.signIn(auth).subscribe(
       (response) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('current-user-id', response.id);
-        localStorage.setItem('current-user-role', response.roles[0]);
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('current-user-id', response.id);
+        sessionStorage.setItem('current-user-role', response.roles[0]);
+        if(this.idAnnounce == undefined)
         this.router.navigateByUrl(this.redirectUrl);
+        else
+          this.router.navigateByUrl('/annoucement-details/'+this.idAnnounce);
+
       },
       (error) => {
         this.showAlertError = true;

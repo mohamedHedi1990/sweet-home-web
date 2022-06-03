@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ifTokenExist = localStorage.getItem('token') !== null ? true : false;
+    this.ifTokenExist = sessionStorage.getItem('token') !== null ? true : false;
     if (this.ifTokenExist) {
       this.getCurrentUser();
     }
@@ -65,10 +65,10 @@ export class NavbarComponent implements OnInit {
   }
 
   hasOwnerRole(): boolean {
-    if (localStorage.getItem('current-user-role'))
+    if (sessionStorage.getItem('current-user-role'))
       if (
-        localStorage.getItem('current-user-role') === RoleCode[0] ||
-        localStorage.getItem('current-user-role') === RoleCode[2]
+        sessionStorage.getItem('current-user-role') === RoleCode[0] ||
+        sessionStorage.getItem('current-user-role') === RoleCode[2]
       )
         return true;
 

@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ResultSearchAnnouncementComponent } from './components/result-search-announcement/result-search-announcement.component';
 import { AnnounceDetailsComponent } from './components/announce-details/announce-details.component';
 import {AllAnnoucementComponent} from "./components/all-annoucement/all-annoucement.component";
+import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -33,6 +35,14 @@ const routes: Routes = [
   {
     path: 'announcements',
     component: AllAnnoucementComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
   {
     path: '',

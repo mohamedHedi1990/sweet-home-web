@@ -72,5 +72,6 @@ export class AnnouncementService {
     return this.http
       .post<AnnouncementRequestModel>(`${this.ANNOUNCEMENT_API}`, annoucementRequest)
       .toPromise();
+*
   }
 }
