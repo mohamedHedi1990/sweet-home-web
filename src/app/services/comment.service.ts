@@ -3,7 +3,7 @@ import { UtilsService } from './utils.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AnnouncementModel } from '../models/Announcement.model';
-import { AnnouncementDetailsModel } from '../models/annoucementDetails.model';
+
 import { AnnouncementResponseModel } from '../models/dto/response/AnnouncementResponse.model';
 import { SearchCriteriaModel } from '../models/searchCriteria.model';
 import { MyAnnouncementResponseModel } from '../models/dto/response/MyAnnouncementResponse.model';
