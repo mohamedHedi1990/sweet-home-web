@@ -49,11 +49,5 @@ export class ReservationService {
     return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
   }
 
-  getMyReservations():Observable<ReservationDetailsResponseModel[]> {
-    return this.http.get<ReservationDetailsResponseModel[]>(`${this.RESERVATION_API}/user-reservation`);
-  }
 
-  cancelReservation(reservationId: number) {
-    return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
-  }
 }
