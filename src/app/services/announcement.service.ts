@@ -68,10 +68,14 @@ export class AnnouncementService {
     return this.http.post(`${this.ANNOUNCEMENT_API}`, annoucementRequestModel);
   }*/
 
-  addAnnouncement(annoucementRequest: AnnouncementRequestModel): Promise<AnnouncementRequestModel> {
+  addAnnouncement(
+    annoucementRequest: AnnouncementRequestModel
+  ): Promise<AnnouncementRequestModel> {
     return this.http
-      .post<AnnouncementRequestModel>(`${this.ANNOUNCEMENT_API}`, annoucementRequest)
+      .post<AnnouncementRequestModel>(
+        `${this.ANNOUNCEMENT_API}`,
+        annoucementRequest
+      )
       .toPromise();
-*
   }
 }
