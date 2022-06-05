@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { EquipementService } from 'src/app/services/equipement.service';
 import { EquipementAnouncementModel } from 'src/app/models/equipememntAnoucement.model';
 import { CountryModel } from 'src/app/models/country.model';
@@ -12,6 +12,7 @@ import { CountryDtoModel } from 'src/app/models/dto/CountryDto.model';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { FileService } from 'src/app/services/file.service';
 
 
 @Component({
@@ -67,11 +68,16 @@ export class NewAnnoucementComponent implements OnInit {
      [],
     
   )
+
+  imageUrls : any = []
+ pictures : any = []
   constructor(private equipementService : EquipementService,
               private countryService : CountryService,
               private cityService : CityService,
               private annoucementService : AnnouncementService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private fileService: FileService
+ ) { }
 
   ngOnInit(): void {
     this.getAllCountries();
@@ -128,8 +134,56 @@ export class NewAnnoucementComponent implements OnInit {
     }
       
   }
-  addAnnoucement(){
-    this.annoucementService.addAnnouncement(this.annoucementRequest).subscribe(
+ 
+
+  async addAnnoucement() {
+    let saveAnnoucement : any
+    saveAnnoucement = await this.annoucementService.addAnnouncement(this.annoucementRequest);
+
+    if (saveAnnoucement.announcementId) {
+
+     this.uploadFilesWithContext(saveAnnoucement.announcementId)
+    }
+  }
+
+
+
+  showSuccess(msg: string) {
+    this.toastr.success('', msg);
+  }
+
+
+ onUploadImages(event : any) {
+  if (event.target.files && event.target.files[0]) {
+    //this.pictures.push(event.target.files[0], event.target.files[1], event.target.files[2]);
+    this.pictures.push(event.target.files);
+
+    var filesAmount = event.target.files.length;
+    for (let i = 0; i < filesAmount; i++) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrls.push(event.target.result);
+        
+      }
+      reader.readAsDataURL(event.target.files[i]);
+    }
+  }
+}
+
+
+
+ remove_img(i : any){
+     this.imageUrls.splice(i, 1)
+ 
+ }
+
+ uploadFilesWithContext(contextId : any){
+  let context = "ANNOUNCEMENT"
+  const formData = new FormData();
+  for(let i =0; i<=this.pictures.length; i++){
+    console.log(this.pictures[i])
+    formData.append('file', this.pictures[i]);
+    this.fileService.uploadFilesWithContext(context, contextId, formData).subscribe(
       (response) => {
         this.showAlertSuccess = true;
         this.message = 'Votre annouce a été ajoutée avec succées';
@@ -145,9 +199,9 @@ export class NewAnnoucementComponent implements OnInit {
       }
     );
   }
-
-  showSuccess(msg: string) {
-    this.toastr.success('', msg);
-  }
+//formData.append('file', this.pictures[0]);
+//formData.append('context', 'ANNOUNCEMENT');
+ 
+ }
 
 }

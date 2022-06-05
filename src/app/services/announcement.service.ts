@@ -64,8 +64,18 @@ export class AnnouncementService {
       searchRequest
     );
   }
-  addAnnouncement(annoucementRequestModel: AnnouncementRequestModel) {
+  /*addAnnouncement(annoucementRequestModel: AnnouncementRequestModel) {
     return this.http.post(`${this.ANNOUNCEMENT_API}`, annoucementRequestModel);
+  }*/
 
+  addAnnouncement(
+    annoucementRequest: AnnouncementRequestModel
+  ): Promise<AnnouncementRequestModel> {
+    return this.http
+      .post<AnnouncementRequestModel>(
+        `${this.ANNOUNCEMENT_API}`,
+        annoucementRequest
+      )
+      .toPromise();
   }
 }
