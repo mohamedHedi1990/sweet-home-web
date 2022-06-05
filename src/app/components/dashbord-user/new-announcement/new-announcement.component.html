@@ -283,22 +283,6 @@
          
         </div>
       </div>
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Précedent</button>
-        <button mat-button color="primary" [disabled]="!annoucementRequest.announcementBedType || !annoucementRequest.announcementRoomNumber || !annoucementRequest.announcementBedNumber || !annoucementRequest.announcementBathRoomNumber || !annoucementRequest.announcementCost || !annoucementRequest.announcementMaxStay || !annoucementRequest.announcementMinStay || !annoucementRequest.announcementEndAvailableDate || !annoucementRequest.announcementFirstAvailableDate" (click)="nextStep()">Suivant</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep()" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-         Les equipements
-        </mat-panel-title>
-      
-          <!--<mat-icon>date_range</mat-icon>-->
-      
-      </mat-expansion-panel-header>
-      
       <div class="row">
 
         <div class="col-12">
@@ -332,10 +316,51 @@
 
           </div>
         </div>
+        
+         
+
       </div>
-  
       <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Précedent</button>
+        <button mat-button color="warn" class="preview" (click)="prevStep()">Précedent</button>
+        <button mat-button color="primary" [disabled]="!annoucementRequest.announcementBedType || !annoucementRequest.announcementRoomNumber || !annoucementRequest.announcementBedNumber || !annoucementRequest.announcementBathRoomNumber || !annoucementRequest.announcementCost || !annoucementRequest.announcementMaxStay || !annoucementRequest.announcementMinStay || !annoucementRequest.announcementEndAvailableDate || !annoucementRequest.announcementFirstAvailableDate" (click)="nextStep()">Suivant</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep()" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Les equipements
+        </mat-panel-title>
+      
+        
+      
+      </mat-expansion-panel-header>
+      
+    
+  
+      <div class="row">
+        <div class="col-12">
+         
+       
+           <label for="fileUploadDocs">
+             <input  style="visibility: hidden" type="file" [(ngModel)]="imageUrls" (change)="onUploadImages($event)" id="fileUploadDocs" class="form-control input-file"  multiple="multiple" accept="image/*" />
+             <p class="upload"><i class="fas fa-upload"></i> Télécharger des images</p>
+            </label>
+            
+         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row" *ngIf="imageUrls.length">
+            <div class="col-md-4" *ngFor="let img of imageUrls; let i = index;">
+              <img class="img-fluid" height="300px" [src]="img">
+              <a (click)="remove_img(i)" style="position: absolute;color: red;"><i class="fa fa-close cross_img"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" class="preview" (click)="prevStep()">Précedent</button>
         <button mat-button color="primary"(click)="onAnouncementSubmit()">Enregistrer</button>
       </mat-action-row>
     </mat-expansion-panel>

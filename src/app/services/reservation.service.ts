@@ -31,12 +31,18 @@ export class ReservationService {
     );
   }
 
-  refuseReservation(id:number) {
-    return this.http.put(`${this.RESERVATION_API}/refuse`,id);
+  refuseReservation(id: number) {
+    return this.http.put(
+      `${this.RESERVATION_API}/refuse?reservationId=${id}`,
+      null
+    );
   }
 
   validateReservation(reservationId: number) {
-    return this.http.put(`${this.RESERVATION_API}/validate`, reservationId);
+    return this.http.put(
+      `${this.RESERVATION_API}/validate?reservationId=${reservationId}`,
+      null
+    );
   }
 
   getMyReservations(): Observable<ReservationDetailsResponseModel[]> {
@@ -46,8 +52,10 @@ export class ReservationService {
   }
 
   cancelReservation(reservationId: number) {
-    return this.http.put(`${this.RESERVATION_API}/cancel`, reservationId);
+    return this.http.put(
+      `${this.RESERVATION_API}/cancel?reservationId=${reservationId}`,
+      null
+    );
   }
-
 
 }
