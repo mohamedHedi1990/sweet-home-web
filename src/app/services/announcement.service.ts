@@ -78,4 +78,9 @@ export class AnnouncementService {
       )
       .toPromise();
   }
+
+  updateAnnouncement(annoucementRequest: AnnouncementRequestModel): Promise<AnnouncementRequestModel> {
+      return this.http.put<AnnouncementRequestModel>(`${this.ANNOUNCEMENT_API}`,annoucementRequest)
+             .toPromise();
+  }
 }

@@ -207,6 +207,33 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
       
   }
 
+  async addAnnoucement() {
+    let saveAnnoucement : any
+    saveAnnoucement = await this.annoucementService.addAnnouncement(this.annoucementRequest);
+
+    if (saveAnnoucement.announcementId) {
+
+      this.uploadFilesWithContext(saveAnnoucement.announcementId)
+    }
+  }
+
+
+  onAnouncementUpdate(){
+    if (this.annoucementRequest && this.announcementId!=0){
+      this.updateAnnoucement();
+    }
+  }
+
+  async updateAnnoucement() {
+    let saveAnnoucement : any;
+    saveAnnoucement = await this.annoucementService.updateAnnouncement(this.annoucementRequest);
+
+    if (saveAnnoucement.announcementId) {
+
+      this.uploadFilesWithContext(saveAnnoucement.announcementId)
+    }
+  }
+
 
   onUploadImages(event : any) {
     this.imageUrls=[];
@@ -217,29 +244,15 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
       for (let i = 0; i < filesAmount; i++) {
         const reader = new FileReader();
         reader.onload = (event: any) => {
-          console.log("event2::",event)
           this.imageUrls.push(event.target.result);
         }
         reader.readAsDataURL(event.target.files[i]);
       }
     }
 
-    console.log("this.imageUrls : ",this.imageUrls)
   }
  
 
-  async addAnnoucement() {
-    let saveAnnoucement : any
-    console.log("this.annoucementRequest : ",this.annoucementRequest)
-    saveAnnoucement = await this.annoucementService.addAnnouncement(this.annoucementRequest);
-
-    console.log("saveAnnoucement : ",saveAnnoucement)
-
-    if (saveAnnoucement.announcementId) {
-
-     this.uploadFilesWithContext(saveAnnoucement.announcementId)
-    }
-  }
 
 
   showSuccess(msg: string) {
@@ -259,22 +272,24 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
        console.log("pictures[i] : ",this.pictures[i])
        formData.append('contextId', contextId)
        formData.append('file', this.pictures[i]);
-       this.fileService.uploadFilesWithContext(MediaContext[3], formData).subscribe(
-         (response) => {
-           this.showAlertSuccess = true;
-         },
-         (error) => {
-           console.log(
-             "un erreur a été produit lors de l'actiond e l'announcement ",
-             error
-           );
-         }
-       );
+
      }
-     if(this.showAlertSuccess){
-       this.message = 'Votre annouce a été ajoutée avec succées';
-       this.showSuccess(this.message);
-     }
+     this.fileService.uploadFilesWithContext(MediaContext[3], formData).subscribe(
+       (response) => {
+         this.showAlertSuccess = true;
+         this.message = 'Votre annouce a été ajoutée avec succées';
+         this.showSuccess(this.message);
+       },
+       (error) => {
+         console.log(
+           "un erreur a été produit lors de l'actiond e l'announcement ",
+           error
+         );
+       }
+     );
+    /* if(this.showAlertSuccess){
+
+     }*/
 
    }
  

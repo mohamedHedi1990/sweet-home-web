@@ -372,7 +372,8 @@
       <span *ngIf="!imageUrls" class="left">N.B:Les images sont nécessaires pour finir la créeation de l'annonce</span>
       <mat-action-row>
         <button mat-button color="warn" class="preview" (click)="prevStep()">Précedent</button>
-        <button mat-button color="primary"  [disabled]="!imageUrls" (click)="onAnouncementSubmit()" >Enregistrer</button>
+        <button mat-button color="primary" *ngIf="announcementId==0" [disabled]="!imageUrls" (click)="onAnouncementSubmit()" >Enregistrer</button>
+        <button mat-button color="primary" *ngIf="announcementId!=0" [disabled]="!imageUrls" (click)="onAnouncementUpdate()" >Modifier</button>
       </mat-action-row>
     </mat-expansion-panel>
   </form>
