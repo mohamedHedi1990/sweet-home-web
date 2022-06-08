@@ -116,7 +116,7 @@ input[type=checkbox] {
   font-size: 18px!important;
 }
 .mat-expansion-panel-header {
-  background: #ededc6;
+  background: #cde8f3;
 }
 .mat-expansion-panel-header-title {
   font-weight: 800!important;
@@ -133,4 +133,18 @@ mat-action-row {
   .preview {
     color: red !important;
   }
+}
+.img{
+  width: 239px;
+  height: 143px;
+  border-radius: 1%;
+  margin-bottom: 7px;
+}
+.remove {
+  position: absolute;
+  color: red;
+  z-index: 1;
+  cursor: pointer;
+  margin-left: 210px;
+  margin-top: -151px;
 }

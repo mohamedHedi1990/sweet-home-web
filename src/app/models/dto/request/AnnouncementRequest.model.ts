@@ -3,6 +3,7 @@ import { AddressRequestModel } from './AddressRequest.model';
 
 export class AnnouncementRequestModel {
 
+  announcementId: number;
   announcementTitle:string;
   announcementDescription:string;
   announcementType:string;
@@ -28,6 +29,7 @@ export class AnnouncementRequestModel {
   equipments: EquipementAnouncementModel [];
 
   constructor(
+    announcementId: number,
     announcementTitle:string,
     announcementDescription:string,
     announcementType:string,
@@ -48,6 +50,7 @@ export class AnnouncementRequestModel {
     equipments: EquipementAnouncementModel [],
   
   ){
+    this.announcementId = announcementId;
     this.announcementTitle = announcementTitle,
     this.announcementDescription = announcementDescription,
     this.announcementType = announcementType,

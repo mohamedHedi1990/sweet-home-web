@@ -13,9 +13,9 @@ export class FileService {
     return this.http.post(`${this.FILE_API}/post-media/` + context, params);
   }
 
-  uploadFilesWithContext(context: string, contextId: number, params: FormData) {
+  uploadFilesWithContext(context: string, params: FormData) {
     return this.http.post(
-      `${this.FILE_API}/post-media/${context}?contextId=${contextId}`,
+      `${this.FILE_API}/post-media/`+context,
       params
     );
   }

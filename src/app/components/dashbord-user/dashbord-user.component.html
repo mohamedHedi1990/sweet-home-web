@@ -53,9 +53,9 @@
                 </div>
               </mdb-tab>
               <!--Panel 4-->
-              <mdb-tab *ngIf="hasOwnerRole()" heading="Publier une annonce">
+              <mdb-tab *ngIf="hasOwnerRole()" heading="Publier une annonce" (select)="newAnnouncement.ngOnInit()">
                 <div class="mb-5 row">
-                  <app-new-announcement></app-new-announcement>
+                  <app-new-announcement #newAnnouncement></app-new-announcement>
                 </div>
               </mdb-tab>
             </mdb-tabset>
