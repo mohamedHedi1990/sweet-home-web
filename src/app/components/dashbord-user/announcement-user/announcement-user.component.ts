@@ -22,6 +22,8 @@ export class AnnouncementUserComponent implements OnInit {
 
   // @ts-ignore
   announcementToDelete: AnnouncementResponseModel;
+  wichInterface: number=0;
+  announcementId: number=0;
 
   constructor(private announcementService:AnnouncementService, config: NgbModalConfig,
               private modalService: NgbModal, private toastr: ToastrService) {
@@ -69,8 +71,9 @@ export class AnnouncementUserComponent implements OnInit {
      window.open("/annoucement-details/"+announcementId);
   }
 
-  onEditAnnouncement() {
-
+  onEditAnnouncement(announcementId: number) {
+    this.wichInterface=1;
+    this.announcementId=announcementId;
   }
 
   onDeleteAnnouncement(content:any, announcementResponseModel:AnnouncementResponseModel) {
@@ -105,7 +108,7 @@ export class AnnouncementUserComponent implements OnInit {
     return false;
   }
 
-  ngAfterView(){
-    console.log("salimaaaaaa!!!")
+  onReturn() {
+    this.wichInterface=0;
   }
 }
