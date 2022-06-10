@@ -58,14 +58,27 @@
                           class="media-photo media-round"
                         >
                           <img
-                            alt=""
-                            src="assets/img/sigle.png"
-                            title="TunRooms Properties"
+                            [src]="
+                              announcementDetails.announcementOwnerPublished
+                                .userPictureUrl
+                            "
+                            class="principal-img"
                             width="115"
                             height="115"
                           />
                         </a>
-                        <a href="javascript:void(0)">TunRooms Properties</a>
+                        <div style="margin-left: 15px">
+                          <a href="javascript:void(0)"
+                            >{{
+                              announcementDetails.announcementOwnerPublished
+                                .userFirstName
+                            }}
+                            {{
+                              announcementDetails.announcementOwnerPublished
+                                .userLastName
+                            }}</a
+                          >
+                        </div>
                       </div>
                     </div>
                     <div class="col-md-9">
@@ -166,7 +179,6 @@
                         />
                       </div>
                       <div>
-                        
                         <label>Nombre d’invités</label>
                         <ng-select
                           required
