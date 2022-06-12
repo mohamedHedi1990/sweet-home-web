@@ -117,6 +117,9 @@ label {
   height: 40px;
   border-radius: 50%;
 }
+.principal-img{
+    border-radius: 50%;
+  }
 /* style pour le ng select : debut */
 :host ::ng-deep ng-select .ng-select-container {
     padding: 10px !important;

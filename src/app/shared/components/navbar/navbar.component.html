@@ -1,13 +1,30 @@
-<nav class="navbar navbar-expand-lg" [ngClass]="{transparent:isHomePage(),white: !isHomePage()} ">
-  <img src="assets/img/logoSweetRooms_up.svg" alt="logo" />
+<nav
+  class="navbar navbar-expand-lg"
+  [ngClass]="{ transparent: isHomePage(), white: !isHomePage() }"
+>
+  <img
+    src="assets/img/logoSweetRooms_up.svg"
+    alt="logo"
+    style="margin-left: 7%"
+  />
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="#" [routerLink]="'/home'">Accueil</a>
-      <a class="nav-item nav-link" href="#" [routerLink]="(hasOwnerRole() && ifTokenExist) ? '/main-profile' : '/login'">Publier votre annonce </a>
-      <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/sign-up">S'inscrire</a>
-      <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/login">S'identifier</a>
-
+      <a
+        class="nav-item nav-link"
+        href="#"
+        [routerLink]="
+          hasOwnerRole() && ifTokenExist ? '/main-profile' : '/login'
+        "
+        >Publier votre annonce
+      </a>
+      <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/sign-up"
+        >S'inscrire</a
+      >
+      <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/login"
+        >S'identifier</a
+      >
     </div>
 
     <div *ngIf="ifTokenExist" class="dropdown" dropdown container="body">
@@ -19,29 +36,41 @@
         id="dropdownMenuButton"
         aria-expanded="false"
       >
-        <img
-          [src]="userDetailsResponseModel.userPictureUrl"
-          class="img"
-        />
-        <strong>{{userDetailsResponseModel.userFirstName}} {{userDetailsResponseModel.userLastName}}</strong>
+        <img [src]="userDetailsResponseModel.userPictureUrl" class="img" />
+        <strong
+          >{{ userDetailsResponseModel.userFirstName }}
+          {{ userDetailsResponseModel.userLastName }}</strong
+        >
       </a>
       <!-- d-none is temporary -->
       <ul
-        class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-top: 20px"
+        class="dropdown-menu"
+        aria-labelledby="dropdownMenuButton"
+        style="margin-top: 20px"
       >
-        <li><a class="dropdown-item" href="#" routerLink="/main-profile">
-          <i class="fa fa-cog" style="padding-left: 10px;margin-right: 10px;">
-          </i>Mon Profil</a></li>
+        <li>
+          <a class="dropdown-item" href="#" routerLink="/main-profile">
+            <i class="fa fa-cog" style="padding-left: 10px; margin-right: 10px">
+            </i
+            >Mon Profil</a
+          >
+        </li>
 
         <li>
           <hr class="dropdown-divider" />
         </li>
-        <li><a class="dropdown-item" href="#" routerLink="/login">
-          <i class="fa fa-sign-in" style="padding-left: 10px;margin-right: 10px;">
-          </i>Se déconnecter</a></li>
+        <li>
+          <a class="dropdown-item" href="#" routerLink="/login">
+            <i
+              class="fa fa-sign-in"
+              style="padding-left: 10px; margin-right: 10px"
+            >
+            </i
+            >Se déconnecter</a
+          >
+        </li>
       </ul>
     </div>
-
 
     <!-- note: without the  'data-bs-toggle="dropdown"' dropdown will not work , as mentioned by @isabel-vallejo-gomez
     <div class="dropdown">
@@ -73,10 +102,5 @@
         </div>
       </div>
     </div>-->
-
   </div>
-
-
-
 </nav>
-
