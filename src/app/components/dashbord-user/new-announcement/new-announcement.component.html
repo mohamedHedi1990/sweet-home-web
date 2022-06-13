@@ -1,64 +1,63 @@
 <mat-accordion class="example-headers-align">
-  <form 
-      #form1="ngForm" 
-      role="form"
-      id="form1"
-      
-     >
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep()" >
+  <form #form1="ngForm" role="form" id="form1">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep()">
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          A propos
-        </mat-panel-title>
-          <!--<mat-icon>account_circle</mat-icon>-->
+        <mat-panel-title> A propos </mat-panel-title>
+        <!--<mat-icon>account_circle</mat-icon>-->
       </mat-expansion-panel-header>
       <div class="row">
-
-          <div class="col-8">
-            <label> Titre </label>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Title"
-              required
-              name="title"
-              [(ngModel)]="annoucementRequest.announcementTitle"
-            />
-          </div>
-          <div class="col-4">
-            <label> Type de propriété</label>
-            <ng-select
+        <div class="col-8">
+          <label> Titre </label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Title"
+            required
+            name="title"
+            [(ngModel)]="annoucementRequest.announcementTitle"
+          />
+        </div>
+        <div class="col-4">
+          <label> Type de propriété</label>
+          <ng-select
             required
             name="typeAnn"
-            [(ngModel)] = "annoucementRequest.announcementType"
-            >
+            [(ngModel)]="annoucementRequest.announcementType"
+          >
             <ng-option value="HOUSE">Logement entier</ng-option>
             <ng-option value="APPARTMENT">APPARTMENT</ng-option>
             <ng-option value="STAGE">Etage entiére</ng-option>
             <ng-option value="VILLA">VILLA</ng-option>
-          
           </ng-select>
-          </div>
-          
+        </div>
       </div>
 
       <div class="row">
         <div class="col-6">
           <label>Pays</label>
-          <ng-select [compareWith]="compareCountry"  name="selectedCountry"
-                     [(ngModel)]="annoucementRequest.announcementAddress.addressCity.country" (ngModelChange)="onChangeCountry($event)">
+          <ng-select
+            [compareWith]="compareCountry"
+            name="selectedCountry"
+            [(ngModel)]="
+              annoucementRequest.announcementAddress.addressCity.country
+            "
+            (ngModelChange)="onChangeCountry($event)"
+          >
             <ng-option *ngFor="let country of countries" [value]="country">
-              {{country.countryLabel}}
+              {{ country.countryLabel }}
             </ng-option>
           </ng-select>
         </div>
 
         <div class="col-6">
           <label>Ville</label>
-          <ng-select [compareWith]="compareCity"  name="selectedCity"
-                     [(ngModel)]="annoucementRequest.announcementAddress.addressCity">
+          <ng-select
+            [compareWith]="compareCity"
+            name="selectedCity"
+            [(ngModel)]="annoucementRequest.announcementAddress.addressCity"
+          >
             <ng-option *ngFor="let city of cities" [value]="city">
-              {{city.cityLabel}}
+              {{ city.cityLabel }}
             </ng-option>
           </ng-select>
         </div>
@@ -85,8 +84,9 @@
             placeholder="Numéro de rue"
             required
             name="numberStreet"
-            [(ngModel)]="annoucementRequest.announcementAddress.addressStreetNumber"
-          
+            [(ngModel)]="
+              annoucementRequest.announcementAddress.addressStreetNumber
+            "
           />
         </div>
       </div>
@@ -94,93 +94,118 @@
       <div class="row">
         <div class="col-12">
           <label> A propos d'announce </label>
-          <textarea  [(ngModel)]="annoucementRequest.announcementSummary" name="summary" required class="form-control" rows="5"></textarea>
+          <textarea
+            [(ngModel)]="annoucementRequest.announcementSummary"
+            name="summary"
+            required
+            class="form-control"
+            rows="5"
+          ></textarea>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
           <label> Description </label>
-          <textarea [(ngModel)]="annoucementRequest.announcementDescription" name="description" required class="form-control" rows="5"></textarea>
+          <textarea
+            [(ngModel)]="annoucementRequest.announcementDescription"
+            name="description"
+            required
+            class="form-control"
+            rows="5"
+          ></textarea>
         </div>
       </div>
       <div class="row">
-      <span class="left">N.B:Tous les champs sont obligatoires pour activer le panel suivant</span>
+        <span class="left"
+          >N.B:Tous les champs sont obligatoires pour activer le panel
+          suivant</span
+        >
       </div>
       <mat-action-row>
-        <button mat-button [disabled]="!annoucementRequest.announcementType || !annoucementRequest.announcementTitle || !annoucementRequest.announcementDescription || !annoucementRequest.announcementAddress.addressCity.country || !annoucementRequest.announcementSummary || !annoucementRequest.announcementAddress.addressStreetNumber || !annoucementRequest.announcementAddress.addressStreet || !annoucementRequest.announcementAddress.addressCity" (click)="nextStep1()">Suivant</button>
+        <button
+          mat-button
+          [disabled]="
+            !annoucementRequest.announcementType ||
+            !annoucementRequest.announcementTitle ||
+            !annoucementRequest.announcementDescription ||
+            !annoucementRequest.announcementAddress.addressCity.country ||
+            !annoucementRequest.announcementSummary ||
+            !annoucementRequest.announcementAddress.addressStreetNumber ||
+            !annoucementRequest.announcementAddress.addressStreet ||
+            !annoucementRequest.announcementAddress.addressCity
+          "
+          (click)="nextStep1()"
+        >
+          Suivant
+        </button>
       </mat-action-row>
     </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 1" (closed)="setStep()" [disabled]="isStep2Disabled && announcementId == 0" >
+
+    <mat-expansion-panel
+      [expanded]="step === 1"
+      (closed)="setStep()"
+      [disabled]="isStep2Disabled && announcementId == 0"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          Le logement
-        </mat-panel-title>
-      
-         <!-- <mat-icon>map</mat-icon>-->
-      
+        <mat-panel-title> Le logement </mat-panel-title>
+
+        <!-- <mat-icon>map</mat-icon>-->
       </mat-expansion-panel-header>
-  
+
       <div class="row">
         <div class="col-6">
           <label> Nombre de Chambres</label>
           <ng-select
-          required
-          [(ngModel)]="annoucementRequest.announcementRoomNumber"
-          name="roomNumber"
+            required
+            [(ngModel)]="annoucementRequest.announcementRoomNumber"
+            name="roomNumber"
           >
-          <ng-option value="1">1</ng-option>
-          <ng-option value="2">2</ng-option>
-          <ng-option value="3">3</ng-option>
-          <ng-option value="4">4</ng-option>
-          <ng-option value="5">5</ng-option>
-        
-        </ng-select>
-        </div>
-        <div class="col-6">
-          <label> Nombre de Salle de bain</label>
-          <ng-select  required
-          name="bqthroomNumber"
-          [(ngModel)]="annoucementRequest.announcementBathRoomNumber">
             <ng-option value="1">1</ng-option>
             <ng-option value="2">2</ng-option>
             <ng-option value="3">3</ng-option>
-        
-        
-        </ng-select>
+            <ng-option value="4">4</ng-option>
+            <ng-option value="5">5</ng-option>
+          </ng-select>
         </div>
-
-
+        <div class="col-6">
+          <label> Nombre de Salle de bain</label>
+          <ng-select
+            required
+            name="bqthroomNumber"
+            [(ngModel)]="annoucementRequest.announcementBathRoomNumber"
+          >
+            <ng-option value="1">1</ng-option>
+            <ng-option value="2">2</ng-option>
+            <ng-option value="3">3</ng-option>
+          </ng-select>
+        </div>
       </div>
 
       <div class="row">
-
-        
         <div class="col-6">
           <label> Nombre de Lits</label>
           <ng-select
-          required
-          name="bedNumber"
-          [(ngModel)]="annoucementRequest.announcementBedNumber"
+            required
+            name="bedNumber"
+            [(ngModel)]="annoucementRequest.announcementBedNumber"
           >
             <ng-option value="1">1</ng-option>
-            <ng-option value="2">2</ng-option>   
-        </ng-select>
+            <ng-option value="2">2</ng-option>
+          </ng-select>
         </div>
 
         <div class="col-6">
           <label> Type de lit</label>
           <ng-select
-          required
-          name="typeBed"
-          [(ngModel)]="annoucementRequest.announcementBedType"
+            required
+            name="typeBed"
+            [(ngModel)]="annoucementRequest.announcementBedType"
           >
             <ng-option value="SINGLE">Lit Single</ng-option>
-            <ng-option value="DOUBLE">Lit Double</ng-option>   
-        </ng-select>
+            <ng-option value="DOUBLE">Lit Double</ng-option>
+          </ng-select>
         </div>
-
       </div>
 
       <div class="row">
@@ -193,7 +218,6 @@
             required
             [(ngModel)]="annoucementRequest.announcementFirstAvailableDate"
             name="depart"
-          
           />
         </div>
 
@@ -211,7 +235,6 @@
       </div>
 
       <div class="row">
-
         <div class="col-6">
           <label> Séjour minimum (par jour)</label>
           <input
@@ -224,7 +247,6 @@
           />
         </div>
 
-        
         <div class="col-6">
           <label> Séjour maximum (par jour)</label>
           <input
@@ -233,15 +255,12 @@
             placeholder="séjour maximum"
             required
             [(ngModel)]="annoucementRequest.announcementMaxStay"
-          name="maxSejour"
+            name="maxSejour"
           />
         </div>
-
-
       </div>
-      
-      <div class="row">
 
+      <div class="row">
         <!--<div class="col-6">
           <label> Prix par</label>
           <ng-select
@@ -252,9 +271,9 @@
           </ng-select>
         </div>-->
 
-          <div class="col-6">
-            <label> Prix (dt)/ jour </label>
-            <input
+        <div class="col-6">
+          <label> Prix (dt)/ jour </label>
+          <input
             class="form-control"
             type="number"
             placeholder="prix"
@@ -262,119 +281,175 @@
             required
             [(ngModel)]="annoucementRequest.announcementCost"
           />
-          </div>
-
-
+        </div>
       </div>
-
 
       <div class="row mt-4">
         <div class="col-6">
           <label> Nombre d'invités </label>
           <input
-          class="form-control"
-          type="number"
-          placeholder="Nombre d'invités"
-          name="guestNum"
-          [(ngModel)]="annoucementRequest.announcementGuestNumber"
-        />
+            class="form-control"
+            type="number"
+            placeholder="Nombre d'invités"
+            name="guestNum"
+            [(ngModel)]="annoucementRequest.announcementGuestNumber"
+          />
         </div>
         <div class="col-6 mt-auto">
-
-            <input  [(ngModel)]="annoucementRequest.announcementAuthorizedExtraGuests" name="authExtraGuest" type="checkbox" class="custom-control-input" id="customControlInline">
-            <label class="custom-auto custom-control-label" for="customControlInline">Autorisé des Personnes supplémentaires:</label> 
-         
+          <input
+            [(ngModel)]="annoucementRequest.announcementAuthorizedExtraGuests"
+            name="authExtraGuest"
+            type="checkbox"
+            class="custom-control-input"
+            id="customControlInline"
+          />
+          <label
+            class="custom-auto custom-control-label"
+            for="customControlInline"
+            >Autorisé des Personnes supplémentaires:</label
+          >
         </div>
       </div>
       <div class="row">
-
         <div class="col-12">
-          
           <label>Equipements de base</label>
           <div class="flex">
-           
-            <ng-select 
-            [items]="equipements"
-            [multiple]="true"
-            [closeOnSelect]="false"
-            [searchable]="false"
-            bindLabel="equipementLabel"
-            [(ngModel)]="annoucementRequest.equipments"
-            name="equipments"
-            [maxSelectedItems]="12"
-            [ngModelOptions]="{standalone: true}"
+            <ng-select
+              [items]="equipements"
+              [multiple]="true"
+              [closeOnSelect]="false"
+              [searchable]="false"
+              bindLabel="equipementLabel"
+              [(ngModel)]="annoucementRequest.equipments"
+              name="equipments"
+              [maxSelectedItems]="12"
+              [ngModelOptions]="{ standalone: true }"
             >
-          
             </ng-select>
-         
-            <div *ngIf="annoucementRequest.equipments.length>0">
-            <div class="mt-3" *ngFor="let item of annoucementRequest.equipments">
-              <span class="selectBlock">
-                <img  [src]=" '../../../assets/images/icons/equipements_icons/' +item.equipementCode +'.png'" width="30px" height="30px"> 
-                {{item.equipementLabel}}
-              </span>
-            
+
+            <div *ngIf="annoucementRequest.equipments.length > 0">
+              <div
+                class="mt-3"
+                *ngFor="let item of annoucementRequest.equipments"
+              >
+                <span class="selectBlock">
+                  <img
+                    [src]="
+                      '../../../assets/images/icons/equipements_icons/' +
+                      item.equipementCode +
+                      '.png'
+                    "
+                    width="30px"
+                    height="30px"
+                  />
+                  {{ item.equipementLabel }}
+                </span>
+              </div>
             </div>
           </div>
-
-
-          </div>
         </div>
-        
-         
-
       </div>
       <div class="row">
-      <span class="left">N.B:Tous les champs sont obligatoires pour activer le panel suivant</span>
+        <span class="left"
+          >N.B:Tous les champs sont obligatoires pour activer le panel
+          suivant</span
+        >
       </div>
       <mat-action-row>
-        <button mat-button color="warn" class="preview" (click)="prevStep()">Précedent</button>
-        <button mat-button color="primary" [disabled]="!annoucementRequest.announcementBedType || !annoucementRequest.announcementRoomNumber || !annoucementRequest.announcementBedNumber || !annoucementRequest.announcementBathRoomNumber || !annoucementRequest.announcementCost || !annoucementRequest.announcementMaxStay || !annoucementRequest.announcementMinStay || !annoucementRequest.announcementEndAvailableDate || !annoucementRequest.announcementFirstAvailableDate" (click)="nextStep2()">Suivant</button>
+        <button mat-button color="warn" class="preview" (click)="prevStep()">
+          Précedent
+        </button>
+        <button
+          mat-button
+          color="primary"
+          [disabled]="
+            !annoucementRequest.announcementBedType ||
+            !annoucementRequest.announcementRoomNumber ||
+            !annoucementRequest.announcementBedNumber ||
+            !annoucementRequest.announcementBathRoomNumber ||
+            !annoucementRequest.announcementCost ||
+            !annoucementRequest.announcementMaxStay ||
+            !annoucementRequest.announcementMinStay ||
+            !annoucementRequest.announcementEndAvailableDate ||
+            !annoucementRequest.announcementFirstAvailableDate
+          "
+          (click)="nextStep2()"
+        >
+          Suivant
+        </button>
       </mat-action-row>
     </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 2 " (opened)="setStep()" [disabled]="isStep3Disabled && announcementId == 0">
+
+    <mat-expansion-panel
+      [expanded]="step === 2"
+      (opened)="setStep()"
+      [disabled]="isStep3Disabled && announcementId == 0"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-         Les equipements
-        </mat-panel-title>
-      
-        
-      
+        <mat-panel-title> Images </mat-panel-title>
       </mat-expansion-panel-header>
-      
-    
-  
+
       <div class="row">
         <div class="col-12">
-
-           <label for="fileUploadDocs">
-             <input  style="visibility: hidden" type="file" (change)="onUploadImages($event)" id="fileUploadDocs" class="form-control input-file"  multiple accept="image/*" />
-             <p class="upload"><i class="fas fa-upload"></i> Télécharger des images</p>
-            </label>
-            
-         </div>
+          <label for="fileUploadDocs">
+            <input
+              style="visibility: hidden"
+              type="file"
+              (change)="onUploadImages($event)"
+              id="fileUploadDocs"
+              class="form-control input-file"
+              multiple
+              accept="image/*"
+            />
+            <p class="upload">
+              <i class="fas fa-upload"></i> Télécharger des images
+            </p>
+          </label>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-4" *ngFor="let img of imageUrls; let i = index;">
-              <img [src]="img" class="row img col-12">
+            <div class="col-md-4" *ngFor="let img of imageUrls; let i = index">
+              <img [src]="img" class="row img col-12" />
               <!--<img src="http://wecision.com/enterprise/images/icons/closeIcon.png" style="position: absolute; top: 4px; right: 5px"/>-->
 
-             <a (click)="remove_img(i, img)" class="remove"><i class="fa fa-trash cross_img"></i></a>
+              <a (click)="remove_img(i, img)" class="remove"
+                ><i class="fa fa-trash cross_img"></i
+              ></a>
 
               <!--<button (click)="remove_img(i)" class="row btn btn-xs btn-danger col-12" style="margin-bottom: 8px;">Remove</button>-->
             </div>
           </div>
         </div>
       </div>
-      <span *ngIf="!imageUrls" class="left">N.B:Les images sont nécessaires pour finir la créeation de l'annonce</span>
+      <span *ngIf="!imageUrls" class="left"
+        >N.B:Les images sont nécessaires pour finir la créeation de
+        l'annonce</span
+      >
       <mat-action-row>
-        <button mat-button color="warn" class="preview" (click)="prevStep()">Précedent</button>
-        <button mat-button color="primary" *ngIf="announcementId==0" [disabled]="!imageUrls" (click)="onAnouncementSubmit()" >Enregistrer</button>
-        <button mat-button color="primary" *ngIf="announcementId!=0" [disabled]="!imageUrls" (click)="onAnouncementUpdate()" >Modifier</button>
+        <button mat-button color="warn" class="preview" (click)="prevStep()">
+          Précedent
+        </button>
+        <button
+          mat-button
+          color="primary"
+          *ngIf="announcementId == 0"
+          [disabled]="!imageUrls"
+          (click)="onAnouncementSubmit()"
+        >
+          Enregistrer
+        </button>
+        <button
+          mat-button
+          color="primary"
+          *ngIf="announcementId != 0"
+          [disabled]="!imageUrls"
+          (click)="onAnouncementUpdate()"
+        >
+          Modifier
+        </button>
       </mat-action-row>
     </mat-expansion-panel>
   </form>
-  </mat-accordion>
+</mat-accordion>

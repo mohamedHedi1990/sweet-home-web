@@ -41,7 +41,8 @@ export class UserInformationComponent implements OnInit {
       new CityDtoModel(0, '', '', new CountryDtoModel(1, 'Tunisie', 'TN'))
     ),
     Provider.LOCAL,
-    RoleCode.ADMINISTRATOR
+    RoleCode.ADMINISTRATOR,
+    '00 000 000'
   );
 
   userDetailsResponseModel: UserDetailsResponseModel =
@@ -196,6 +197,8 @@ export class UserInformationComponent implements OnInit {
       this.userDetailsResponseModel.userFirstName;
     this.userRequest.userLastName = this.userDetailsResponseModel.userLastName;
     this.userRequest.userType = this.userDetailsResponseModel.role;
+    this.userRequest.userPhoneNumber =
+      this.userDetailsResponseModel.userPhoneNumber;
 
     console.log('UserRequest to modify : ', this.userRequest);
     this.userService.patchUser(this.userRequest).subscribe((res) => {
