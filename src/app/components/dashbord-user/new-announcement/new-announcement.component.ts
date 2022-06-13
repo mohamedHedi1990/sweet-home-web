@@ -121,15 +121,35 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
         this.annoucementRequest.announcementBedNumber = res.announcementBedNumber;
         this.annoucementRequest.announcementBathRoomNumber = res.announcementBathRoomNumber;
         this.annoucementRequest.announcementCost = res.announcementCost;
+        this.annoucementRequest.announcementGuestNumber = res.announcementGuestNumber;
+        this.annoucementRequest.announcementAuthorizedExtraGuests = res.announcementAuthorizedExtraGuests;
         this.annoucementRequest.announcementMaxStay = res.announcementMaxStay;
         this.annoucementRequest.announcementMinStay = res.announcementMinStay;
         this.annoucementRequest.announcementEndAvailableDate = res.announcementEndAvailableDate;
         this.annoucementRequest.announcementFirstAvailableDate = res.announcementFirstAvailableDate;
         this.annoucementRequest.equipments = res.announcementEquipements;
 
+        console.log("announcementPictureUrls of ann to update : ",res.announcementPictureUrls)
         this.imageUrls = res.announcementPictureUrls;
-        //this.pictures=res.announcementPictureUrls;
+
       })
+
+
+      if (this.annoucementRequest.announcementAddress.addressCity == null) {
+        this.annoucementRequest.announcementAddress.addressCity = new CityDtoModel(
+          0,
+          '',
+          '',
+          new CountryDtoModel(1, 'Tunisie', 'TN')
+        );
+      }
+
+      if (this.annoucementRequest.announcementAddress) {
+        this.annoucementRequest.announcementAddress.addressCity.country=new CountryDtoModel(1, 'Tunisie', 'TN');
+        this.getCitiesByCoutryId(
+          this.annoucementRequest.announcementAddress.addressCity.country.countryId
+        );
+      }
     }
   }
 
@@ -226,17 +246,24 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
 
   async updateAnnoucement() {
     let saveAnnoucement : any;
+    console.log("announce to update : ",this.annoucementRequest)
     saveAnnoucement = await this.annoucementService.updateAnnouncement(this.annoucementRequest);
 
-    if (saveAnnoucement.announcementId) {
+    console.log("updated announce : ",saveAnnoucement)
 
-      this.uploadFilesWithContext(saveAnnoucement.announcementId)
+    if (this.pictures) {
+
+      this.uploadUpdatedFilesWithContext(saveAnnoucement.announcementId)
+    }else{
+      //On va afficher le message de modification mm s'il y a pas de pictures
+      this.message = 'Votre annouce a été modifié avec succées';
+      this.showSuccess(this.message);
     }
   }
 
 
   onUploadImages(event : any) {
-    this.imageUrls=[];
+    //this.imageUrls=[];
     this.pictures=event.target.files;
     console.log("this.pictures first: ",this.pictures)
     if (event.target.files && event.target.files[0]) {
@@ -260,8 +287,19 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
   }
 
 
- remove_img(i : any){
+ remove_img(i : any, img:any){
      this.imageUrls.splice(i, 1)
+     if(this.announcementId != 0){
+       let formData = new FormData();
+       // @ts-ignore
+       formData.append("announcementId", this.announcementId);
+       formData.append("mediaUrl", img)
+       console.log("picture to remove : ",img)
+       this.fileService.deleteAnnoucePicture(formData).subscribe(res =>{
+         console.log("delete picture ...");
+       })
+     }
+
  }
 
  uploadFilesWithContext(contextId : any){
@@ -282,7 +320,7 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
        },
        (error) => {
          console.log(
-           "un erreur a été produit lors de l'actiond e l'announcement ",
+           "un erreur a été produit lors de l'ajout de l'announcement ",
            error
          );
        }
@@ -294,6 +332,38 @@ export class NewAnnoucementComponent implements OnInit, AfterViewInit{
    }
  
  }
+
+  uploadUpdatedFilesWithContext(contextId : any){
+    const formData = new FormData();
+    if (this.pictures) {
+
+      for (let i = 0; i <= this.pictures.length; i++) {
+        console.log("pictures[i] : ",this.pictures[i])
+        formData.append('contextId', contextId)
+        formData.append('file', this.pictures[i]);
+
+      }
+
+      this.fileService.uploadFilesWithContext(MediaContext[3], formData).subscribe(
+        (response) => {
+          this.showAlertSuccess = true;
+          this.message = 'Votre annouce a été modifié avec succées';
+          this.showSuccess(this.message);
+        },
+        (error) => {
+          console.log(
+            "un erreur a été produit lors de la modification de l'announcement ",
+            error
+          );
+        }
+      );
+      /* if(this.showAlertSuccess){
+
+       }*/
+
+    }
+
+  }
 
  ngAfterViewInit(){
     this.getAllCountries();

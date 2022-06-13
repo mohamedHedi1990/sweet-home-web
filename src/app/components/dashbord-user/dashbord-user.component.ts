@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {RoleCode} from "../../enums/role-code";
+import {ActivatedRoute} from "@angular/router";
+import {NewAnnoucementComponent} from "./new-announcement/new-announcement.component";
+import {TabsetComponent} from "ng-uikit-pro-standard";
 
 @Component({
   selector: 'app-dashbord-user',
   templateUrl: './dashbord-user.component.html',
   styleUrls: ['./dashbord-user.component.css']
 })
-export class DashbordUserComponent implements OnInit {
+export class DashbordUserComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  @ViewChild("staticTabs") staticTabs!:TabsetComponent;
+  newAnn: boolean=false;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.newAnn = params['newAnn'];
+    })
+
   }
 
   hasOwnerRole():boolean{
@@ -29,6 +39,14 @@ export class DashbordUserComponent implements OnInit {
         return true;
 
     return false;
+  }
+
+  ngAfterViewInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.newAnn = params['newAnn'];
+    })
+    console.log("newAnn after: ",this.newAnn);
+    if(this.newAnn) this.staticTabs.setActiveTab(4);
   }
 
 }

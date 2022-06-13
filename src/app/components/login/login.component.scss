@@ -1,8 +1,18 @@
 @import '../../../assets/variables.scss';
 .image-back{
   background-image:url("../../../assets/images/Rectangle26.webp") ;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
+  animation: animatedLoginBackground 10s linear infinite alternate;
+}
+
+@keyframes animatedLoginBackground {
+  from {
+    background-image: url('../../../assets/images/Rectangle26.webp');
+  }
+  to {
+    background-image: url('../../../assets/img/maldives.jpg');
+  }
 }
 .no-espace{
   padding: 0;

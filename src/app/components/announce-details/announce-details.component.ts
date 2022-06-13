@@ -82,6 +82,7 @@ export class AnnounceDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.idAnnounce = this.route.snapshot.paramMap.get('id');
+
     this.getAnnoucementDetails(this.idAnnounce);
 
   }
@@ -95,7 +96,6 @@ export class AnnounceDetailsComponent implements OnInit {
       this.announcementDetails.commentDtos.forEach(comment =>{
         if(comment.writer.userPictureUrl == null) comment.writer.userPictureUrl=this.photoNotFound;
       })
-      console.log("announcementDetails : ",this.announcementDetails);
 
       let arrayGalerie = this.announcementDetails.announcementPictureUrls;
       this.galerieWithoutFirstImg = arrayGalerie.slice(1);

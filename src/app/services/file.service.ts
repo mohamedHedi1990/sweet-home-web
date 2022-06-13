@@ -23,4 +23,11 @@ export class FileService {
   deleteUserPhoto() {
     return this.http.get(`${this.FILE_API}/delete-user-photo`);
   }
+
+  deleteAnnoucePicture(params: FormData){
+    return this.http.post(
+      `${this.FILE_API}/delete-announce-picture`,
+      params
+    );
+  }
 }
