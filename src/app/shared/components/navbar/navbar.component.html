@@ -12,12 +12,10 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="#" [routerLink]="'/home'">Accueil</a>
       <a
-        class="nav-item nav-link"
-        href="#"
-        [routerLink]="
-          hasOwnerRole() && ifTokenExist ? '/main-profile' : '/login'
-        "
-        >Publier votre annonce
+        class="nav-item nav-link" (click)="onNewAnnoucement()"
+        style="cursor: pointer"
+        >Publier votre annonce <!-- [routerLink]="
+          hasOwnerRole() && ifTokenExist ? '/main-profile' : '/login'" -->
       </a>
       <a *ngIf="!ifTokenExist" class="nav-item nav-link" href="/sign-up"
         >S'inscrire</a

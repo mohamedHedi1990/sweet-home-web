@@ -79,4 +79,12 @@ export class NavbarComponent implements OnInit {
     if(this.currentRoute === "/home") return true;
     return  false;
   }
+
+  onNewAnnoucement() {
+    if(this.hasOwnerRole() && this.ifTokenExist){
+      this.router.navigateByUrl('/main-profile?newAnn='+true)
+    } else{
+      this.router.navigateByUrl('/login?newAnn='+true)
+    }
+  }
 }

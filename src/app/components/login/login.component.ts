@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   redirectUrl: string = `/main-profile`;
   idAnnounce:any;
+  newAnn: any;
   constructor(
     private route: ActivatedRoute,
     public router: Router,
@@ -32,10 +33,12 @@ export class LoginComponent implements OnInit {
 
     this.route.queryParams.subscribe((params) => {
       this.idAnnounce = params['announcementId'];
+      this.newAnn = params['newAnn'];
     })
     //this.idAnnounce = this.route.snapshot.paramMap.get('announcementId');
     console.log("idAnnounce : ",this.idAnnounce)
 
+    console.log("newAnn : ",this.newAnn)
   }
 
   onFormSubmit() {
@@ -53,10 +56,12 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('current-user-id', response.id);
         sessionStorage.setItem('current-user-role', response.roles[0]);
-        if(this.idAnnounce == undefined)
-        this.router.navigateByUrl(this.redirectUrl);
-        else
+        if(this.newAnn)
+        this.router.navigateByUrl(this.redirectUrl+'?newAnn='+this.newAnn);
+        else if(this.idAnnounce)
           this.router.navigateByUrl('/annoucement-details/'+this.idAnnounce);
+        else
+        this.router.navigateByUrl(this.redirectUrl);
 
       },
       (error) => {
